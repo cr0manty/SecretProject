@@ -12,7 +12,7 @@ void Sobutilnik::LoginForm::findAccount()
 
 	OleDbDataReader ^myOleDbDataReader = command->ExecuteReader();
 	String^ pass = myOleDbDataReader->GetString(0);//сравнить строку w_pass с textbox2 
-	mainPage->dbConnection->Close();
+	mainPage->dbConnection->Close();//Проверка
 
 	if (pass != textBox2->Text)
 		throw std::logic_error(Errors::AccountNotFound);
