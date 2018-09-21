@@ -1,6 +1,20 @@
 #include "RegistrationForm.h"
 #include "ErrorMessages.h"
 
+void Sobutilnik::RegistrationForm::checkInfo()
+{
+	mainPage->dbConnection->Open();
+	String ^select = "SELECT * from MyDatabase where w_login like '%" + loginTextBox->Text + "%'";
+	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbDataReader ^reader = command->ExecuteReader();
+	//я не понимаю почему оно работает, но оно работает корректно для логина и email, значит не нужно это трогать
+	if (reader->HasRows) {
+		mainPage->dbConnection->Close();
+		throw std::logic_error(Errors::EmailOrLoginNotUniq);
+	}
+	mainPage->dbConnection->Close();
+}
+
 void Sobutilnik::RegistrationForm::fieldCheck()
 {
 	String ^buffer;
@@ -23,35 +37,15 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 	if (buffer != passwordCheckTextBox->Text)
 		throw std::logic_error(Errors::PasswordNotEqual);
 
-	///email
-	emailCheck();
-
-	///login
-	buffer = loginTextBox->Text;
-	if (buffer->Length < 5)
-		throw std::logic_error(Errors::LoginToSmall);
-	loginCheck();
-
 	///age
 
 	///sex
 	if(!SexFem->Checked && !SexMale->Checked)
 		throw std::logic_error(Errors::SexNotChoosen);
-}
 
-void Sobutilnik::RegistrationForm::loginCheck()
-{
-	//loginTextBox->Text;
-	//проверка базы на нахождение такого логина
-	//если нет -return
-	throw std::logic_error(Errors::LoginlNotUniq);
-}
-
-void Sobutilnik::RegistrationForm::emailCheck()
-{
-	//emailTextBox->Text
-	//проверка базы на нахождение такого email
-	//если нет -return
-	throw std::logic_error(Errors::EmailNotUniq);
+	///email and login
+	if (loginTextBox->Text->Length < 5)
+		throw std::logic_error(Errors::LoginToSmall);
+	checkInfo();
 }
 

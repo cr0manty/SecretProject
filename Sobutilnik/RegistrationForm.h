@@ -344,13 +344,12 @@ namespace Sobutilnik {
 			this->PerformLayout();
 
 		}
-
+		
 #pragma endregion
 	private:
 		FirstPage ^mainPage;
 		void fieldCheck();
-		void emailCheck();
-		void loginCheck();
+		void checkInfo();
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		try
 		{

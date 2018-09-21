@@ -49,8 +49,6 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::TextBox^  textBox2;
 
 #pragma region Windows Form Designer generated code
-		
-		
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginForm::typeid));
