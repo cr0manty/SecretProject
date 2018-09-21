@@ -10,8 +10,10 @@ void Sobutilnik::LoginForm::findAccount()
 	OleDbDataReader ^reader = command->ExecuteReader();
 	reader->Read();
 
-	if(!reader->HasRows)
+	if (!reader->HasRows) {
+		mainPage->dbConnection->Close();
 		throw std::logic_error(Errors::AccountNotFound);
+	}
 	
 	String^ pass = reader->GetValue(3)->ToString();
 	mainPage->dbConnection->Close();
