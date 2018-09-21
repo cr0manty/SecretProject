@@ -33,7 +33,6 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 		throw std::logic_error(Errors::PasswordNotEqual);
 
 	///age
-
 	///email and login
 	if (loginTextBox->Text->Length < 5)
 		throw std::logic_error(Errors::LoginToSmall);
