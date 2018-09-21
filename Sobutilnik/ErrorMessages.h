@@ -14,4 +14,5 @@ namespace Errors {
 	const char* const AccountNotFound				= "Аккаунт с такими данными не найден";
 	const char* const EmailNotUniq					= "Аккаунт с таким email уже существует";
 	const char* const LoginlNotUniq					= "Аккаунт с таким логином уже существует";
+	const char* const WrongPassword					= "Неверный пароль";
 }
