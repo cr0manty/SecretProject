@@ -11,6 +11,8 @@ namespace Sobutilnik {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace msclr::interop;
+	using namespace OleDb;
+
 	/// <summary>
 	/// —водка дл€ Map
 	/// </summary>
@@ -39,7 +41,10 @@ namespace Sobutilnik {
 
 	private:
 		FirstPage ^mainPage;
-		String^ profileImage;
+	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::Label^  label10;
+			 String^ profileImage;
 		void checkSearch();
 	private: GMap::NET::WindowsForms::GMapControl^  gMapControl1;
 	private: System::Windows::Forms::Button^  Messages;
@@ -79,7 +84,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::PictureBox^  ProfileImage;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Label^  UserName;
-	private: System::Windows::Forms::Label^  RatingPersent;
+
 	private: System::Windows::Forms::Button^  searchButton;
 	private: System::Windows::Forms::TextBox^  searchField;
 	private: System::Windows::Forms::ListBox^  resultListBox;
@@ -91,10 +96,8 @@ namespace Sobutilnik {
 			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-			 /// <summary>
-			 /// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
-			 /// содержимое этого метода с помощью редактора кода.
-			 /// </summary>
+			 
+
 			 void InitializeComponent(void)
 			 {
 				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Map::typeid));
@@ -104,20 +107,22 @@ namespace Sobutilnik {
 				 this->label1 = (gcnew System::Windows::Forms::Label());
 				 this->Rating = (gcnew System::Windows::Forms::ProgressBar());
 				 this->FriendsPanel = (gcnew System::Windows::Forms::Panel());
+				 this->label11 = (gcnew System::Windows::Forms::Label());
 				 this->resultListBox = (gcnew System::Windows::Forms::ListBox());
 				 this->searchButton = (gcnew System::Windows::Forms::Button());
 				 this->searchField = (gcnew System::Windows::Forms::TextBox());
 				 this->FriendsCloseButton = (gcnew System::Windows::Forms::Button());
 				 this->HistoryPanel = (gcnew System::Windows::Forms::Panel());
+				 this->label9 = (gcnew System::Windows::Forms::Label());
 				 this->HistoryCloseButton = (gcnew System::Windows::Forms::Button());
 				 this->MessagesPanel = (gcnew System::Windows::Forms::Panel());
+				 this->label10 = (gcnew System::Windows::Forms::Label());
 				 this->MessagesCloseButton = (gcnew System::Windows::Forms::Button());
 				 this->Settings = (gcnew System::Windows::Forms::Button());
 				 this->Friends = (gcnew System::Windows::Forms::Button());
 				 this->History = (gcnew System::Windows::Forms::Button());
 				 this->Messages = (gcnew System::Windows::Forms::Button());
 				 this->Buttons = (gcnew System::Windows::Forms::Panel());
-				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->UserName = (gcnew System::Windows::Forms::Label());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
 				 this->label8 = (gcnew System::Windows::Forms::Label());
@@ -210,10 +215,10 @@ namespace Sobutilnik {
 				 this->Rating->Name = L"Rating";
 				 this->Rating->Size = System::Drawing::Size(133, 28);
 				 this->Rating->TabIndex = 3;
-				 this->Rating->Value = 30;
 				 // 
 				 // FriendsPanel
 				 // 
+				 this->FriendsPanel->Controls->Add(this->label11);
 				 this->FriendsPanel->Controls->Add(this->resultListBox);
 				 this->FriendsPanel->Controls->Add(this->searchButton);
 				 this->FriendsPanel->Controls->Add(this->searchField);
@@ -225,6 +230,15 @@ namespace Sobutilnik {
 				 this->FriendsPanel->Size = System::Drawing::Size(521, 663);
 				 this->FriendsPanel->TabIndex = 12;
 				 this->FriendsPanel->Visible = false;
+				 // 
+				 // label11
+				 // 
+				 this->label11->AutoSize = true;
+				 this->label11->Location = System::Drawing::Point(241, 40);
+				 this->label11->Name = L"label11";
+				 this->label11->Size = System::Drawing::Size(56, 17);
+				 this->label11->TabIndex = 17;
+				 this->label11->Text = L"ƒрузь€";
 				 // 
 				 // resultListBox
 				 // 
@@ -265,6 +279,7 @@ namespace Sobutilnik {
 				 // 
 				 // HistoryPanel
 				 // 
+				 this->HistoryPanel->Controls->Add(this->label9);
 				 this->HistoryPanel->Controls->Add(this->HistoryCloseButton);
 				 this->HistoryPanel->Location = System::Drawing::Point(64, 140);
 				 this->HistoryPanel->Margin = System::Windows::Forms::Padding(4);
@@ -272,6 +287,15 @@ namespace Sobutilnik {
 				 this->HistoryPanel->Size = System::Drawing::Size(521, 663);
 				 this->HistoryPanel->TabIndex = 12;
 				 this->HistoryPanel->Visible = false;
+				 // 
+				 // label9
+				 // 
+				 this->label9->AutoSize = true;
+				 this->label9->Location = System::Drawing::Point(214, 33);
+				 this->label9->Name = L"label9";
+				 this->label9->Size = System::Drawing::Size(64, 17);
+				 this->label9->TabIndex = 14;
+				 this->label9->Text = L"»стори€";
 				 // 
 				 // HistoryCloseButton
 				 // 
@@ -286,6 +310,7 @@ namespace Sobutilnik {
 				 // 
 				 // MessagesPanel
 				 // 
+				 this->MessagesPanel->Controls->Add(this->label10);
 				 this->MessagesPanel->Controls->Add(this->MessagesCloseButton);
 				 this->MessagesPanel->Location = System::Drawing::Point(100, 4);
 				 this->MessagesPanel->Margin = System::Windows::Forms::Padding(4);
@@ -293,6 +318,15 @@ namespace Sobutilnik {
 				 this->MessagesPanel->Size = System::Drawing::Size(521, 663);
 				 this->MessagesPanel->TabIndex = 12;
 				 this->MessagesPanel->Visible = false;
+				 // 
+				 // label10
+				 // 
+				 this->label10->AutoSize = true;
+				 this->label10->Location = System::Drawing::Point(187, 41);
+				 this->label10->Name = L"label10";
+				 this->label10->Size = System::Drawing::Size(84, 17);
+				 this->label10->TabIndex = 14;
+				 this->label10->Text = L"—ообщени€";
 				 // 
 				 // MessagesCloseButton
 				 // 
@@ -351,7 +385,6 @@ namespace Sobutilnik {
 				 // 
 				 // Buttons
 				 // 
-				 this->Buttons->Controls->Add(this->RatingPersent);
 				 this->Buttons->Controls->Add(this->UserName);
 				 this->Buttons->Controls->Add(this->Drunk);
 				 this->Buttons->Controls->Add(this->PictureProfile);
@@ -366,16 +399,6 @@ namespace Sobutilnik {
 				 this->Buttons->Name = L"Buttons";
 				 this->Buttons->Size = System::Drawing::Size(509, 652);
 				 this->Buttons->TabIndex = 10;
-				 // 
-				 // RatingPersent
-				 // 
-				 this->RatingPersent->AutoSize = true;
-				 this->RatingPersent->Location = System::Drawing::Point(157, 256);
-				 this->RatingPersent->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-				 this->RatingPersent->Name = L"RatingPersent";
-				 this->RatingPersent->Size = System::Drawing::Size(36, 17);
-				 this->RatingPersent->TabIndex = 13;
-				 this->RatingPersent->Text = L"60%";
 				 // 
 				 // UserName
 				 // 
@@ -408,7 +431,7 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
 				 this->SettingsPanel->Controls->Add(this->ProfileImage);
 				 this->SettingsPanel->Controls->Add(this->SettingsCloseButton);
-				 this->SettingsPanel->Location = System::Drawing::Point(52, 45);
+				 this->SettingsPanel->Location = System::Drawing::Point(656, 4);
 				 this->SettingsPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->SettingsPanel->Name = L"SettingsPanel";
 				 this->SettingsPanel->Size = System::Drawing::Size(509, 652);
@@ -626,7 +649,9 @@ namespace Sobutilnik {
 				 this->FriendsPanel->ResumeLayout(false);
 				 this->FriendsPanel->PerformLayout();
 				 this->HistoryPanel->ResumeLayout(false);
+				 this->HistoryPanel->PerformLayout();
 				 this->MessagesPanel->ResumeLayout(false);
+				 this->MessagesPanel->PerformLayout();
 				 this->Buttons->ResumeLayout(false);
 				 this->Buttons->PerformLayout();
 				 this->SettingsPanel->ResumeLayout(false);
@@ -650,7 +675,7 @@ namespace Sobutilnik {
 	private: System::Void ChangeProfileImage_Click(System::Object^  sender, System::EventArgs^  e);
 
 private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
-	RatingPersent->Text = System::Convert::ToString(Rating->Value * 2) + "%";
+	
 
 }
 private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e) {

@@ -20,6 +20,7 @@ namespace Sobutilnik {
 		{
 			InitializeComponent();
 			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
+		
 		}
 
 	protected:

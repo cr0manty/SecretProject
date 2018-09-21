@@ -129,10 +129,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="GMap.NET.Core">
-      <HintPath>..\..\..\Downloads\Остальное\GMAP\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\..\..\Folder\Map\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsForms">
-      <HintPath>..\..\..\Downloads\Остальное\GMAP\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\..\..\Folder\Map\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
