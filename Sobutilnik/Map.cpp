@@ -25,25 +25,25 @@ void Sobutilnik::Map::checkSearch()
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	SettingsPanel->Visible = true;
-	SettingsPanel->Location = System::Drawing::Point(640, 12);
+	SettingsPanel->Location = System::Drawing::Point(580, 10);
 }
 
 System::Void Sobutilnik::Map::Messages_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	MessagesPanel->Visible = true;
-	MessagesPanel->Location = System::Drawing::Point(640, 12);
+	MessagesPanel->Location = System::Drawing::Point(580, 10);
 }
 
 System::Void Sobutilnik::Map::History_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	HistoryPanel->Visible = true;
-	HistoryPanel->Location = System::Drawing::Point(640, 12);
+	HistoryPanel->Location = System::Drawing::Point(580, 10);
 }
 
 System::Void Sobutilnik::Map::Friends_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	FriendsPanel->Visible = true;
-	FriendsPanel->Location = System::Drawing::Point(640, 12);
+	FriendsPanel->Location = System::Drawing::Point(580, 10);
 }
 
 System::Void Sobutilnik::Map::SettingsCloseButton_Click(System::Object ^ sender, System::EventArgs ^ e)
