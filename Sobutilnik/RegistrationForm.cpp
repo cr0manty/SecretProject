@@ -19,17 +19,12 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 {
 	String ^buffer;
 	///username
-	if (!nameTextBox->Text->Length)
-		throw std::logic_error(Errors::FirstnameEmpty);
-
-	///surname
-	if (!surnameTextBox->Text->Length)
-		throw std::logic_error(Errors::SurnameEmpty);
+	if (!nameTextBox->Text->Length || !surnameTextBox->Text->Length || !passwordTextBox->Text->Length || 
+		!passwordCheckTextBox->Text->Length || !SexFem->Checked && !SexMale->Checked )
+		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
 	///password
 	buffer = passwordTextBox->Text;
-	if (!buffer->Length || !passwordCheckTextBox->Text->Length)
-		throw std::logic_error(Errors::PasswordIsEmpty);
 	if (isdigit(buffer[0]) || islower(buffer[0]))
 		throw std::logic_error(Errors::PasswordFirstSymbol);
 	if (buffer->Length < 8)
@@ -38,10 +33,6 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 		throw std::logic_error(Errors::PasswordNotEqual);
 
 	///age
-
-	///sex
-	if(!SexFem->Checked && !SexMale->Checked)
-		throw std::logic_error(Errors::SexNotChoosen);
 
 	///email and login
 	if (loginTextBox->Text->Length < 5)

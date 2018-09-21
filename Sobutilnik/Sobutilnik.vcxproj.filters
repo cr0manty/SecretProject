@@ -62,4 +62,9 @@
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MyDatabase.mdb">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
 </Project>

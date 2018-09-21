@@ -4,20 +4,21 @@
 void Sobutilnik::LoginForm::findAccount()
 {
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where w_login like '%" + textBox1->Text + "%'";
+	String ^select = "SELECT * from MyDatabase where w_login like '%" + LoginField->Text + "%'";
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 
 	OleDbDataReader ^reader = command->ExecuteReader();
+	
+
+	if (!LoginField->Text->Length || !PassField->Text->Length) {
+		mainPage->dbConnection->Close();
+		throw std::logic_error(Errors::AllFieldMustBeFilled);
+	}
 	reader->Read();
 
-	if (!reader->HasRows) {
-		mainPage->dbConnection->Close();
-		throw std::logic_error(Errors::AccountNotFound);
-	}
-	
 	String^ pass = reader->GetValue(3)->ToString();
 	mainPage->dbConnection->Close();
 
-	if (pass != textBox2->Text)
-		throw std::logic_error(Errors::WrongPassword);
+	if (pass != PassField->Text)
+		throw std::logic_error(Errors::AccountNotFound);
 }

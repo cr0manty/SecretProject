@@ -43,10 +43,14 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::PictureBox^  pictureBox1;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::Button^  Entry;
+	private: System::Windows::Forms::PictureBox^  PassOnOff;
+
+
+	private: System::Windows::Forms::TextBox^  LoginField;
+	private: System::Windows::Forms::TextBox^  PassField;
+
+
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
@@ -55,11 +59,11 @@ namespace Sobutilnik {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->Entry = (gcnew System::Windows::Forms::Button());
+			this->PassOnOff = (gcnew System::Windows::Forms::PictureBox());
+			this->LoginField = (gcnew System::Windows::Forms::TextBox());
+			this->PassField = (gcnew System::Windows::Forms::TextBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PassOnOff))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -91,52 +95,52 @@ namespace Sobutilnik {
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Пароль:";
 			// 
-			// button1
+			// Entry
 			// 
-			this->button1->Location = System::Drawing::Point(93, 164);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(84, 23);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"Войти";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
+			this->Entry->Location = System::Drawing::Point(93, 164);
+			this->Entry->Name = L"Entry";
+			this->Entry->Size = System::Drawing::Size(84, 23);
+			this->Entry->TabIndex = 3;
+			this->Entry->Text = L"Войти";
+			this->Entry->UseVisualStyleBackColor = true;
+			this->Entry->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
 			// 
-			// pictureBox1
+			// PassOnOff
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(187, 138);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(25, 20);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 4;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->MouseEnter += gcnew System::EventHandler(this, &LoginForm::pictureBox1_MouseEnter);
-			this->pictureBox1->MouseLeave += gcnew System::EventHandler(this, &LoginForm::pictureBox1_MouseLeave);
+			this->PassOnOff->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PassOnOff.Image")));
+			this->PassOnOff->Location = System::Drawing::Point(187, 138);
+			this->PassOnOff->Name = L"PassOnOff";
+			this->PassOnOff->Size = System::Drawing::Size(25, 20);
+			this->PassOnOff->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->PassOnOff->TabIndex = 4;
+			this->PassOnOff->TabStop = false;
+			this->PassOnOff->MouseEnter += gcnew System::EventHandler(this, &LoginForm::pictureBox1_MouseEnter);
+			this->PassOnOff->MouseLeave += gcnew System::EventHandler(this, &LoginForm::pictureBox1_MouseLeave);
 			// 
-			// textBox1
+			// LoginField
 			// 
-			this->textBox1->Location = System::Drawing::Point(86, 99);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 5;
+			this->LoginField->Location = System::Drawing::Point(86, 99);
+			this->LoginField->Name = L"LoginField";
+			this->LoginField->Size = System::Drawing::Size(100, 20);
+			this->LoginField->TabIndex = 5;
 			// 
-			// textBox2
+			// PassField
 			// 
-			this->textBox2->Location = System::Drawing::Point(86, 138);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 6;
-			this->textBox2->UseSystemPasswordChar = true;
+			this->PassField->Location = System::Drawing::Point(86, 138);
+			this->PassField->Name = L"PassField";
+			this->PassField->Size = System::Drawing::Size(100, 20);
+			this->PassField->TabIndex = 6;
+			this->PassField->UseSystemPasswordChar = true;
 			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->PassField);
+			this->Controls->Add(this->LoginField);
+			this->Controls->Add(this->PassOnOff);
+			this->Controls->Add(this->Entry);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -145,7 +149,7 @@ namespace Sobutilnik {
 			this->Text = L"LoginForm";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LoginForm::LoginForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PassOnOff))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -153,10 +157,10 @@ namespace Sobutilnik {
 #pragma endregion
 
 private: System::Void pictureBox1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-	textBox2->UseSystemPasswordChar = false;
+	PassField->UseSystemPasswordChar = false;
 }
 private: System::Void pictureBox1_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-	textBox2->UseSystemPasswordChar = true;
+	PassField->UseSystemPasswordChar = true;
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	try
