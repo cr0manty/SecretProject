@@ -18,7 +18,7 @@ void Sobutilnik::RegistrationForm::checkInfo()
 void Sobutilnik::RegistrationForm::fieldCheck()
 {
 	String ^buffer;
-	///username
+	///empty check
 	if (!nameTextBox->Text->Length || !surnameTextBox->Text->Length || !passwordTextBox->Text->Length || 
 		!passwordCheckTextBox->Text->Length || !SexFem->Checked && !SexMale->Checked )
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
