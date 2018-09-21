@@ -1,4 +1,25 @@
 #include "Map.h"
+#include "ErrorMessages.h"
+
+void Sobutilnik::Map::checkSearch()
+{
+	if (!searchField->Text->Length)
+		throw std::logic_error(Errors::AllFieldMustBeFilled);
+
+	mainPage->dbConnection->Open();
+	String ^select = "SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'";
+	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbDataReader ^reader = command->ExecuteReader();
+
+	while (reader->Read()) {
+		String^ name = reader->GetValue(1)->ToString();
+		String^ surname = reader->GetValue(2)->ToString();
+		String^ login = reader->GetValue(4)->ToString();
+
+		resultListBox->Items->Add(name + " " + surname + " " + login + "\n");
+	}
+	mainPage->dbConnection->Close();
+}
 
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
