@@ -64,6 +64,10 @@ namespace Sobutilnik {
 
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::CheckBox^  locationCheckBox;
+
+
+
 	private:
 		System::ComponentModel::Container ^components;
 
@@ -98,6 +102,7 @@ namespace Sobutilnik {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SetProfilePicture = (gcnew System::Windows::Forms::PictureBox());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->locationCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->ProfilePicture->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SetProfilePicture))->BeginInit();
 			this->SuspendLayout();
@@ -228,9 +233,9 @@ namespace Sobutilnik {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(245, 254);
+			this->button1->Location = System::Drawing::Point(245, 280);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(103, 51);
+			this->button1->Size = System::Drawing::Size(103, 32);
 			this->button1->TabIndex = 9;
 			this->button1->Text = L"Регестрация";
 			this->button1->UseVisualStyleBackColor = true;
@@ -309,10 +314,23 @@ namespace Sobutilnik {
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
+			// locationCheckBox
+			// 
+			this->locationCheckBox->AutoSize = true;
+			this->locationCheckBox->Checked = true;
+			this->locationCheckBox->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->locationCheckBox->Location = System::Drawing::Point(215, 233);
+			this->locationCheckBox->Name = L"locationCheckBox";
+			this->locationCheckBox->Size = System::Drawing::Size(188, 17);
+			this->locationCheckBox->TabIndex = 20;
+			this->locationCheckBox->Text = L"Использовать мою геолокацию";
+			this->locationCheckBox->UseVisualStyleBackColor = true;
+			// 
 			// RegistrationForm
 			// 
 			this->AutoScrollMargin = System::Drawing::Size(100, 100);
 			this->ClientSize = System::Drawing::Size(466, 400);
+			this->Controls->Add(this->locationCheckBox);
 			this->Controls->Add(this->ProfilePicture);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
@@ -377,8 +395,8 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	mainPage->dbConnection->Open();
 	OleDbCommand ^command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
-	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday) \
-		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday)";
+	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
+		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
 	command->Connection = mainPage->dbConnection;
 	command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
 	command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
@@ -392,7 +410,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 		command->Parameters->AddWithValue("@u_sex", "M");
 
 	command->Parameters->AddWithValue("@u_birthday",monthCalendar1->SelectionRange->Start.ToShortDateString());
-
+	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
 	command->ExecuteNonQuery();
 	mainPage->dbConnection->Close();
 }
