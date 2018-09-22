@@ -36,7 +36,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  emailTextBox;
-
+	private: System::Windows::Forms::CheckBox^  locationCheckBox;
 
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  passwordTextBox;
@@ -57,14 +57,15 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Panel^  ProfilePicture;
+	private: System::Windows::Forms::Button^  RregistrationCompliteButton;
 
-	private: System::Windows::Forms::Button^  button3;
+
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::PictureBox^  SetProfilePicture;
 
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Label^  label9;
-	private: System::Windows::Forms::CheckBox^  locationCheckBox;
+
 
 
 
@@ -98,7 +99,7 @@ namespace Sobutilnik {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->ProfilePicture = (gcnew System::Windows::Forms::Panel());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->RregistrationCompliteButton = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SetProfilePicture = (gcnew System::Windows::Forms::PictureBox());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
@@ -262,13 +263,13 @@ namespace Sobutilnik {
 			// ProfilePicture
 			// 
 			this->ProfilePicture->Controls->Add(this->label9);
-			this->ProfilePicture->Controls->Add(this->button3);
+			this->ProfilePicture->Controls->Add(this->RregistrationCompliteButton);
 			this->ProfilePicture->Controls->Add(this->button2);
 			this->ProfilePicture->Controls->Add(this->SetProfilePicture);
-			this->ProfilePicture->Location = System::Drawing::Point(404, 150);
+			this->ProfilePicture->Location = System::Drawing::Point(398, 280);
 			this->ProfilePicture->Name = L"ProfilePicture";
 			this->ProfilePicture->Size = System::Drawing::Size(417, 335);
-			this->ProfilePicture->TabIndex = 19;
+			this->ProfilePicture->TabIndex = 10;
 			this->ProfilePicture->Visible = false;
 			// 
 			// label9
@@ -280,15 +281,15 @@ namespace Sobutilnik {
 			this->label9->TabIndex = 3;
 			this->label9->Text = L"Установите фото профиля:";
 			// 
-			// button3
+			// RregistrationCompliteButton
 			// 
-			this->button3->Location = System::Drawing::Point(169, 280);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(91, 23);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Продолжить";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &RegistrationForm::button3_Click);
+			this->RregistrationCompliteButton->Location = System::Drawing::Point(169, 280);
+			this->RregistrationCompliteButton->Name = L"RregistrationCompliteButton";
+			this->RregistrationCompliteButton->Size = System::Drawing::Size(91, 23);
+			this->RregistrationCompliteButton->TabIndex = 2;
+			this->RregistrationCompliteButton->Text = L"Продолжить";
+			this->RregistrationCompliteButton->UseVisualStyleBackColor = true;
+			this->RregistrationCompliteButton->Click += gcnew System::EventHandler(this, &RegistrationForm::button3_Click);
 			// 
 			// button2
 			// 
@@ -322,8 +323,9 @@ namespace Sobutilnik {
 			this->locationCheckBox->Location = System::Drawing::Point(215, 233);
 			this->locationCheckBox->Name = L"locationCheckBox";
 			this->locationCheckBox->Size = System::Drawing::Size(188, 17);
-			this->locationCheckBox->TabIndex = 20;
+			this->locationCheckBox->TabIndex = 9;
 			this->locationCheckBox->Text = L"Использовать мою геолокацию";
+			this->locationCheckBox->TextImageRelation = System::Windows::Forms::TextImageRelation::TextAboveImage;
 			this->locationCheckBox->UseVisualStyleBackColor = true;
 			// 
 			// RegistrationForm
@@ -369,6 +371,7 @@ namespace Sobutilnik {
 		void fieldCheck();
 		void checkInfo();
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		locationCheckBox->Visible = false;
 		try
 		{
 			fieldCheck();
@@ -387,33 +390,7 @@ private: System::Void RegistrationForm_FormClosed(System::Object^  sender, Syste
 private: System::Void RegistrationForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	this->ClientSize = System::Drawing::Size(414, 334);
 }
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	mainPage->Visible = false;
-	Map ^NewForm = gcnew Map(mainPage);
-	this->Close();
-	NewForm->ShowDialog();
-	mainPage->dbConnection->Open();
-	OleDbCommand ^command = gcnew OleDbCommand();
-	command->CommandType = CommandType::Text;
-	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
-		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
-	command->Connection = mainPage->dbConnection;
-	command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
-	command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
-	command->Parameters->AddWithValue("@u_password", passwordTextBox->Text);
-	command->Parameters->AddWithValue("@u_login", loginTextBox->Text);
-	command->Parameters->AddWithValue("@u_email", emailTextBox->Text);
-	
-	if(SexFem->Checked)
-		command->Parameters->AddWithValue("@u_sex", "F");
-	else
-		command->Parameters->AddWithValue("@u_sex", "M");
-
-	command->Parameters->AddWithValue("@u_birthday",monthCalendar1->SelectionRange->Start.ToShortDateString());
-	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
-	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
-}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	
 	String ^imageProfile;
