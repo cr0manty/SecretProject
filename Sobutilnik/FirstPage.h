@@ -37,8 +37,6 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	public: OleDb::OleDbConnection ^dbConnection;
-	protected:
-
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.

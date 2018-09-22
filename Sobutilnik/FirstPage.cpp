@@ -1,5 +1,6 @@
 #include "RegistrationForm.h"
 #include "LoginForm.h"
+
 System::Void Sobutilnik::FirstPage::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	this->Visible = false;

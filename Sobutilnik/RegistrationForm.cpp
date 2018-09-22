@@ -62,8 +62,6 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 		throw std::logic_error(Errors::PasswordNotEqual);
 
 	///age
-	if (monthCalendar1->SelectionStart.Year < (monthCalendar1->TodayDate.Year - 17))
-		throw std::logic_error(Errors::UserTooYong);
 	///email and login
 	if (loginTextBox->Text->Length < 5)
 		throw std::logic_error(Errors::LoginToSmall);

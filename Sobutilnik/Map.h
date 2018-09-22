@@ -50,7 +50,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  profileButton;
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::Button^  profileCloseButton;
-	private: System::Windows::Forms::Button^  ExitButton;
+
 			 String^ profileImage;
 		void checkSearch();
 
@@ -103,8 +103,6 @@ namespace Sobutilnik {
 			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-			 
-
 			 void InitializeComponent(void)
 			 {
 				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Map::typeid));
@@ -157,7 +155,6 @@ namespace Sobutilnik {
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 				 this->panel1 = (gcnew System::Windows::Forms::Panel());
 				 this->profileCloseButton = (gcnew System::Windows::Forms::Button());
-				 this->ExitButton = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -232,7 +229,7 @@ namespace Sobutilnik {
 				 // 
 				 this->resultListBox->FormattingEnabled = true;
 				 this->resultListBox->Location = System::Drawing::Point(28, 158);
-				 this->resultListBox->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->resultListBox->Margin = System::Windows::Forms::Padding(2);
 				 this->resultListBox->Name = L"resultListBox";
 				 this->resultListBox->Size = System::Drawing::Size(243, 238);
 				 this->resultListBox->TabIndex = 16;
@@ -240,7 +237,7 @@ namespace Sobutilnik {
 				 // searchButton
 				 // 
 				 this->searchButton->Location = System::Drawing::Point(298, 111);
-				 this->searchButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->searchButton->Margin = System::Windows::Forms::Padding(2);
 				 this->searchButton->Name = L"searchButton";
 				 this->searchButton->Size = System::Drawing::Size(56, 19);
 				 this->searchButton->TabIndex = 15;
@@ -251,7 +248,7 @@ namespace Sobutilnik {
 				 // searchField
 				 // 
 				 this->searchField->Location = System::Drawing::Point(28, 112);
-				 this->searchField->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->searchField->Margin = System::Windows::Forms::Padding(2);
 				 this->searchField->Name = L"searchField";
 				 this->searchField->Size = System::Drawing::Size(243, 20);
 				 this->searchField->TabIndex = 14;
@@ -394,7 +391,7 @@ namespace Sobutilnik {
 				 // mapButton
 				 // 
 				 this->mapButton->Location = System::Drawing::Point(10, 93);
-				 this->mapButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->mapButton->Margin = System::Windows::Forms::Padding(2);
 				 this->mapButton->Name = L"mapButton";
 				 this->mapButton->Size = System::Drawing::Size(125, 19);
 				 this->mapButton->TabIndex = 13;
@@ -404,7 +401,7 @@ namespace Sobutilnik {
 				 // profileButton
 				 // 
 				 this->profileButton->Location = System::Drawing::Point(10, 11);
-				 this->profileButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->profileButton->Margin = System::Windows::Forms::Padding(2);
 				 this->profileButton->Name = L"profileButton";
 				 this->profileButton->Size = System::Drawing::Size(125, 19);
 				 this->profileButton->TabIndex = 12;
@@ -432,7 +429,6 @@ namespace Sobutilnik {
 				 // 
 				 // SettingsPanel
 				 // 
-				 this->SettingsPanel->Controls->Add(this->ExitButton);
 				 this->SettingsPanel->Controls->Add(this->label8);
 				 this->SettingsPanel->Controls->Add(this->label6);
 				 this->SettingsPanel->Controls->Add(this->label7);
@@ -639,7 +635,7 @@ namespace Sobutilnik {
 				 this->panel1->Controls->Add(this->UserName);
 				 this->panel1->Controls->Add(this->label1);
 				 this->panel1->Location = System::Drawing::Point(159, 6);
-				 this->panel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->panel1->Margin = System::Windows::Forms::Padding(2);
 				 this->panel1->Name = L"panel1";
 				 this->panel1->Size = System::Drawing::Size(389, 539);
 				 this->panel1->TabIndex = 13;
@@ -647,22 +643,12 @@ namespace Sobutilnik {
 				 // profileCloseButton
 				 // 
 				 this->profileCloseButton->Location = System::Drawing::Point(314, 15);
-				 this->profileCloseButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->profileCloseButton->Margin = System::Windows::Forms::Padding(2);
 				 this->profileCloseButton->Name = L"profileCloseButton";
 				 this->profileCloseButton->Size = System::Drawing::Size(56, 19);
 				 this->profileCloseButton->TabIndex = 12;
 				 this->profileCloseButton->Text = L"button3";
 				 this->profileCloseButton->UseVisualStyleBackColor = true;
-				 // 
-				 // ExitButton
-				 // 
-				 this->ExitButton->Location = System::Drawing::Point(277, 503);
-				 this->ExitButton->Name = L"ExitButton";
-				 this->ExitButton->Size = System::Drawing::Size(75, 23);
-				 this->ExitButton->TabIndex = 33;
-				 this->ExitButton->Text = L"Exit";
-				 this->ExitButton->UseVisualStyleBackColor = true;
-				 this->ExitButton->Click += gcnew System::EventHandler(this, &Map::ExitButton_Click);
 				 // 
 				 // Map
 				 // 
@@ -713,7 +699,6 @@ private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
 	RatingPersent->Text = System::Convert::ToString(Rating->Value * 2) + "%";
 }
 private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
 	try
 	{
 		checkSearch();
@@ -723,15 +708,6 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 		MessageBox::Show(marshal_as<String^>(e.what()));
 		return;
 	}
-	
-}
-
-private: System::Void ExitButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->Visible = false;
-	FirstPage ^newForm = gcnew FirstPage();
-	newForm->ShowDialog();
-	this->Close();
-	//выход из аккаунта
 }
 };
 }
