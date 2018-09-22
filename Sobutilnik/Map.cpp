@@ -25,45 +25,48 @@ void Sobutilnik::Map::checkSearch()
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	SettingsPanel->Visible = true;
-	SettingsPanel->Location = System::Drawing::Point(580, 10);
+	SettingsPanel->Location = System::Drawing::Point(215, 15);
+
+	FriendsPanel->Visible = false;
+	profilePanel->Visible = false;
+	HistoryPanel->Visible = false;
+	MessagesPanel->Visible = false;
+
+	mainPage->dbConnection->Open();
 }
 
 System::Void Sobutilnik::Map::Messages_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	MessagesPanel->Visible = true;
-	MessagesPanel->Location = System::Drawing::Point(580, 10);
+	MessagesPanel->Location = System::Drawing::Point(215, 15);
+	
+	FriendsPanel->Visible = false;
+	profilePanel->Visible = false;
+	HistoryPanel->Visible = false;
+	SettingsPanel->Visible = false;
+
 }
 
 System::Void Sobutilnik::Map::History_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	HistoryPanel->Visible = true;
-	HistoryPanel->Location = System::Drawing::Point(580, 10);
+	HistoryPanel->Location = System::Drawing::Point(215, 15);
+
+	FriendsPanel->Visible = false;
+	profilePanel->Visible = false;
+	SettingsPanel->Visible = false;
+	MessagesPanel->Visible = false;
 }
 
 System::Void Sobutilnik::Map::Friends_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	FriendsPanel->Visible = true;
-	FriendsPanel->Location = System::Drawing::Point(580, 10);
-}
+	FriendsPanel->Location = System::Drawing::Point(215, 15);
 
-System::Void Sobutilnik::Map::SettingsCloseButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	SettingsPanel->Visible = false;
-}
-
-System::Void Sobutilnik::Map::MessagesCloseButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	MessagesPanel->Visible = false;
-}
-
-System::Void Sobutilnik::Map::HistoryCloseButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
+	profilePanel->Visible = false;
 	HistoryPanel->Visible = false;
-}
-
-System::Void Sobutilnik::Map::FriendsCloseButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	FriendsPanel->Visible = false;
+	SettingsPanel->Visible = false;
+	MessagesPanel->Visible = false;
 }
 
 System::Void Sobutilnik::Map::ChangeProfileImage_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -78,3 +81,41 @@ System::Void Sobutilnik::Map::ChangeProfileImage_Click(System::Object ^ sender, 
 		//Внесение в бд картинки
 	}
 }
+
+System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	profilePanel->Visible = true;
+	profilePanel->Location = System::Drawing::Point(215, 15);
+
+	FriendsPanel->Visible = false;
+	HistoryPanel->Visible = false;
+	SettingsPanel->Visible = false;
+	MessagesPanel->Visible = false;
+}
+
+System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	
+}
+
+System::Void Sobutilnik::Map::descriptionChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	OleDbCommand ^command = gcnew OleDbCommand();
+	command->CommandType = CommandType::Text;
+	command->CommandText = "INSERT INTO MyDatabase (w_userDescription) \
+		VALUES (@u_userDescription)";
+	command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
+	command->ExecuteNonQuery();
+	mainPage->dbConnection->Close();
+}
+
+System::Void Sobutilnik::Map::button3_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	return System::Void();
+}
+
+System::Void Sobutilnik::Map::button4_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	return System::Void();
+}
+
