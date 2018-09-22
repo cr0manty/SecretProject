@@ -48,6 +48,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label12;
 	private: System::Windows::Forms::Button^  mapButton;
 	private: System::Windows::Forms::Button^  profileButton;
+<<<<<<< HEAD
 	private: System::Windows::Forms::Panel^  profilePanel;
 	private: System::Windows::Forms::Label^  label15;
 	private: System::Windows::Forms::Label^  usersAlcoholLabel;
@@ -66,6 +67,10 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  descriptionChangeButton;
 
+=======
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::Button^  profileCloseButton;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 
 			 String^ profileImage;
 		void checkSearch();
@@ -127,8 +132,6 @@ namespace Sobutilnik {
 			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-			 
-
 			 void InitializeComponent(void)
 			 {
 				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Map::typeid));
@@ -205,20 +208,23 @@ namespace Sobutilnik {
 				 // PictureProfile
 				 // 
 				 this->PictureProfile->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PictureProfile.Image")));
-				 this->PictureProfile->Location = System::Drawing::Point(29, 14);
-				 this->PictureProfile->Margin = System::Windows::Forms::Padding(4);
+				 this->PictureProfile->Location = System::Drawing::Point(22, 11);
 				 this->PictureProfile->Name = L"PictureProfile";
-				 this->PictureProfile->Size = System::Drawing::Size(187, 169);
+				 this->PictureProfile->Size = System::Drawing::Size(140, 137);
 				 this->PictureProfile->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 				 this->PictureProfile->TabIndex = 0;
 				 this->PictureProfile->TabStop = false;
 				 // 
 				 // Drunk
 				 // 
+<<<<<<< HEAD
 				 this->Drunk->Location = System::Drawing::Point(322, 438);
 				 this->Drunk->Margin = System::Windows::Forms::Padding(4);
+=======
+				 this->Drunk->Location = System::Drawing::Point(101, 332);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 this->Drunk->Name = L"Drunk";
-				 this->Drunk->Size = System::Drawing::Size(153, 47);
+				 this->Drunk->Size = System::Drawing::Size(115, 38);
 				 this->Drunk->TabIndex = 6;
 				 this->Drunk->Text = L"Хочу бухать!";
 				 this->Drunk->UseVisualStyleBackColor = true;
@@ -226,20 +232,18 @@ namespace Sobutilnik {
 				 // label1
 				 // 
 				 this->label1->AutoSize = true;
-				 this->label1->Location = System::Drawing::Point(43, 253);
-				 this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label1->Location = System::Drawing::Point(32, 206);
 				 this->label1->Name = L"label1";
-				 this->label1->Size = System::Drawing::Size(53, 17);
+				 this->label1->Size = System::Drawing::Size(41, 13);
 				 this->label1->TabIndex = 4;
 				 this->label1->Text = L"Rating:";
 				 // 
 				 // Rating
 				 // 
-				 this->Rating->Location = System::Drawing::Point(46, 300);
-				 this->Rating->Margin = System::Windows::Forms::Padding(4);
+				 this->Rating->Location = System::Drawing::Point(34, 244);
 				 this->Rating->Maximum = 50;
 				 this->Rating->Name = L"Rating";
-				 this->Rating->Size = System::Drawing::Size(133, 28);
+				 this->Rating->Size = System::Drawing::Size(100, 23);
 				 this->Rating->TabIndex = 3;
 				 // 
 				 // FriendsPanel
@@ -249,38 +253,41 @@ namespace Sobutilnik {
 				 this->FriendsPanel->Controls->Add(this->searchButton);
 				 this->FriendsPanel->Controls->Add(this->searchField);
 				 this->FriendsPanel->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-				 this->FriendsPanel->Location = System::Drawing::Point(54, 129);
-				 this->FriendsPanel->Margin = System::Windows::Forms::Padding(4);
+				 this->FriendsPanel->Location = System::Drawing::Point(40, 105);
 				 this->FriendsPanel->Name = L"FriendsPanel";
+<<<<<<< HEAD
 				 this->FriendsPanel->Size = System::Drawing::Size(1139, 663);
+=======
+				 this->FriendsPanel->Size = System::Drawing::Size(391, 539);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 this->FriendsPanel->TabIndex = 12;
 				 this->FriendsPanel->Visible = false;
 				 // 
 				 // label11
 				 // 
 				 this->label11->AutoSize = true;
-				 this->label11->Location = System::Drawing::Point(241, 39);
+				 this->label11->Location = System::Drawing::Point(181, 32);
+				 this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label11->Name = L"label11";
-				 this->label11->Size = System::Drawing::Size(56, 17);
+				 this->label11->Size = System::Drawing::Size(45, 13);
 				 this->label11->TabIndex = 17;
 				 this->label11->Text = L"Друзья";
 				 // 
 				 // resultListBox
 				 // 
 				 this->resultListBox->FormattingEnabled = true;
-				 this->resultListBox->ItemHeight = 16;
-				 this->resultListBox->Location = System::Drawing::Point(37, 194);
-				 this->resultListBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+				 this->resultListBox->Location = System::Drawing::Point(28, 158);
+				 this->resultListBox->Margin = System::Windows::Forms::Padding(2);
 				 this->resultListBox->Name = L"resultListBox";
-				 this->resultListBox->Size = System::Drawing::Size(323, 292);
+				 this->resultListBox->Size = System::Drawing::Size(243, 238);
 				 this->resultListBox->TabIndex = 16;
 				 // 
 				 // searchButton
 				 // 
-				 this->searchButton->Location = System::Drawing::Point(398, 137);
-				 this->searchButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+				 this->searchButton->Location = System::Drawing::Point(298, 111);
+				 this->searchButton->Margin = System::Windows::Forms::Padding(2);
 				 this->searchButton->Name = L"searchButton";
-				 this->searchButton->Size = System::Drawing::Size(75, 23);
+				 this->searchButton->Size = System::Drawing::Size(56, 19);
 				 this->searchButton->TabIndex = 15;
 				 this->searchButton->Text = L"Поиск";
 				 this->searchButton->UseVisualStyleBackColor = true;
@@ -288,15 +295,29 @@ namespace Sobutilnik {
 				 // 
 				 // searchField
 				 // 
-				 this->searchField->Location = System::Drawing::Point(37, 138);
-				 this->searchField->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+				 this->searchField->Location = System::Drawing::Point(28, 112);
+				 this->searchField->Margin = System::Windows::Forms::Padding(2);
 				 this->searchField->Name = L"searchField";
-				 this->searchField->Size = System::Drawing::Size(323, 22);
+				 this->searchField->Size = System::Drawing::Size(243, 20);
 				 this->searchField->TabIndex = 14;
 				 // 
+<<<<<<< HEAD
+=======
+				 // FriendsCloseButton
+				 // 
+				 this->FriendsCloseButton->Location = System::Drawing::Point(313, 13);
+				 this->FriendsCloseButton->Name = L"FriendsCloseButton";
+				 this->FriendsCloseButton->Size = System::Drawing::Size(75, 23);
+				 this->FriendsCloseButton->TabIndex = 13;
+				 this->FriendsCloseButton->Text = L"Close";
+				 this->FriendsCloseButton->UseVisualStyleBackColor = true;
+				 this->FriendsCloseButton->Click += gcnew System::EventHandler(this, &Map::FriendsCloseButton_Click);
+				 // 
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // HistoryPanel
 				 // 
 				 this->HistoryPanel->Controls->Add(this->label9);
+<<<<<<< HEAD
 				 this->HistoryPanel->Location = System::Drawing::Point(831, 8);
 				 this->HistoryPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->HistoryPanel->Name = L"HistoryPanel";
@@ -304,32 +325,70 @@ namespace Sobutilnik {
 				 this->HistoryPanel->TabIndex = 12;
 				 this->HistoryPanel->Visible = false;
 				 // 
+=======
+				 this->HistoryPanel->Controls->Add(this->HistoryCloseButton);
+				 this->HistoryPanel->Controls->Add(this->FriendsPanel);
+				 this->HistoryPanel->Location = System::Drawing::Point(623, 6);
+				 this->HistoryPanel->Name = L"HistoryPanel";
+				 this->HistoryPanel->Size = System::Drawing::Size(389, 539);
+				 this->HistoryPanel->TabIndex = 12;
+				 this->HistoryPanel->Visible = false;
+				 // 
+				 // label12
+				 // 
+				 this->label12->AutoSize = true;
+				 this->label12->Location = System::Drawing::Point(125, 16);
+				 this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+				 this->label12->Name = L"label12";
+				 this->label12->Size = System::Drawing::Size(50, 13);
+				 this->label12->TabIndex = 15;
+				 this->label12->Text = L"История";
+				 // 
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // label9
 				 // 
 				 this->label9->AutoSize = true;
-				 this->label9->Location = System::Drawing::Point(580, 20);
+				 this->label9->Location = System::Drawing::Point(435, 16);
+				 this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label9->Name = L"label9";
-				 this->label9->Size = System::Drawing::Size(64, 17);
+				 this->label9->Size = System::Drawing::Size(50, 13);
 				 this->label9->TabIndex = 14;
 				 this->label9->Text = L"История";
 				 // 
 				 // label12
 				 // 
+<<<<<<< HEAD
 				 this->label12->AutoSize = true;
 				 this->label12->Location = System::Drawing::Point(167, 20);
 				 this->label12->Name = L"label12";
 				 this->label12->Size = System::Drawing::Size(64, 17);
 				 this->label12->TabIndex = 15;
 				 this->label12->Text = L"История";
+=======
+				 this->HistoryCloseButton->Location = System::Drawing::Point(305, 11);
+				 this->HistoryCloseButton->Name = L"HistoryCloseButton";
+				 this->HistoryCloseButton->Size = System::Drawing::Size(75, 23);
+				 this->HistoryCloseButton->TabIndex = 13;
+				 this->HistoryCloseButton->Text = L"Close";
+				 this->HistoryCloseButton->UseVisualStyleBackColor = true;
+				 this->HistoryCloseButton->Click += gcnew System::EventHandler(this, &Map::HistoryCloseButton_Click);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // MessagesPanel
 				 // 
 				 this->MessagesPanel->Controls->Add(this->profilePanel);
 				 this->MessagesPanel->Controls->Add(this->label10);
+<<<<<<< HEAD
 				 this->MessagesPanel->Location = System::Drawing::Point(617, 22);
 				 this->MessagesPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->MessagesPanel->Name = L"MessagesPanel";
 				 this->MessagesPanel->Size = System::Drawing::Size(1139, 663);
+=======
+				 this->MessagesPanel->Controls->Add(this->MessagesCloseButton);
+				 this->MessagesPanel->Location = System::Drawing::Point(547, 18);
+				 this->MessagesPanel->Name = L"MessagesPanel";
+				 this->MessagesPanel->Size = System::Drawing::Size(391, 539);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 this->MessagesPanel->TabIndex = 12;
 				 this->MessagesPanel->Visible = false;
 				 // 
@@ -442,18 +501,31 @@ namespace Sobutilnik {
 				 // label10
 				 // 
 				 this->label10->AutoSize = true;
-				 this->label10->Location = System::Drawing::Point(187, 41);
+				 this->label10->Location = System::Drawing::Point(140, 33);
+				 this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label10->Name = L"label10";
-				 this->label10->Size = System::Drawing::Size(84, 17);
+				 this->label10->Size = System::Drawing::Size(65, 13);
 				 this->label10->TabIndex = 14;
 				 this->label10->Text = L"Сообщения";
 				 // 
+<<<<<<< HEAD
+=======
+				 // MessagesCloseButton
+				 // 
+				 this->MessagesCloseButton->Location = System::Drawing::Point(286, 28);
+				 this->MessagesCloseButton->Name = L"MessagesCloseButton";
+				 this->MessagesCloseButton->Size = System::Drawing::Size(75, 23);
+				 this->MessagesCloseButton->TabIndex = 13;
+				 this->MessagesCloseButton->Text = L"Close";
+				 this->MessagesCloseButton->UseVisualStyleBackColor = true;
+				 this->MessagesCloseButton->Click += gcnew System::EventHandler(this, &Map::MessagesCloseButton_Click);
+				 // 
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // Settings
 				 // 
-				 this->Settings->Location = System::Drawing::Point(13, 181);
-				 this->Settings->Margin = System::Windows::Forms::Padding(4);
+				 this->Settings->Location = System::Drawing::Point(10, 147);
 				 this->Settings->Name = L"Settings";
-				 this->Settings->Size = System::Drawing::Size(167, 30);
+				 this->Settings->Size = System::Drawing::Size(125, 24);
 				 this->Settings->TabIndex = 5;
 				 this->Settings->Text = L"Настройки";
 				 this->Settings->UseVisualStyleBackColor = true;
@@ -461,10 +533,9 @@ namespace Sobutilnik {
 				 // 
 				 // Friends
 				 // 
-				 this->Friends->Location = System::Drawing::Point(13, 44);
-				 this->Friends->Margin = System::Windows::Forms::Padding(4);
+				 this->Friends->Location = System::Drawing::Point(10, 36);
 				 this->Friends->Name = L"Friends";
-				 this->Friends->Size = System::Drawing::Size(167, 28);
+				 this->Friends->Size = System::Drawing::Size(125, 23);
 				 this->Friends->TabIndex = 7;
 				 this->Friends->Text = L"Друзья";
 				 this->Friends->UseVisualStyleBackColor = true;
@@ -472,10 +543,9 @@ namespace Sobutilnik {
 				 // 
 				 // History
 				 // 
-				 this->History->Location = System::Drawing::Point(13, 145);
-				 this->History->Margin = System::Windows::Forms::Padding(4);
+				 this->History->Location = System::Drawing::Point(10, 118);
 				 this->History->Name = L"History";
-				 this->History->Size = System::Drawing::Size(167, 28);
+				 this->History->Size = System::Drawing::Size(125, 23);
 				 this->History->TabIndex = 8;
 				 this->History->Text = L"История";
 				 this->History->UseVisualStyleBackColor = true;
@@ -483,10 +553,9 @@ namespace Sobutilnik {
 				 // 
 				 // Messages
 				 // 
-				 this->Messages->Location = System::Drawing::Point(13, 80);
-				 this->Messages->Margin = System::Windows::Forms::Padding(4);
+				 this->Messages->Location = System::Drawing::Point(10, 65);
 				 this->Messages->Name = L"Messages";
-				 this->Messages->Size = System::Drawing::Size(167, 28);
+				 this->Messages->Size = System::Drawing::Size(125, 23);
 				 this->Messages->TabIndex = 9;
 				 this->Messages->Text = L"Сообщения";
 				 this->Messages->UseVisualStyleBackColor = true;
@@ -500,30 +569,53 @@ namespace Sobutilnik {
 				 this->Buttons->Controls->Add(this->Messages);
 				 this->Buttons->Controls->Add(this->Settings);
 				 this->Buttons->Controls->Add(this->History);
-				 this->Buttons->Location = System::Drawing::Point(13, 8);
-				 this->Buttons->Margin = System::Windows::Forms::Padding(4);
+				 this->Buttons->Location = System::Drawing::Point(10, 6);
 				 this->Buttons->Name = L"Buttons";
-				 this->Buttons->Size = System::Drawing::Size(192, 652);
+				 this->Buttons->Size = System::Drawing::Size(144, 530);
 				 this->Buttons->TabIndex = 10;
 				 // 
 				 // mapButton
 				 // 
-				 this->mapButton->Location = System::Drawing::Point(13, 115);
+				 this->mapButton->Location = System::Drawing::Point(10, 93);
+				 this->mapButton->Margin = System::Windows::Forms::Padding(2);
 				 this->mapButton->Name = L"mapButton";
-				 this->mapButton->Size = System::Drawing::Size(167, 23);
+				 this->mapButton->Size = System::Drawing::Size(125, 19);
 				 this->mapButton->TabIndex = 13;
 				 this->mapButton->Text = L"Карта";
 				 this->mapButton->UseVisualStyleBackColor = true;
 				 // 
 				 // profileButton
 				 // 
-				 this->profileButton->Location = System::Drawing::Point(13, 14);
+				 this->profileButton->Location = System::Drawing::Point(10, 11);
+				 this->profileButton->Margin = System::Windows::Forms::Padding(2);
 				 this->profileButton->Name = L"profileButton";
-				 this->profileButton->Size = System::Drawing::Size(167, 23);
+				 this->profileButton->Size = System::Drawing::Size(125, 19);
 				 this->profileButton->TabIndex = 12;
 				 this->profileButton->Text = L"Мой профиль";
 				 this->profileButton->UseVisualStyleBackColor = true;
+<<<<<<< HEAD
 				 this->profileButton->Click += gcnew System::EventHandler(this, &Map::profileButton_Click);
+=======
+				 // 
+				 // RatingPersent
+				 // 
+				 this->RatingPersent->AutoSize = true;
+				 this->RatingPersent->Location = System::Drawing::Point(108, 205);
+				 this->RatingPersent->Name = L"RatingPersent";
+				 this->RatingPersent->Size = System::Drawing::Size(27, 13);
+				 this->RatingPersent->TabIndex = 11;
+				 this->RatingPersent->Text = L"60%";
+				 this->RatingPersent->TextAlign = System::Drawing::ContentAlignment::TopRight;
+				 // 
+				 // UserName
+				 // 
+				 this->UserName->AutoSize = true;
+				 this->UserName->Location = System::Drawing::Point(35, 163);
+				 this->UserName->Name = L"UserName";
+				 this->UserName->Size = System::Drawing::Size(27, 13);
+				 this->UserName->TabIndex = 10;
+				 this->UserName->Text = L"Ник";
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // SettingsPanel
 				 // 
@@ -554,10 +646,17 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Controls->Add(this->ChangePass);
 				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
 				 this->SettingsPanel->Controls->Add(this->ProfileImage);
+<<<<<<< HEAD
 				 this->SettingsPanel->Location = System::Drawing::Point(216, 12);
 				 this->SettingsPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->SettingsPanel->Name = L"SettingsPanel";
 				 this->SettingsPanel->Size = System::Drawing::Size(1139, 663);
+=======
+				 this->SettingsPanel->Controls->Add(this->SettingsCloseButton);
+				 this->SettingsPanel->Location = System::Drawing::Point(570, 9);
+				 this->SettingsPanel->Name = L"SettingsPanel";
+				 this->SettingsPanel->Size = System::Drawing::Size(368, 538);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 this->SettingsPanel->TabIndex = 12;
 				 this->SettingsPanel->Visible = false;
 				 // 
@@ -615,43 +714,40 @@ namespace Sobutilnik {
 				 // label8
 				 // 
 				 this->label8->AutoSize = true;
-				 this->label8->Location = System::Drawing::Point(336, 102);
-				 this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label8->Location = System::Drawing::Point(252, 83);
 				 this->label8->Name = L"label8";
-				 this->label8->Size = System::Drawing::Size(155, 17);
+				 this->label8->Size = System::Drawing::Size(118, 13);
 				 this->label8->TabIndex = 32;
 				 this->label8->Text = L"exmple@sobutilnik.com";
 				 // 
 				 // label6
 				 // 
 				 this->label6->AutoSize = true;
-				 this->label6->Location = System::Drawing::Point(143, 480);
-				 this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label6->Location = System::Drawing::Point(107, 390);
 				 this->label6->Name = L"label6";
-				 this->label6->Size = System::Drawing::Size(118, 17);
+				 this->label6->Size = System::Drawing::Size(91, 13);
 				 this->label6->TabIndex = 31;
 				 this->label6->Text = L"Изменить почту:";
 				 // 
 				 // label7
 				 // 
 				 this->label7->AutoSize = true;
-				 this->label7->Location = System::Drawing::Point(336, 86);
-				 this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label7->Location = System::Drawing::Point(252, 70);
 				 this->label7->Name = L"label7";
-				 this->label7->Size = System::Drawing::Size(53, 17);
+				 this->label7->Size = System::Drawing::Size(40, 13);
 				 this->label7->TabIndex = 30;
 				 this->label7->Text = L"Почта:";
 				 // 
 				 // textBox6
 				 // 
-				 this->textBox6->Location = System::Drawing::Point(147, 500);
-				 this->textBox6->Margin = System::Windows::Forms::Padding(4);
+				 this->textBox6->Location = System::Drawing::Point(110, 406);
 				 this->textBox6->Name = L"textBox6";
-				 this->textBox6->Size = System::Drawing::Size(132, 22);
+				 this->textBox6->Size = System::Drawing::Size(100, 20);
 				 this->textBox6->TabIndex = 28;
 				 // 
 				 // saveEmailChanges
 				 // 
+<<<<<<< HEAD
 				 this->saveEmailChanges->Location = System::Drawing::Point(146, 575);
 				 this->saveEmailChanges->Margin = System::Windows::Forms::Padding(4);
 				 this->saveEmailChanges->Name = L"saveEmailChanges";
@@ -660,49 +756,68 @@ namespace Sobutilnik {
 				 this->saveEmailChanges->Text = L"Изменить";
 				 this->saveEmailChanges->UseVisualStyleBackColor = true;
 				 this->saveEmailChanges->Click += gcnew System::EventHandler(this, &Map::saveChanges_Click);
+=======
+				 this->button2->Location = System::Drawing::Point(110, 432);
+				 this->button2->Name = L"button2";
+				 this->button2->Size = System::Drawing::Size(75, 23);
+				 this->button2->TabIndex = 27;
+				 this->button2->Text = L"Изменить";
+				 this->button2->UseVisualStyleBackColor = true;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // label4
 				 // 
 				 this->label4->AutoSize = true;
-				 this->label4->Location = System::Drawing::Point(252, 256);
-				 this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label4->Location = System::Drawing::Point(189, 208);
 				 this->label4->Name = L"label4";
-				 this->label4->Size = System::Drawing::Size(117, 17);
+				 this->label4->Size = System::Drawing::Size(91, 13);
 				 this->label4->TabIndex = 26;
 				 this->label4->Text = L"Новая фамилия:";
 				 // 
 				 // label5
 				 // 
 				 this->label5->AutoSize = true;
-				 this->label5->Location = System::Drawing::Point(252, 304);
-				 this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label5->Location = System::Drawing::Point(189, 247);
 				 this->label5->Name = L"label5";
-				 this->label5->Size = System::Drawing::Size(82, 17);
+				 this->label5->Size = System::Drawing::Size(65, 13);
 				 this->label5->TabIndex = 25;
 				 this->label5->Text = L"Новое имя:";
 				 // 
 				 // newNameField
 				 // 
+<<<<<<< HEAD
 				 this->newNameField->Location = System::Drawing::Point(256, 324);
 				 this->newNameField->Margin = System::Windows::Forms::Padding(4);
 				 this->newNameField->Name = L"newNameField";
 				 this->newNameField->Size = System::Drawing::Size(132, 22);
 				 this->newNameField->TabIndex = 24;
+=======
+				 this->textBox3->Location = System::Drawing::Point(192, 263);
+				 this->textBox3->Name = L"textBox3";
+				 this->textBox3->Size = System::Drawing::Size(100, 20);
+				 this->textBox3->TabIndex = 24;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // newSurnameField
 				 // 
+<<<<<<< HEAD
 				 this->newSurnameField->Location = System::Drawing::Point(256, 276);
 				 this->newSurnameField->Margin = System::Windows::Forms::Padding(4);
 				 this->newSurnameField->Name = L"newSurnameField";
 				 this->newSurnameField->Size = System::Drawing::Size(132, 22);
 				 this->newSurnameField->TabIndex = 23;
+=======
+				 this->textBox4->Location = System::Drawing::Point(192, 224);
+				 this->textBox4->Name = L"textBox4";
+				 this->textBox4->Size = System::Drawing::Size(100, 20);
+				 this->textBox4->TabIndex = 23;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // button1
 				 // 
-				 this->button1->Location = System::Drawing::Point(256, 356);
-				 this->button1->Margin = System::Windows::Forms::Padding(4);
+				 this->button1->Location = System::Drawing::Point(192, 289);
 				 this->button1->Name = L"button1";
-				 this->button1->Size = System::Drawing::Size(100, 28);
+				 this->button1->Size = System::Drawing::Size(75, 23);
 				 this->button1->TabIndex = 22;
 				 this->button1->Text = L"Изменить";
 				 this->button1->UseVisualStyleBackColor = true;
@@ -712,10 +827,9 @@ namespace Sobutilnik {
 				 this->GeoPosition->AutoSize = true;
 				 this->GeoPosition->Checked = true;
 				 this->GeoPosition->CheckState = System::Windows::Forms::CheckState::Checked;
-				 this->GeoPosition->Location = System::Drawing::Point(41, 415);
-				 this->GeoPosition->Margin = System::Windows::Forms::Padding(4);
+				 this->GeoPosition->Location = System::Drawing::Point(31, 337);
 				 this->GeoPosition->Name = L"GeoPosition";
-				 this->GeoPosition->Size = System::Drawing::Size(295, 21);
+				 this->GeoPosition->Size = System::Drawing::Size(232, 17);
 				 this->GeoPosition->TabIndex = 21;
 				 this->GeoPosition->Text = L"Согласен на использования геолокации";
 				 this->GeoPosition->UseVisualStyleBackColor = true;
@@ -723,55 +837,65 @@ namespace Sobutilnik {
 				 // label3
 				 // 
 				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(35, 256);
-				 this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label3->Location = System::Drawing::Point(26, 208);
 				 this->label3->Name = L"label3";
-				 this->label3->Size = System::Drawing::Size(117, 17);
+				 this->label3->Size = System::Drawing::Size(91, 13);
 				 this->label3->TabIndex = 20;
 				 this->label3->Text = L"Текущий пароль";
 				 // 
 				 // label2
 				 // 
 				 this->label2->AutoSize = true;
-				 this->label2->Location = System::Drawing::Point(35, 304);
-				 this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->label2->Location = System::Drawing::Point(26, 247);
 				 this->label2->Name = L"label2";
-				 this->label2->Size = System::Drawing::Size(102, 17);
+				 this->label2->Size = System::Drawing::Size(80, 13);
 				 this->label2->TabIndex = 19;
 				 this->label2->Text = L"Новый пароль";
 				 // 
 				 // newPasswordField
 				 // 
+<<<<<<< HEAD
 				 this->newPasswordField->Location = System::Drawing::Point(39, 324);
 				 this->newPasswordField->Margin = System::Windows::Forms::Padding(4);
 				 this->newPasswordField->Name = L"newPasswordField";
 				 this->newPasswordField->Size = System::Drawing::Size(132, 22);
 				 this->newPasswordField->TabIndex = 18;
+=======
+				 this->textBox2->Location = System::Drawing::Point(29, 263);
+				 this->textBox2->Name = L"textBox2";
+				 this->textBox2->Size = System::Drawing::Size(100, 20);
+				 this->textBox2->TabIndex = 18;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // currentPasswordField
 				 // 
+<<<<<<< HEAD
 				 this->currentPasswordField->Location = System::Drawing::Point(39, 276);
 				 this->currentPasswordField->Margin = System::Windows::Forms::Padding(4);
 				 this->currentPasswordField->Name = L"currentPasswordField";
 				 this->currentPasswordField->Size = System::Drawing::Size(132, 22);
 				 this->currentPasswordField->TabIndex = 17;
+=======
+				 this->textBox1->Location = System::Drawing::Point(29, 224);
+				 this->textBox1->Name = L"textBox1";
+				 this->textBox1->Size = System::Drawing::Size(100, 20);
+				 this->textBox1->TabIndex = 17;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // ChangePass
 				 // 
-				 this->ChangePass->Location = System::Drawing::Point(39, 356);
-				 this->ChangePass->Margin = System::Windows::Forms::Padding(4);
+				 this->ChangePass->Location = System::Drawing::Point(29, 289);
 				 this->ChangePass->Name = L"ChangePass";
-				 this->ChangePass->Size = System::Drawing::Size(100, 28);
+				 this->ChangePass->Size = System::Drawing::Size(75, 23);
 				 this->ChangePass->TabIndex = 16;
 				 this->ChangePass->Text = L"Изменить";
 				 this->ChangePass->UseVisualStyleBackColor = true;
 				 // 
 				 // ChangeProfileImage
 				 // 
-				 this->ChangeProfileImage->Location = System::Drawing::Point(141, 193);
-				 this->ChangeProfileImage->Margin = System::Windows::Forms::Padding(4);
+				 this->ChangeProfileImage->Location = System::Drawing::Point(106, 157);
 				 this->ChangeProfileImage->Name = L"ChangeProfileImage";
-				 this->ChangeProfileImage->Size = System::Drawing::Size(187, 28);
+				 this->ChangeProfileImage->Size = System::Drawing::Size(140, 23);
 				 this->ChangeProfileImage->TabIndex = 15;
 				 this->ChangeProfileImage->Text = L"Изменить";
 				 this->ChangeProfileImage->UseVisualStyleBackColor = true;
@@ -780,18 +904,31 @@ namespace Sobutilnik {
 				 // ProfileImage
 				 // 
 				 this->ProfileImage->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ProfileImage.Image")));
-				 this->ProfileImage->Location = System::Drawing::Point(141, 17);
-				 this->ProfileImage->Margin = System::Windows::Forms::Padding(4);
+				 this->ProfileImage->Location = System::Drawing::Point(106, 14);
 				 this->ProfileImage->Name = L"ProfileImage";
-				 this->ProfileImage->Size = System::Drawing::Size(187, 169);
+				 this->ProfileImage->Size = System::Drawing::Size(140, 137);
 				 this->ProfileImage->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 				 this->ProfileImage->TabIndex = 14;
 				 this->ProfileImage->TabStop = false;
 				 // 
+<<<<<<< HEAD
+=======
+				 // SettingsCloseButton
+				 // 
+				 this->SettingsCloseButton->Location = System::Drawing::Point(18, 14);
+				 this->SettingsCloseButton->Name = L"SettingsCloseButton";
+				 this->SettingsCloseButton->Size = System::Drawing::Size(75, 24);
+				 this->SettingsCloseButton->TabIndex = 13;
+				 this->SettingsCloseButton->Text = L"Close";
+				 this->SettingsCloseButton->UseVisualStyleBackColor = true;
+				 this->SettingsCloseButton->Click += gcnew System::EventHandler(this, &Map::SettingsCloseButton_Click);
+				 // 
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // openFileDialog1
 				 // 
 				 this->openFileDialog1->FileName = L"openFileDialog1";
 				 // 
+<<<<<<< HEAD
 				 // descriptionChangeButton
 				 // 
 				 this->descriptionChangeButton->Location = System::Drawing::Point(1034, 150);
@@ -821,18 +958,48 @@ namespace Sobutilnik {
 				 this->button4->Text = L"Изменить";
 				 this->button4->UseVisualStyleBackColor = true;
 				 this->button4->Click += gcnew System::EventHandler(this, &Map::button4_Click);
+=======
+				 // panel1
+				 // 
+				 this->panel1->Controls->Add(this->profileCloseButton);
+				 this->panel1->Controls->Add(this->PictureProfile);
+				 this->panel1->Controls->Add(this->Drunk);
+				 this->panel1->Controls->Add(this->RatingPersent);
+				 this->panel1->Controls->Add(this->Rating);
+				 this->panel1->Controls->Add(this->UserName);
+				 this->panel1->Controls->Add(this->label1);
+				 this->panel1->Location = System::Drawing::Point(159, 6);
+				 this->panel1->Margin = System::Windows::Forms::Padding(2);
+				 this->panel1->Name = L"panel1";
+				 this->panel1->Size = System::Drawing::Size(389, 539);
+				 this->panel1->TabIndex = 13;
+				 // 
+				 // profileCloseButton
+				 // 
+				 this->profileCloseButton->Location = System::Drawing::Point(314, 15);
+				 this->profileCloseButton->Margin = System::Windows::Forms::Padding(2);
+				 this->profileCloseButton->Name = L"profileCloseButton";
+				 this->profileCloseButton->Size = System::Drawing::Size(56, 19);
+				 this->profileCloseButton->TabIndex = 12;
+				 this->profileCloseButton->Text = L"button3";
+				 this->profileCloseButton->UseVisualStyleBackColor = true;
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 // 
 				 // Map
 				 // 
-				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+<<<<<<< HEAD
 				 this->ClientSize = System::Drawing::Size(1363, 673);
+=======
+				 this->ClientSize = System::Drawing::Size(1022, 547);
+				 this->Controls->Add(this->panel1);
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 				 this->Controls->Add(this->SettingsPanel);
 				 this->Controls->Add(this->Buttons);
 				 this->Controls->Add(this->HistoryPanel);
 				 this->Controls->Add(this->FriendsPanel);
 				 this->Controls->Add(this->MessagesPanel);
-				 this->Margin = System::Windows::Forms::Padding(4);
 				 this->Name = L"Map";
 				 this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 				 this->Text = L"Map";
@@ -868,7 +1035,6 @@ private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
 	RatingPersent->Text = System::Convert::ToString(Rating->Value * 2) + "%";
 }
 private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
 	try
 	{
 		checkSearch();
@@ -878,13 +1044,15 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 		MessageBox::Show(marshal_as<String^>(e.what()));
 		return;
 	}
-	
 }
+<<<<<<< HEAD
 
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void descriptionChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e);
+=======
+>>>>>>> 5354824e9d827916bdde6861d16bbdd76d292c14
 };
 }
