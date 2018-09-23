@@ -19,7 +19,7 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f), userId(0)
+		Map(FirstPage ^f) : mainPage(f), userId(1)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
@@ -48,6 +48,7 @@ namespace Sobutilnik {
 		String^ profileImage;
 		void checkSearch();
 		int userId;
+		void editOneField(const char*, System::Object ^);
 	private: System::Windows::Forms::Label^  label11;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label10;
@@ -257,7 +258,7 @@ namespace Sobutilnik {
 				 // 
 				 this->resultListBox->FormattingEnabled = true;
 				 this->resultListBox->Location = System::Drawing::Point(28, 158);
-				 this->resultListBox->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->resultListBox->Margin = System::Windows::Forms::Padding(2);
 				 this->resultListBox->Name = L"resultListBox";
 				 this->resultListBox->Size = System::Drawing::Size(243, 238);
 				 this->resultListBox->TabIndex = 16;
@@ -265,7 +266,7 @@ namespace Sobutilnik {
 				 // searchButton
 				 // 
 				 this->searchButton->Location = System::Drawing::Point(298, 111);
-				 this->searchButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->searchButton->Margin = System::Windows::Forms::Padding(2);
 				 this->searchButton->Name = L"searchButton";
 				 this->searchButton->Size = System::Drawing::Size(56, 19);
 				 this->searchButton->TabIndex = 15;
@@ -276,7 +277,7 @@ namespace Sobutilnik {
 				 // searchField
 				 // 
 				 this->searchField->Location = System::Drawing::Point(28, 112);
-				 this->searchField->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->searchField->Margin = System::Windows::Forms::Padding(2);
 				 this->searchField->Name = L"searchField";
 				 this->searchField->Size = System::Drawing::Size(243, 20);
 				 this->searchField->TabIndex = 14;
@@ -344,7 +345,7 @@ namespace Sobutilnik {
 				 this->profilePanel->Controls->Add(this->UserName);
 				 this->profilePanel->Controls->Add(this->label1);
 				 this->profilePanel->Location = System::Drawing::Point(272, 11);
-				 this->profilePanel->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->profilePanel->Margin = System::Windows::Forms::Padding(2);
 				 this->profilePanel->Name = L"profilePanel";
 				 this->profilePanel->Size = System::Drawing::Size(862, 540);
 				 this->profilePanel->TabIndex = 13;
@@ -496,7 +497,7 @@ namespace Sobutilnik {
 				 // mapButton
 				 // 
 				 this->mapButton->Location = System::Drawing::Point(10, 93);
-				 this->mapButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->mapButton->Margin = System::Windows::Forms::Padding(2);
 				 this->mapButton->Name = L"mapButton";
 				 this->mapButton->Size = System::Drawing::Size(125, 19);
 				 this->mapButton->TabIndex = 13;
@@ -506,7 +507,7 @@ namespace Sobutilnik {
 				 // profileButton
 				 // 
 				 this->profileButton->Location = System::Drawing::Point(10, 11);
-				 this->profileButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->profileButton->Margin = System::Windows::Forms::Padding(2);
 				 this->profileButton->Name = L"profileButton";
 				 this->profileButton->Size = System::Drawing::Size(125, 19);
 				 this->profileButton->TabIndex = 12;
@@ -551,32 +552,32 @@ namespace Sobutilnik {
 				 // 
 				 // drinksChangeButton
 				 // 
-				 this->drinksChangeButton->Location = System::Drawing::Point(714, 489);
-				 this->drinksChangeButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->drinksChangeButton->Location = System::Drawing::Point(714, 485);
+				 this->drinksChangeButton->Margin = System::Windows::Forms::Padding(2);
 				 this->drinksChangeButton->Name = L"drinksChangeButton";
-				 this->drinksChangeButton->Size = System::Drawing::Size(64, 19);
+				 this->drinksChangeButton->Size = System::Drawing::Size(75, 23);
 				 this->drinksChangeButton->TabIndex = 41;
 				 this->drinksChangeButton->Text = L"Изменить";
 				 this->drinksChangeButton->UseVisualStyleBackColor = true;
-				 this->drinksChangeButton->Click += gcnew System::EventHandler(this, &Map::button4_Click);
+				 this->drinksChangeButton->Click += gcnew System::EventHandler(this, &Map::drinksChangeButton_Click);
 				 // 
 				 // hobbyChangeButton
 				 // 
-				 this->hobbyChangeButton->Location = System::Drawing::Point(714, 305);
-				 this->hobbyChangeButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->hobbyChangeButton->Location = System::Drawing::Point(714, 302);
+				 this->hobbyChangeButton->Margin = System::Windows::Forms::Padding(2);
 				 this->hobbyChangeButton->Name = L"hobbyChangeButton";
-				 this->hobbyChangeButton->Size = System::Drawing::Size(64, 19);
+				 this->hobbyChangeButton->Size = System::Drawing::Size(75, 23);
 				 this->hobbyChangeButton->TabIndex = 40;
 				 this->hobbyChangeButton->Text = L"Изменить";
 				 this->hobbyChangeButton->UseVisualStyleBackColor = true;
-				 this->hobbyChangeButton->Click += gcnew System::EventHandler(this, &Map::button3_Click);
+				 this->hobbyChangeButton->Click += gcnew System::EventHandler(this, &Map::hobbyChangeButton_Click);
 				 // 
 				 // descriptionChangeButton
 				 // 
-				 this->descriptionChangeButton->Location = System::Drawing::Point(714, 117);
-				 this->descriptionChangeButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->descriptionChangeButton->Location = System::Drawing::Point(714, 116);
+				 this->descriptionChangeButton->Margin = System::Windows::Forms::Padding(2);
 				 this->descriptionChangeButton->Name = L"descriptionChangeButton";
-				 this->descriptionChangeButton->Size = System::Drawing::Size(64, 19);
+				 this->descriptionChangeButton->Size = System::Drawing::Size(75, 23);
 				 this->descriptionChangeButton->TabIndex = 39;
 				 this->descriptionChangeButton->Text = L"Изменить";
 				 this->descriptionChangeButton->UseVisualStyleBackColor = true;
@@ -585,7 +586,7 @@ namespace Sobutilnik {
 				 // userDrinksChangeField
 				 // 
 				 this->userDrinksChangeField->Location = System::Drawing::Point(521, 406);
-				 this->userDrinksChangeField->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->userDrinksChangeField->Margin = System::Windows::Forms::Padding(2);
 				 this->userDrinksChangeField->Multiline = true;
 				 this->userDrinksChangeField->Name = L"userDrinksChangeField";
 				 this->userDrinksChangeField->Size = System::Drawing::Size(180, 102);
@@ -594,7 +595,7 @@ namespace Sobutilnik {
 				 // userHobbyChangeField
 				 // 
 				 this->userHobbyChangeField->Location = System::Drawing::Point(521, 224);
-				 this->userHobbyChangeField->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->userHobbyChangeField->Margin = System::Windows::Forms::Padding(2);
 				 this->userHobbyChangeField->Multiline = true;
 				 this->userHobbyChangeField->Name = L"userHobbyChangeField";
 				 this->userHobbyChangeField->Size = System::Drawing::Size(180, 101);
@@ -603,7 +604,7 @@ namespace Sobutilnik {
 				 // userDescriptionChangeField
 				 // 
 				 this->userDescriptionChangeField->Location = System::Drawing::Point(521, 37);
-				 this->userDescriptionChangeField->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+				 this->userDescriptionChangeField->Margin = System::Windows::Forms::Padding(2);
 				 this->userDescriptionChangeField->Multiline = true;
 				 this->userDescriptionChangeField->Name = L"userDescriptionChangeField";
 				 this->userDescriptionChangeField->Size = System::Drawing::Size(180, 102);
@@ -861,7 +862,7 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void descriptionChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void hobbyChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void drinksChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }
