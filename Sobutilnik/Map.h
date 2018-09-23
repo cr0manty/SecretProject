@@ -44,6 +44,11 @@ namespace Sobutilnik {
 			delete profileImage;
 		}
 	private: System::Windows::Forms::Label^  userSex;
+	private: System::Windows::Forms::Label^  UserBirth;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::Label^  label8;
+
 	protected:
 
 	private:
@@ -56,7 +61,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  userLogin;
 
 	private: System::Windows::Forms::Label^  label19;
-	private: System::Windows::Forms::Label^  userAge;
+	private: System::Windows::Forms::Label^  userAgeStatic;
+
 
 
 			 String^ profileImage;
@@ -105,7 +111,8 @@ namespace Sobutilnik {
 
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::Label^  label7;
-	private: System::Windows::Forms::TextBox^  textBox6;
+	private: System::Windows::Forms::TextBox^  newEmail;
+
 	private: System::Windows::Forms::Button^  saveChanges;
 
 
@@ -174,7 +181,12 @@ namespace Sobutilnik {
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
-				 this->userAge = (gcnew System::Windows::Forms::Label());
+				 this->label14 = (gcnew System::Windows::Forms::Label());
+				 this->label13 = (gcnew System::Windows::Forms::Label());
+				 this->label8 = (gcnew System::Windows::Forms::Label());
+				 this->UserBirth = (gcnew System::Windows::Forms::Label());
+				 this->userSex = (gcnew System::Windows::Forms::Label());
+				 this->userAgeStatic = (gcnew System::Windows::Forms::Label());
 				 this->userSurname = (gcnew System::Windows::Forms::Label());
 				 this->userFirstName = (gcnew System::Windows::Forms::Label());
 				 this->userLogin = (gcnew System::Windows::Forms::Label());
@@ -188,7 +200,7 @@ namespace Sobutilnik {
 				 this->userMail = (gcnew System::Windows::Forms::Label());
 				 this->label6 = (gcnew System::Windows::Forms::Label());
 				 this->label7 = (gcnew System::Windows::Forms::Label());
-				 this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+				 this->newEmail = (gcnew System::Windows::Forms::TextBox());
 				 this->saveChanges = (gcnew System::Windows::Forms::Button());
 				 this->label4 = (gcnew System::Windows::Forms::Label());
 				 this->label5 = (gcnew System::Windows::Forms::Label());
@@ -202,7 +214,6 @@ namespace Sobutilnik {
 				 this->ChangeProfileImage = (gcnew System::Windows::Forms::Button());
 				 this->ProfileImage = (gcnew System::Windows::Forms::PictureBox());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-				 this->userSex = (gcnew System::Windows::Forms::Label());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -535,8 +546,12 @@ namespace Sobutilnik {
 				 // 
 				 // SettingsPanel
 				 // 
+				 this->SettingsPanel->Controls->Add(this->label14);
+				 this->SettingsPanel->Controls->Add(this->label13);
+				 this->SettingsPanel->Controls->Add(this->label8);
+				 this->SettingsPanel->Controls->Add(this->UserBirth);
 				 this->SettingsPanel->Controls->Add(this->userSex);
-				 this->SettingsPanel->Controls->Add(this->userAge);
+				 this->SettingsPanel->Controls->Add(this->userAgeStatic);
 				 this->SettingsPanel->Controls->Add(this->userSurname);
 				 this->SettingsPanel->Controls->Add(this->userFirstName);
 				 this->SettingsPanel->Controls->Add(this->userLogin);
@@ -550,7 +565,7 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Controls->Add(this->userMail);
 				 this->SettingsPanel->Controls->Add(this->label6);
 				 this->SettingsPanel->Controls->Add(this->label7);
-				 this->SettingsPanel->Controls->Add(this->textBox6);
+				 this->SettingsPanel->Controls->Add(this->newEmail);
 				 this->SettingsPanel->Controls->Add(this->saveChanges);
 				 this->SettingsPanel->Controls->Add(this->label4);
 				 this->SettingsPanel->Controls->Add(this->label5);
@@ -569,42 +584,87 @@ namespace Sobutilnik {
 				 this->SettingsPanel->TabIndex = 12;
 				 this->SettingsPanel->Visible = false;
 				 // 
-				 // userAge
+				 // label14
 				 // 
-				 this->userAge->AutoSize = true;
-				 this->userAge->Location = System::Drawing::Point(20, 96);
-				 this->userAge->Name = L"userAge";
-				 this->userAge->Size = System::Drawing::Size(55, 13);
-				 this->userAge->TabIndex = 46;
-				 this->userAge->Text = L"Возраст: ";
+				 this->label14->AutoSize = true;
+				 this->label14->Location = System::Drawing::Point(20, 80);
+				 this->label14->Name = L"label14";
+				 this->label14->Size = System::Drawing::Size(59, 13);
+				 this->label14->TabIndex = 51;
+				 this->label14->Text = L"Фамилия:";
+				 // 
+				 // label13
+				 // 
+				 this->label13->AutoSize = true;
+				 this->label13->Location = System::Drawing::Point(20, 44);
+				 this->label13->Name = L"label13";
+				 this->label13->Size = System::Drawing::Size(32, 13);
+				 this->label13->TabIndex = 50;
+				 this->label13->Text = L"Имя:";
+				 // 
+				 // label8
+				 // 
+				 this->label8->AutoSize = true;
+				 this->label8->Location = System::Drawing::Point(20, 9);
+				 this->label8->Name = L"label8";
+				 this->label8->Size = System::Drawing::Size(41, 13);
+				 this->label8->TabIndex = 49;
+				 this->label8->Text = L"Логин:";
+				 // 
+				 // UserBirth
+				 // 
+				 this->UserBirth->AutoSize = true;
+				 this->UserBirth->Location = System::Drawing::Point(20, 134);
+				 this->UserBirth->Name = L"UserBirth";
+				 this->UserBirth->Size = System::Drawing::Size(65, 13);
+				 this->UserBirth->TabIndex = 48;
+				 this->UserBirth->Text = L"02/03/2018";
+				 // 
+				 // userSex
+				 // 
+				 this->userSex->AutoSize = true;
+				 this->userSex->Location = System::Drawing::Point(20, 155);
+				 this->userSex->Name = L"userSex";
+				 this->userSex->Size = System::Drawing::Size(42, 13);
+				 this->userSex->TabIndex = 47;
+				 this->userSex->Text = L"Пол: М";
+				 // 
+				 // userAgeStatic
+				 // 
+				 this->userAgeStatic->AutoSize = true;
+				 this->userAgeStatic->Location = System::Drawing::Point(20, 115);
+				 this->userAgeStatic->Name = L"userAgeStatic";
+				 this->userAgeStatic->Size = System::Drawing::Size(89, 13);
+				 this->userAgeStatic->TabIndex = 46;
+				 this->userAgeStatic->Text = L"Дата рождения:\r\n";
 				 // 
 				 // userSurname
 				 // 
 				 this->userSurname->AutoSize = true;
-				 this->userSurname->Location = System::Drawing::Point(20, 68);
+				 this->userSurname->Location = System::Drawing::Point(20, 93);
 				 this->userSurname->Name = L"userSurname";
-				 this->userSurname->Size = System::Drawing::Size(56, 13);
+				 this->userSurname->Size = System::Drawing::Size(44, 13);
 				 this->userSurname->TabIndex = 45;
-				 this->userSurname->Text = L"Фамилия";
+				 this->userSurname->Text = L"Пупкин";
 				 this->userSurname->Click += gcnew System::EventHandler(this, &Map::label22_Click);
 				 // 
 				 // userFirstName
 				 // 
 				 this->userFirstName->AutoSize = true;
-				 this->userFirstName->Location = System::Drawing::Point(20, 44);
+				 this->userFirstName->Location = System::Drawing::Point(20, 57);
 				 this->userFirstName->Name = L"userFirstName";
-				 this->userFirstName->Size = System::Drawing::Size(29, 13);
+				 this->userFirstName->Size = System::Drawing::Size(50, 13);
 				 this->userFirstName->TabIndex = 44;
-				 this->userFirstName->Text = L"Имя";
+				 this->userFirstName->Text = L"Василий";
 				 // 
 				 // userLogin
 				 // 
 				 this->userLogin->AutoSize = true;
-				 this->userLogin->Location = System::Drawing::Point(20, 19);
+				 this->userLogin->Location = System::Drawing::Point(20, 23);
 				 this->userLogin->Name = L"userLogin";
-				 this->userLogin->Size = System::Drawing::Size(38, 13);
+				 this->userLogin->Size = System::Drawing::Size(69, 13);
 				 this->userLogin->TabIndex = 43;
-				 this->userLogin->Text = L"Логин";
+				 this->userLogin->Text = L"nagibator228";
 				 // 
 				 // label19
 				 // 
@@ -701,12 +761,12 @@ namespace Sobutilnik {
 				 this->label7->TabIndex = 30;
 				 this->label7->Text = L"Текущая почта:";
 				 // 
-				 // textBox6
+				 // newEmail
 				 // 
-				 this->textBox6->Location = System::Drawing::Point(110, 369);
-				 this->textBox6->Name = L"textBox6";
-				 this->textBox6->Size = System::Drawing::Size(100, 20);
-				 this->textBox6->TabIndex = 28;
+				 this->newEmail->Location = System::Drawing::Point(110, 369);
+				 this->newEmail->Name = L"newEmail";
+				 this->newEmail->Size = System::Drawing::Size(100, 20);
+				 this->newEmail->TabIndex = 28;
 				 // 
 				 // saveChanges
 				 // 
@@ -817,15 +877,6 @@ namespace Sobutilnik {
 				 // openFileDialog1
 				 // 
 				 this->openFileDialog1->FileName = L"openFileDialog1";
-				 // 
-				 // userSex
-				 // 
-				 this->userSex->AutoSize = true;
-				 this->userSex->Location = System::Drawing::Point(20, 121);
-				 this->userSex->Name = L"userSex";
-				 this->userSex->Size = System::Drawing::Size(33, 13);
-				 this->userSex->TabIndex = 47;
-				 this->userSex->Text = L"Пол: ";
 				 // 
 				 // Map
 				 // 

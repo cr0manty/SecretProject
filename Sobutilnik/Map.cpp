@@ -16,6 +16,7 @@ void Sobutilnik::Map::initLabels()
 	userLogin->Text = reader->GetValue(4)->ToString();
 	userMail->Text = reader->GetValue(5)->ToString();
 	userSex->Text = "Пол: " + reader->GetValue(6)->ToString();
+	UserBirth->Text = reader->GetValue(7)->ToString();
 	GeoPosition->Checked = reader->GetBoolean(8);
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
@@ -164,6 +165,28 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		fieldForChanges.push_back("w_userHobby = @u_userHobby");
 		Changes.push_back(marshal->marshal_as<const char*>(userHobbyChangeField->Text));
 		pathFieldForChanges.push_back("@u_userHobby");
+	}
+
+	if(newSurnameField->Text->Length)
+	{
+		fieldForChanges.push_back("w_surname = @u_surname");
+		Changes.push_back(marshal->marshal_as<const char*>(newSurnameField->Text));
+		pathFieldForChanges.push_back("@u_surname");
+	}
+
+	if (newNameField->Text->Length)
+	{
+		fieldForChanges.push_back("w_name = @u_name");
+		Changes.push_back(marshal->marshal_as<const char*>(newNameField->Text));
+		pathFieldForChanges.push_back("@u_name");
+	}
+
+	if (newEmail->Text->Length)
+	{
+		//добавить проверку на email в базе
+		fieldForChanges.push_back("w_email = @u_email");
+		Changes.push_back(marshal->marshal_as<const char*>(newEmail->Text));
+		pathFieldForChanges.push_back("@u_email");
 	}
 
 	if (userDrinksChangeField->Text->Length) {
