@@ -182,6 +182,7 @@ private: System::Void LoginForm_Load(System::Object^  sender, System::EventArgs^
 }
 private: System::Void LoginForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
 	mainPage->Enabled = true;
+	this->Close();
 }
 };
 }

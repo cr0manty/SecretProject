@@ -378,6 +378,7 @@ namespace Sobutilnik {
 			MessageBox::Show(marshal_as<String^>(e.what()));
 			return;
 		}
+		locationCheckBox->Visible = false;
 		this->ProfilePicture->Location = System::Drawing::Point(0, 0);
 		ProfilePicture->Visible = true;
 	}

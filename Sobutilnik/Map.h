@@ -19,12 +19,16 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f), userId(1)
+		Map(FirstPage ^f) : mainPage(f), userId(0)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
 		}
-
+		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id)
+		{
+			InitializeComponent();
+			profileImage = nullptr;
+		}
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -843,7 +847,6 @@ private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
 	RatingPersent->Text = System::Convert::ToString(Rating->Value * 2) + "%";
 }
 private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
 	try
 	{
 		checkSearch();
@@ -853,7 +856,6 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 		MessageBox::Show(marshal_as<String^>(e.what()));
 		return;
 	}
-	
 }
 
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
