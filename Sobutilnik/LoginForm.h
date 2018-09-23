@@ -35,7 +35,7 @@ namespace Sobutilnik {
 
 	private:
 		FirstPage ^mainPage;
-		void findAccount();
+		int findAccount();
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
@@ -122,14 +122,14 @@ namespace Sobutilnik {
 			this->LoginField->Location = System::Drawing::Point(86, 99);
 			this->LoginField->Name = L"LoginField";
 			this->LoginField->Size = System::Drawing::Size(100, 20);
-			this->LoginField->TabIndex = 5;
+			this->LoginField->TabIndex = 1;
 			// 
 			// PassField
 			// 
 			this->PassField->Location = System::Drawing::Point(86, 138);
 			this->PassField->Name = L"PassField";
 			this->PassField->Size = System::Drawing::Size(100, 20);
-			this->PassField->TabIndex = 6;
+			this->PassField->TabIndex = 2;
 			this->PassField->UseSystemPasswordChar = true;
 			// 
 			// LoginForm
@@ -163,9 +163,10 @@ private: System::Void pictureBox1_MouseLeave(System::Object^  sender, System::Ev
 	PassField->UseSystemPasswordChar = true;
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	int userId;
 	try
 	{
-		findAccount();
+		userId = findAccount();
 	}
 	catch (const std::exception & e)
 	{
@@ -173,7 +174,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		return;
 	}
 	mainPage->Visible = false;
-	Map ^NewForm = gcnew Map(mainPage);
+	Map ^NewForm = gcnew Map(mainPage, userId);
 	this->Visible = false;
 	NewForm->ShowDialog();
 }

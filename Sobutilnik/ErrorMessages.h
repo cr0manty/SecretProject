@@ -13,4 +13,5 @@ namespace Errors {
 	const char* const AllFieldMustBeFilled			= "¬се пол€ должны быть заполнены";
 	const char* const UserTooYong					= "¬ы должны быть старше 18 лет дл€ использовани€ данного приложени€";
 	const char* const DataWasSucsessfulyUpdated		= "ƒанные были успешно обновленны";
+	const char* const NonFieldWasChanged			= "ƒл€ сохранени€ требуетс€ хот€ бы 1 изменение";
 }

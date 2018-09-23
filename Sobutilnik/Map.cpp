@@ -1,5 +1,28 @@
 #include "Map.h"
 #include "ErrorMessages.h"
+#include <vector>
+
+void Sobutilnik::Map::initLabels()
+{
+	mainPage->dbConnection->Open();
+	String ^select = "SELECT * from MyDatabase where w_id like '%" + userId + "'";
+	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbDataReader ^reader = command->ExecuteReader();
+	reader->Read();
+
+	userFirstName->Text = reader->GetValue(1)->ToString();
+	UserName->Text = reader->GetValue(1)->ToString();
+	userSurname->Text = reader->GetValue(2)->ToString();
+	userLogin->Text = reader->GetValue(4)->ToString();
+	userMail->Text = reader->GetValue(5)->ToString();
+	userSex->Text = "Пол: " + reader->GetValue(6)->ToString();
+	GeoPosition->Checked = reader->GetBoolean(8);
+	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
+	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
+	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
+	mainPage->dbConnection->Close();
+	
+}
 
 void Sobutilnik::Map::checkSearch()
 {
@@ -26,7 +49,7 @@ void Sobutilnik::Map::editOneField(const char* _edit, System::Object ^ _object)
 {
 	OleDbCommand ^command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
-	command->CommandText = "UPDATE MyDatabase SET " + marshal_as<String^>(_edit) + " = @u_editField WHERE w_id = @u_id";;
+	command->CommandText = "UPDATE MyDatabase SET " + marshal_as<String^>(_edit) + " = @u_editField WHERE w_id = @u_id";
 	command->Parameters->AddWithValue("@u_editField", _object->ToString());
 	command->Parameters->AddWithValue("@u_id", userId);
 	command->Connection = mainPage->dbConnection;
@@ -109,7 +132,87 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 
 System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	/*String^ CmdRule = "UPDATE MyDatabase SET ";
+	marshal_context^ marshal = gcnew marshal_context();
+
+	if (userDescriptionChangeField->Text->Length) {
+		CmdRule += "w_userDescription = @u_userDescription";
+	}
+
+	if (userHobbyChangeField->Text->Length) {
+		CmdRule += "w_userHobby = @u_userHobby";
+	}
+
+	if (userHobbyChangeField->Text->Length) {
+		CmdRule += "w_userDrinks = @u_userDrinks";
+	}
 	
+
+	CmdRule += " WHERE w_id = @u_id";
+	OleDbCommand ^command = gcnew OleDbCommand();
+	command->CommandType = CommandType::Text;
+	command->CommandText = CmdRule;
+	command->Connection = mainPage->dbConnection;
+	if (userDescriptionChangeField->Text->Length)
+		command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
+	command->Parameters->AddWithValue("@u_id", userId);
+	mainPage->dbConnection->Open();
+	command->ExecuteNonQuery();
+	mainPage->dbConnection->Close();
+
+	MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
+
+	return;
+	throw std::logic_error(Errors::NonFieldWasChanged);*/
+	std::vector<const char*> fieldForChanges;
+	std::vector<const char*> Changes;
+	std::vector<const char*> pathFieldForChanges;
+	String^ CmdRule = "UPDATE MyDatabase SET ";
+	marshal_context^ marshal = gcnew marshal_context();
+
+	if (userDescriptionChangeField->Text->Length) {
+		fieldForChanges.push_back("w_userDescription = @u_userDescription");
+		Changes.push_back(marshal->marshal_as<const char*>(userDescriptionChangeField->Text));
+		pathFieldForChanges.push_back("@u_userDescription");
+	}
+
+	if (userHobbyChangeField->Text->Length) {
+		fieldForChanges.push_back("w_userHobby = @u_userHobby");
+		Changes.push_back(marshal->marshal_as<const char*>(userHobbyChangeField->Text));
+		pathFieldForChanges.push_back("@u_userHobby");
+	}
+
+	if (userDrinksChangeField->Text->Length) {
+		fieldForChanges.push_back("w_userDrinks = @u_userDrinks");
+		Changes.push_back(marshal->marshal_as<const char*>(userDrinksChangeField->Text));
+		pathFieldForChanges.push_back("@u_userDrinks");
+	}
+
+	if (fieldForChanges.size()) {
+		for (int i = 0; i < fieldForChanges.size(); i++) {
+			CmdRule += marshal_as<String^>(fieldForChanges[i]);
+			if (i + 1 < fieldForChanges.size())
+				CmdRule += ", ";
+		}
+		CmdRule += " WHERE w_id = @u_id";
+
+		OleDbCommand ^command = gcnew OleDbCommand();
+		command->CommandType = CommandType::Text;
+		command->CommandText = CmdRule;
+		command->Connection = mainPage->dbConnection;
+
+		for (int i = 0; i < pathFieldForChanges.size(); i++)
+			command->Parameters->AddWithValue(marshal_as<String^>(pathFieldForChanges[i]), marshal_as<String^>(Changes[i]));
+		command->Parameters->AddWithValue("@u_id", userId);
+		mainPage->dbConnection->Open();
+		command->ExecuteNonQuery();
+		mainPage->dbConnection->Close();
+
+		MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
+		initLabels();
+		return;
+	}
+	throw std::logic_error(Errors::NonFieldWasChanged);
 }
 
 System::Void Sobutilnik::Map::descriptionChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -124,5 +227,5 @@ System::Void Sobutilnik::Map::hobbyChangeButton_Click(System::Object ^ sender, S
 
 System::Void Sobutilnik::Map::drinksChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	editOneField("w_userDescription", userDescriptionChangeField->Text);
+	editOneField("w_userDrinks", userDescriptionChangeField->Text);
 }
