@@ -31,8 +31,6 @@ System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::Ev
 	profilePanel->Visible = false;
 	HistoryPanel->Visible = false;
 	MessagesPanel->Visible = false;
-
-	mainPage->dbConnection->Open();
 }
 
 System::Void Sobutilnik::Map::Messages_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -100,13 +98,26 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::descriptionChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	mainPage->dbConnection->Open();
+	String^ update = "UPDATE MyDatabase SET w_userDescription = '%" + userDescriptionChangeField->Text + "%' WHERE w_name like Sasha";
+	OleDbCommand ^command = gcnew OleDbCommand(update, mainPage->dbConnection);
+	//command->CommandType = CommandType::Text;
+	//command->CommandText = 
+	//command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
+	//
+	//command->Connection = mainPage->dbConnection;
+	
+	command->ExecuteNonQuery(); 
+	MessageBox::Show("Update Success!");
+	mainPage->dbConnection->Close();
+	/*mainPage->dbConnection->Open();
 	OleDbCommand ^command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
-	command->CommandText = "INSERT INTO MyDatabase (w_userDescription) \
-		VALUES (@u_userDescription)";
-	command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
-	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
+	command->Connection = mainPage->dbConnection;
+	command->CommandText = "UPDATE MyDatabase SET w_userDescription = "+ userDescriptionChangeField->Text + " WHERE w_name = Sasha";
+	
+	command->ExecuteNonQuery(); " + userDescriptionChangeField->Text + "
+	mainPage->dbConnection->Close();*/
 }
 
 System::Void Sobutilnik::Map::button3_Click(System::Object ^ sender, System::EventArgs ^ e)

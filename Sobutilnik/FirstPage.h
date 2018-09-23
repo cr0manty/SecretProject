@@ -37,6 +37,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	public: OleDb::OleDbConnection ^dbConnection;
+	protected:
+
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -54,7 +56,7 @@ namespace Sobutilnik {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(108, 145);
+			this->button1->Location = System::Drawing::Point(106, 150);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -64,7 +66,7 @@ namespace Sobutilnik {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(108, 88);
+			this->button2->Location = System::Drawing::Point(106, 93);
 			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
@@ -75,7 +77,7 @@ namespace Sobutilnik {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(108, 116);
+			this->button3->Location = System::Drawing::Point(106, 121);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 2;

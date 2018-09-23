@@ -97,7 +97,7 @@ namespace Sobutilnik {
 			// 
 			// Entry
 			// 
-			this->Entry->Location = System::Drawing::Point(93, 164);
+			this->Entry->Location = System::Drawing::Point(95, 172);
 			this->Entry->Name = L"Entry";
 			this->Entry->Size = System::Drawing::Size(84, 23);
 			this->Entry->TabIndex = 3;
@@ -174,7 +174,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	}
 	mainPage->Visible = false;
 	Map ^NewForm = gcnew Map(mainPage);
-	this->Visible = false;
+	this->Close();
 	NewForm->ShowDialog();
 }
 private: System::Void LoginForm_Load(System::Object^  sender, System::EventArgs^  e) {
