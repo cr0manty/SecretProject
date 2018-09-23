@@ -19,7 +19,7 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f)
+		Map(FirstPage ^f) : mainPage(f), userId(1)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
@@ -41,6 +41,9 @@ namespace Sobutilnik {
 
 	private:
 		FirstPage ^mainPage;
+		String^ profileImage;
+		void checkSearch();
+		int userId;
 	private: System::Windows::Forms::Label^  label11;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label10;
@@ -63,15 +66,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label17;
 	private: System::Windows::Forms::Label^  label16;
 	private: System::Windows::Forms::Button^  drinksChangeButton;
-
 	private: System::Windows::Forms::Button^  hobbyChangeButton;
-
 	private: System::Windows::Forms::Button^  descriptionChangeButton;
-
-
-			 String^ profileImage;
-		void checkSearch();
-
 	private: System::Windows::Forms::Button^  Messages;
 	private: System::Windows::Forms::Button^  History;
 	private: System::Windows::Forms::Button^  Friends;
@@ -95,11 +91,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::TextBox^  newNameField;
-
 	private: System::Windows::Forms::TextBox^  newSurnameField;
-
-
-
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::CheckBox^  GeoPosition;
 	private: System::Windows::Forms::Label^  label3;
@@ -125,8 +117,6 @@ namespace Sobutilnik {
 			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-			 
-
 			 void InitializeComponent(void)
 			 {
 				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Map::typeid));

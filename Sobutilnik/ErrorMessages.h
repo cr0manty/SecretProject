@@ -12,4 +12,5 @@ namespace Errors {
 	const char* const LoginlNotUniq					= "Аккаунт с таким логином уже существует";
 	const char* const AllFieldMustBeFilled			= "Все поля должны быть заполнены";
 	const char* const UserTooYong					= "Вы должны быть старше 18 лет для использования данного приложения";
+	const char* const DataWasSucsessfulyUpdated		= "Данные были успешно обновленны";
 }

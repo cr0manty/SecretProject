@@ -98,26 +98,18 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::descriptionChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	mainPage->dbConnection->Open();
-	String^ update = "UPDATE MyDatabase SET w_userDescription = '%" + userDescriptionChangeField->Text + "%' WHERE w_name like Sasha";
-	OleDbCommand ^command = gcnew OleDbCommand(update, mainPage->dbConnection);
-	//command->CommandType = CommandType::Text;
-	//command->CommandText = 
-	//command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
-	//
-	//command->Connection = mainPage->dbConnection;
-	
-	command->ExecuteNonQuery(); 
-	MessageBox::Show("Update Success!");
-	mainPage->dbConnection->Close();
-	/*mainPage->dbConnection->Open();
 	OleDbCommand ^command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
+	command->CommandText = "UPDATE MyDatabase SET w_userDescription = @u_userDescription WHERE w_id = @u_id";
+	command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
+	command->Parameters->AddWithValue("@u_id", userId);
 	command->Connection = mainPage->dbConnection;
-	command->CommandText = "UPDATE MyDatabase SET w_userDescription = "+ userDescriptionChangeField->Text + " WHERE w_name = Sasha";
-	
-	command->ExecuteNonQuery(); " + userDescriptionChangeField->Text + "
-	mainPage->dbConnection->Close();*/
+
+	mainPage->dbConnection->Open();
+	command->ExecuteNonQuery(); 
+	mainPage->dbConnection->Close();
+
+	MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
 }
 
 System::Void Sobutilnik::Map::button3_Click(System::Object ^ sender, System::EventArgs ^ e)
