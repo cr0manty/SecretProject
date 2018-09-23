@@ -45,22 +45,6 @@ void Sobutilnik::Map::checkSearch()
 	mainPage->dbConnection->Close();
 }
 
-void Sobutilnik::Map::editOneField(const char* _edit, System::Object ^ _object)
-{
-	OleDbCommand ^command = gcnew OleDbCommand();
-	command->CommandType = CommandType::Text;
-	command->CommandText = "UPDATE MyDatabase SET " + marshal_as<String^>(_edit) + " = @u_editField WHERE w_id = @u_id";
-	command->Parameters->AddWithValue("@u_editField", _object->ToString());
-	command->Parameters->AddWithValue("@u_id", userId);
-	command->Connection = mainPage->dbConnection;
-
-	mainPage->dbConnection->Open();
-	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
-
-	MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
-}
-
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	SettingsPanel->Visible = true;
@@ -213,19 +197,4 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		return;
 	}
 	throw std::logic_error(Errors::NonFieldWasChanged);
-}
-
-System::Void Sobutilnik::Map::descriptionChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	editOneField("w_userDescription", userDescriptionChangeField->Text);
-}
-
-System::Void Sobutilnik::Map::hobbyChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	editOneField("w_userHobby",userHobbyChangeField->Text);
-}
-
-System::Void Sobutilnik::Map::drinksChangeButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	editOneField("w_userDrinks", userDescriptionChangeField->Text);
 }

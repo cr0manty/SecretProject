@@ -19,8 +19,8 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 {
 	String ^buffer;
 	///empty check
-	if (!nameTextBox->Text->Length || !surnameTextBox->Text->Length || !passwordTextBox->Text->Length || 
-		!passwordCheckTextBox->Text->Length || !SexFem->Checked && !SexMale->Checked )
+	if (!nameTextBox->Text->Length || !surnameTextBox->Text->Length || !passwordTextBox->Text->Length ||
+		!passwordCheckTextBox->Text->Length || !SexFem->Checked && !SexMale->Checked)
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
 	///password
@@ -32,6 +32,13 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 	if (buffer != passwordCheckTextBox->Text)
 		throw std::logic_error(Errors::PasswordNotEqual);
 
+	if (monthCalendar1->TodayDate.Year - monthCalendar1->SelectionRange->Start.Year < 18)
+		throw std::logic_error(Errors::UserTooYong);
+
+	if (monthCalendar1->TodayDate.Year - monthCalendar1->SelectionRange->Start.Year == 18) {
+		if (monthCalendar1->TodayDate.DayOfYear > monthCalendar1->SelectionRange->Start.DayOfYear)
+			throw std::logic_error(Errors::UserTooYong);
+	}
 	///email and login
 	if (loginTextBox->Text->Length < 5)
 		throw std::logic_error(Errors::LoginToSmall);
