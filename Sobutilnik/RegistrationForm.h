@@ -230,6 +230,7 @@ namespace Sobutilnik {
 			this->monthCalendar1->Location = System::Drawing::Point(215, 59);
 			this->monthCalendar1->Name = L"monthCalendar1";
 			this->monthCalendar1->TabIndex = 8;
+			this->monthCalendar1->MaxDate = this->monthCalendar1->TodayDate;
 			// 
 			// button1
 			// 
