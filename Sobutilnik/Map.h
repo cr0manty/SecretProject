@@ -62,7 +62,6 @@ namespace Sobutilnik {
 			 String^ profileImage;
 		void checkSearch();
 		int userId;
-		void editOneField(const char*, System::Object ^);
 	private: System::Windows::Forms::Label^  label11;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label10;
@@ -887,9 +886,6 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void descriptionChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void hobbyChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void drinksChangeButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void label22_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };

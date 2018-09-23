@@ -32,6 +32,7 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 	if (buffer != passwordCheckTextBox->Text)
 		throw std::logic_error(Errors::PasswordNotEqual);
 
+	///age
 	if (monthCalendar1->TodayDate.Year - monthCalendar1->SelectionRange->Start.Year < 18)
 		throw std::logic_error(Errors::UserTooYong);
 
