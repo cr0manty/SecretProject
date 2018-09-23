@@ -472,9 +472,9 @@ namespace Sobutilnik {
 				 // 
 				 // Settings
 				 // 
-				 this->Settings->Location = System::Drawing::Point(10, 147);
+				 this->Settings->Location = System::Drawing::Point(11, 159);
 				 this->Settings->Name = L"Settings";
-				 this->Settings->Size = System::Drawing::Size(125, 24);
+				 this->Settings->Size = System::Drawing::Size(125, 25);
 				 this->Settings->TabIndex = 5;
 				 this->Settings->Text = L"Настройки";
 				 this->Settings->UseVisualStyleBackColor = true;
@@ -482,9 +482,9 @@ namespace Sobutilnik {
 				 // 
 				 // Friends
 				 // 
-				 this->Friends->Location = System::Drawing::Point(10, 36);
+				 this->Friends->Location = System::Drawing::Point(11, 39);
 				 this->Friends->Name = L"Friends";
-				 this->Friends->Size = System::Drawing::Size(125, 23);
+				 this->Friends->Size = System::Drawing::Size(125, 25);
 				 this->Friends->TabIndex = 7;
 				 this->Friends->Text = L"Друзья";
 				 this->Friends->UseVisualStyleBackColor = true;
@@ -492,9 +492,9 @@ namespace Sobutilnik {
 				 // 
 				 // History
 				 // 
-				 this->History->Location = System::Drawing::Point(10, 118);
+				 this->History->Location = System::Drawing::Point(11, 129);
 				 this->History->Name = L"History";
-				 this->History->Size = System::Drawing::Size(125, 23);
+				 this->History->Size = System::Drawing::Size(125, 25);
 				 this->History->TabIndex = 8;
 				 this->History->Text = L"История";
 				 this->History->UseVisualStyleBackColor = true;
@@ -502,9 +502,9 @@ namespace Sobutilnik {
 				 // 
 				 // Messages
 				 // 
-				 this->Messages->Location = System::Drawing::Point(10, 65);
+				 this->Messages->Location = System::Drawing::Point(11, 69);
 				 this->Messages->Name = L"Messages";
-				 this->Messages->Size = System::Drawing::Size(125, 23);
+				 this->Messages->Size = System::Drawing::Size(125, 25);
 				 this->Messages->TabIndex = 9;
 				 this->Messages->Text = L"Сообщения";
 				 this->Messages->UseVisualStyleBackColor = true;
@@ -525,20 +525,20 @@ namespace Sobutilnik {
 				 // 
 				 // mapButton
 				 // 
-				 this->mapButton->Location = System::Drawing::Point(10, 93);
+				 this->mapButton->Location = System::Drawing::Point(11, 99);
 				 this->mapButton->Margin = System::Windows::Forms::Padding(2);
 				 this->mapButton->Name = L"mapButton";
-				 this->mapButton->Size = System::Drawing::Size(125, 19);
+				 this->mapButton->Size = System::Drawing::Size(125, 25);
 				 this->mapButton->TabIndex = 13;
 				 this->mapButton->Text = L"Карта";
 				 this->mapButton->UseVisualStyleBackColor = true;
 				 // 
 				 // profileButton
 				 // 
-				 this->profileButton->Location = System::Drawing::Point(10, 11);
+				 this->profileButton->Location = System::Drawing::Point(11, 9);
 				 this->profileButton->Margin = System::Windows::Forms::Padding(2);
 				 this->profileButton->Name = L"profileButton";
-				 this->profileButton->Size = System::Drawing::Size(125, 19);
+				 this->profileButton->Size = System::Drawing::Size(125, 25);
 				 this->profileButton->TabIndex = 12;
 				 this->profileButton->Text = L"Мой профиль";
 				 this->profileButton->UseVisualStyleBackColor = true;
