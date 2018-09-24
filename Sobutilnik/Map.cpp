@@ -26,7 +26,7 @@ void Sobutilnik::Map::initLabels()
 	////////Мой профиль////////
 	MainName->Text = reader->GetValue(1)->ToString();
 	MainSurname->Text = reader->GetValue(2)->ToString();
-	userLogin->Text = reader->GetValue(4)->ToString();
+	MainLogin->Text = reader->GetValue(4)->ToString();
 	MainSex->Text = "Пол: " + sex;
 	MainBirth->Text = reader->GetValue(7)->ToString();
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();

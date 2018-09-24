@@ -214,9 +214,9 @@ namespace Sobutilnik {
 			// monthCalendar1
 			// 
 			this->monthCalendar1->Location = System::Drawing::Point(215, 59);
+			this->monthCalendar1->MaxDate = this->monthCalendar1->TodayDate;
 			this->monthCalendar1->Name = L"monthCalendar1";
 			this->monthCalendar1->TabIndex = 8;
-			this->monthCalendar1->MaxDate = this->monthCalendar1->TodayDate;
 			// 
 			// button1
 			// 
@@ -252,7 +252,7 @@ namespace Sobutilnik {
 			this->ProfilePicture->Controls->Add(this->button3);
 			this->ProfilePicture->Controls->Add(this->button2);
 			this->ProfilePicture->Controls->Add(this->SetProfilePicture);
-			this->ProfilePicture->Location = System::Drawing::Point(404, 150);
+			this->ProfilePicture->Location = System::Drawing::Point(66, 59);
 			this->ProfilePicture->Name = L"ProfilePicture";
 			this->ProfilePicture->Size = System::Drawing::Size(417, 335);
 			this->ProfilePicture->TabIndex = 19;
@@ -371,10 +371,9 @@ private: System::Void RegistrationForm_Load(System::Object^  sender, System::Eve
 	this->ClientSize = System::Drawing::Size(414, 334);
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	mainPage->Visible = false;
-	Map ^NewForm = gcnew Map(mainPage);
+	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
+	mainPage->Visible = true;
 	this->Close();
-	NewForm->ShowDialog();
 	mainPage->dbConnection->Open();
 	OleDbCommand ^command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
