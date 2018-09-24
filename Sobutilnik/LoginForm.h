@@ -172,8 +172,10 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	}
 	mainPage->Visible = false;
 	Map ^NewForm = gcnew Map(mainPage, userId);
+	
 	this->Visible = false;
 	NewForm->ShowDialog();
+	this->Close();
 }
 private: System::Void LoginForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	mainPage->Enabled = false;

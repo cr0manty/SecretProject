@@ -19,20 +19,13 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f), userId(5)
+		Map(FirstPage ^f) : mainPage(f), userId(5), isExitButton(0)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
 		}
-		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id)
+		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id), isExitButton(0)
 		{
-			InitializeComponent();
-			profileImage = nullptr;
-			initLabels();
-		}
-		Map(int _id) : userId(_id)
-		{
-			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 			InitializeComponent();
 			profileImage = nullptr;
 			initLabels();
@@ -55,13 +48,13 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  ExitAccount;
 	private:
 		FirstPage ^mainPage;
+		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
 		int userId;
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
-	public: OleDb::OleDbConnection ^dbConnection;
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  label14;
@@ -1039,7 +1032,8 @@ namespace Sobutilnik {
 			 }
 #pragma endregion
 	private: System::Void Map_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
-	//	mainPage->Close();
+		if(!isExitButton)
+			mainPage->Close();
 	}
 	private: System::Void Settings_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void Messages_Click(System::Object^  sender, System::EventArgs^  e);
