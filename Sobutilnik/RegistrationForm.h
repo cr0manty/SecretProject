@@ -31,43 +31,35 @@ namespace Sobutilnik {
 			}
 			delete mainPage;
 		}
+	private:
+		FirstPage ^mainPage;
+		void fieldCheck();
+		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;
 	private: System::Windows::Forms::TextBox^  surnameTextBox;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  emailTextBox;
-
-
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  passwordTextBox;
 	private: System::Windows::Forms::TextBox^  passwordCheckTextBox;
-
-
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::TextBox^  loginTextBox;
-
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::RadioButton^  SexMale;
-
 	private: System::Windows::Forms::RadioButton^  SexFem;
-
 	private: System::Windows::Forms::MonthCalendar^  monthCalendar1;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Panel^  ProfilePicture;
-
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::PictureBox^  SetProfilePicture;
-
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::CheckBox^  locationCheckBox;
-
-
-
 	private:
 		System::ComponentModel::Container ^components;
 
@@ -365,10 +357,6 @@ namespace Sobutilnik {
 		}
 		
 #pragma endregion
-	private:
-		FirstPage ^mainPage;
-		void fieldCheck();
-		void checkInfo();
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		try
 		{
@@ -428,9 +416,6 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		SetProfilePicture->Load(imageProfile);
 		//Внесение в бд картинки
 	}
-}
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	
 }
 };
 }

@@ -9,20 +9,28 @@ void Sobutilnik::Map::initLabels()
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 	reader->Read();
-
+	////////настройки///////
 	userFirstName->Text = reader->GetValue(1)->ToString();
-	UserName->Text = reader->GetValue(1)->ToString();
 	userSurname->Text = reader->GetValue(2)->ToString();
 	userLogin->Text = reader->GetValue(4)->ToString();
 	userMail->Text = reader->GetValue(5)->ToString();
 	userSex->Text = "Пол: " + reader->GetValue(6)->ToString();
 	UserBirth->Text = reader->GetValue(7)->ToString();
 	GeoPosition->Checked = reader->GetBoolean(8);
+	
+	////////Мой профиль////////
+	MainName->Text = reader->GetValue(1)->ToString();
+	MainSurname->Text = reader->GetValue(2)->ToString();
+	userLogin->Text = reader->GetValue(4)->ToString();
+	MainSex->Text = "Пол: " + reader->GetValue(6)->ToString();
+	MainBirth->Text = reader->GetValue(7)->ToString();
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
+	Rating->Value = reader->GetInt32(13);
+	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
+
 	mainPage->dbConnection->Close();
-	
 }
 
 void Sobutilnik::Map::checkSearch()
@@ -44,6 +52,22 @@ void Sobutilnik::Map::checkSearch()
 		resultListBox->Items->Add(name + " " + surname + " " + login + "\n");
 	}
 	mainPage->dbConnection->Close();
+}
+
+void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
+{
+	mainPage->dbConnection->Open();
+	String ^select = "SELECT * from MyDatabase where " + _type + " like '%" + _obj+ "%'";
+	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbDataReader ^reader = command->ExecuteReader();
+	reader->Read();
+
+	if (reader->HasRows) {
+		mainPage->dbConnection->Close();
+		throw std::logic_error(_error);
+	}
+	mainPage->dbConnection->Close();
+
 }
 
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -183,9 +207,31 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 
 	if (newEmail->Text->Length)
 	{
-		//добавить проверку на email в базе
+		try{
+			uniqUser("w_email", Errors::EmailNotUniq, newEmail->Text);
+		}
+		catch (const std::exception & e)
+		{
+			MessageBox::Show(marshal_as<String^>(e.what()));
+			return;
+		}
 		fieldForChanges.push_back("w_email = @u_email");
 		Changes.push_back(marshal->marshal_as<const char*>(newEmail->Text));
+		pathFieldForChanges.push_back("@u_email");
+	}
+
+	if (newLogin->Text->Length)
+	{
+		try {
+			uniqUser("w_login", Errors::LoginNotUniq, newLogin->Text);
+		}
+		catch (const std::exception & e)
+		{
+			MessageBox::Show(marshal_as<String^>(e.what()));
+			return;
+		}
+		fieldForChanges.push_back("w_email = @u_email");
+		Changes.push_back(marshal->marshal_as<const char*>(newLogin->Text));
 		pathFieldForChanges.push_back("@u_email");
 	}
 
@@ -210,6 +256,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 
 		for (int i = 0; i < pathFieldForChanges.size(); i++)
 			command->Parameters->AddWithValue(marshal_as<String^>(pathFieldForChanges[i]), marshal_as<String^>(Changes[i]));
+
 		command->Parameters->AddWithValue("@u_id", userId);
 		mainPage->dbConnection->Open();
 		command->ExecuteNonQuery();
@@ -219,5 +266,5 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		initLabels();
 		return;
 	}
-	throw std::logic_error(Errors::NonFieldWasChanged);
+	MessageBox::Show(marshal_as<String^>(Errors::NonFieldWasChanged));
 }

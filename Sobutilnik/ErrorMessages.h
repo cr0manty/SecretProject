@@ -8,8 +8,8 @@ namespace Errors {
 	const char* const PasswordNotEqual				= "Пароли не совпадают";
 	const char* const LoginToSmall					= "Логин должен быть больше 5 символов";
 	const char* const AccountNotFound				= "Аккаунт с такими данными не найден";
-	const char* const EmailOrLoginNotUniq			= "Аккаунт с таким email или логином уже существует";
-	const char* const LoginlNotUniq					= "Аккаунт с таким логином уже существует";
+	const char* const EmailNotUniq					= "Аккаунт с таким email уже существует";
+	const char* const LoginNotUniq					= "Аккаунт с таким логином уже существует";
 	const char* const AllFieldMustBeFilled			= "Все поля должны быть заполнены";
 	const char* const UserTooYong					= "Вы должны быть старше 18 лет для использования данного приложения";
 	const char* const DataWasSucsessfulyUpdated		= "Данные были успешно обновленны";

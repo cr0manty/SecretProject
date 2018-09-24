@@ -1,16 +1,17 @@
 #include "RegistrationForm.h"
 #include "ErrorMessages.h"
 
-void Sobutilnik::RegistrationForm::checkInfo()
+void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char * _error, System::Object ^ _obj)
 {
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where w_login like '%" + loginTextBox->Text + "%'";
+	String ^select = "SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'";
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
-	//я не понимаю почему оно работает, но оно работает корректно для логина и email, значит не нужно это трогать
+	reader->Read();
+
 	if (reader->HasRows) {
 		mainPage->dbConnection->Close();
-		throw std::logic_error(Errors::EmailOrLoginNotUniq);
+		throw std::logic_error(_error);
 	}
 	mainPage->dbConnection->Close();
 }
@@ -40,9 +41,13 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 		if (monthCalendar1->TodayDate.DayOfYear > monthCalendar1->SelectionRange->Start.DayOfYear)
 			throw std::logic_error(Errors::UserTooYong);
 	}
-	///email and login
+	///login
 	if (loginTextBox->Text->Length < 5)
 		throw std::logic_error(Errors::LoginToSmall);
-	checkInfo();
+	uniqUser("w_login", Errors::LoginNotUniq, loginTextBox->Text);
+	///email
+	if (emailTextBox->Text->Length < 5)
+		throw std::logic_error(Errors::LoginToSmall);
+	uniqUser("w_email", Errors::EmailNotUniq, emailTextBox->Text);
 }
 

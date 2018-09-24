@@ -123,6 +123,7 @@ namespace Sobutilnik {
 			this->LoginField->Name = L"LoginField";
 			this->LoginField->Size = System::Drawing::Size(100, 20);
 			this->LoginField->TabIndex = 1;
+			this->LoginField->Text = L"admin";
 			// 
 			// PassField
 			// 
@@ -130,6 +131,7 @@ namespace Sobutilnik {
 			this->PassField->Name = L"PassField";
 			this->PassField->Size = System::Drawing::Size(100, 20);
 			this->PassField->TabIndex = 2;
+			this->PassField->Text = L"admin";
 			this->PassField->UseSystemPasswordChar = true;
 			// 
 			// LoginForm
