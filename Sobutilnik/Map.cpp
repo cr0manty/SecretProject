@@ -9,12 +9,17 @@ void Sobutilnik::Map::initLabels()
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 	reader->Read();
+	String^ sex = nullptr;
+	if (reader->GetValue(6)->ToString() == "M")
+		sex = "Муж.";
+	else sex = "Жен.";
+
 	////////настройки///////
 	userFirstName->Text = reader->GetValue(1)->ToString();
 	userSurname->Text = reader->GetValue(2)->ToString();
 	userLogin->Text = reader->GetValue(4)->ToString();
 	userMail->Text = reader->GetValue(5)->ToString();
-	userSex->Text = "Пол: " + reader->GetValue(6)->ToString();
+	userSex->Text = "Пол: " + sex;
 	UserBirth->Text = reader->GetValue(7)->ToString();
 	GeoPosition->Checked = reader->GetBoolean(8);
 	
@@ -22,7 +27,7 @@ void Sobutilnik::Map::initLabels()
 	MainName->Text = reader->GetValue(1)->ToString();
 	MainSurname->Text = reader->GetValue(2)->ToString();
 	userLogin->Text = reader->GetValue(4)->ToString();
-	MainSex->Text = "Пол: " + reader->GetValue(6)->ToString();
+	MainSex->Text = "Пол: " + sex;
 	MainBirth->Text = reader->GetValue(7)->ToString();
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
@@ -63,6 +68,11 @@ void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System
 	}
 	mainPage->dbConnection->Close();
 
+}
+
+void Sobutilnik::Map::exitAcc()
+{
+	//все формы закрываются, а 1 пересоздается
 }
 
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -239,14 +249,27 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc));
+	if (MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc), "Удаление аккаунта", MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
 
-	mainPage->dbConnection->Open();
-	OleDbCommand ^command = gcnew OleDbCommand();
-	command->CommandType = CommandType::Text;
-	command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
-	command->Connection = mainPage->dbConnection;
-	command->Parameters->AddWithValue("@u_id", userId);
-	command->ExecuteReader();
-	mainPage->dbConnection->Close();
+		mainPage->dbConnection->Open();
+		OleDbCommand ^command = gcnew OleDbCommand();
+		command->CommandType = CommandType::Text;
+		command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
+		command->Connection = mainPage->dbConnection;
+		command->Parameters->AddWithValue("@u_id", userId);
+		command->ExecuteReader();
+		mainPage->dbConnection->Close();
+		exitAcc();
+	}
+	else return;
+}
+
+System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	if (MessageBox::Show(marshal_as<String^>(Errors::ExitFromAcc), "Выход из аккаунта", MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
+		exitAcc();
+	}
+	else return;
 }

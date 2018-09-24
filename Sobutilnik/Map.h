@@ -53,7 +53,7 @@ namespace Sobutilnik {
 		void checkSearch();
 		int userId;
 		void uniqUser(System::Object^, const char*, System::Object^);
-
+		void exitAcc();
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  label14;
@@ -171,6 +171,8 @@ namespace Sobutilnik {
 				 this->aboutYourself = (gcnew System::Windows::Forms::Label());
 				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
+				 this->DeleteAcc = (gcnew System::Windows::Forms::Button());
+				 this->ExitAccount = (gcnew System::Windows::Forms::Button());
 				 this->newLogin = (gcnew System::Windows::Forms::TextBox());
 				 this->label23 = (gcnew System::Windows::Forms::Label());
 				 this->label14 = (gcnew System::Windows::Forms::Label());
@@ -213,8 +215,6 @@ namespace Sobutilnik {
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-				 this->ExitAccount = (gcnew System::Windows::Forms::Button());
-				 this->DeleteAcc = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -381,7 +381,7 @@ namespace Sobutilnik {
 				 this->profilePanel->Controls->Add(this->RatingPersent);
 				 this->profilePanel->Controls->Add(this->Rating);
 				 this->profilePanel->Controls->Add(this->label1);
-				 this->profilePanel->Location = System::Drawing::Point(121, 570);
+				 this->profilePanel->Location = System::Drawing::Point(160, 579);
 				 this->profilePanel->Margin = System::Windows::Forms::Padding(2);
 				 this->profilePanel->Name = L"profilePanel";
 				 this->profilePanel->Size = System::Drawing::Size(862, 540);
@@ -545,9 +545,9 @@ namespace Sobutilnik {
 				 this->RatingPersent->AutoSize = true;
 				 this->RatingPersent->Location = System::Drawing::Point(135, 162);
 				 this->RatingPersent->Name = L"RatingPersent";
-				 this->RatingPersent->Size = System::Drawing::Size(27, 13);
+				 this->RatingPersent->Size = System::Drawing::Size(21, 13);
 				 this->RatingPersent->TabIndex = 11;
-				 this->RatingPersent->Text = L"60%";
+				 this->RatingPersent->Text = L"0%";
 				 this->RatingPersent->TextAlign = System::Drawing::ContentAlignment::TopRight;
 				 // 
 				 // SettingsPanel
@@ -593,6 +593,26 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Size = System::Drawing::Size(854, 539);
 				 this->SettingsPanel->TabIndex = 12;
 				 this->SettingsPanel->Visible = false;
+				 // 
+				 // DeleteAcc
+				 // 
+				 this->DeleteAcc->Location = System::Drawing::Point(202, 413);
+				 this->DeleteAcc->Name = L"DeleteAcc";
+				 this->DeleteAcc->Size = System::Drawing::Size(75, 23);
+				 this->DeleteAcc->TabIndex = 54;
+				 this->DeleteAcc->Text = L"Удалить";
+				 this->DeleteAcc->UseVisualStyleBackColor = true;
+				 this->DeleteAcc->Click += gcnew System::EventHandler(this, &Map::DeleteAcc_Click);
+				 // 
+				 // ExitAccount
+				 // 
+				 this->ExitAccount->Location = System::Drawing::Point(18, 413);
+				 this->ExitAccount->Name = L"ExitAccount";
+				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
+				 this->ExitAccount->TabIndex = 14;
+				 this->ExitAccount->Text = L"Выйти";
+				 this->ExitAccount->UseVisualStyleBackColor = true;
+				 this->ExitAccount->Click += gcnew System::EventHandler(this, &Map::ExitAccount_Click);
 				 // 
 				 // newLogin
 				 // 
@@ -977,25 +997,6 @@ namespace Sobutilnik {
 				 // 
 				 this->openFileDialog1->FileName = L"openFileDialog1";
 				 // 
-				 // ExitAccount
-				 // 
-				 this->ExitAccount->Location = System::Drawing::Point(18, 413);
-				 this->ExitAccount->Name = L"ExitAccount";
-				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
-				 this->ExitAccount->TabIndex = 14;
-				 this->ExitAccount->Text = L"Выйти";
-				 this->ExitAccount->UseVisualStyleBackColor = true;
-				 // 
-				 // DeleteAcc
-				 // 
-				 this->DeleteAcc->Location = System::Drawing::Point(202, 413);
-				 this->DeleteAcc->Name = L"DeleteAcc";
-				 this->DeleteAcc->Size = System::Drawing::Size(75, 23);
-				 this->DeleteAcc->TabIndex = 54;
-				 this->DeleteAcc->Text = L"Удалить";
-				 this->DeleteAcc->UseVisualStyleBackColor = true;
-				 this->DeleteAcc->Click += gcnew System::EventHandler(this, &Map::DeleteAcc_Click);
-				 // 
 				 // Map
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1057,5 +1058,6 @@ private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
 	Map::Size = System::Drawing::Size(800, 530);
 }
 private: System::Void DeleteAcc_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void ExitAccount_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

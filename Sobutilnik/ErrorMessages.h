@@ -15,4 +15,5 @@ namespace Errors {
 	const char* const DataWasSucsessfulyUpdated		= "Данные были успешно обновленны";
 	const char* const NonFieldWasChanged			= "Для сохранения требуется хотя бы 1 изменение";
 	const char* const ConfirmDeletAcc				= "Вы точно хотите удалить свой аккаунт?\nДанное действие не обратимо!";
+	const char* const ExitFromAcc					= "Вы точно хотите выйти?";
 }
