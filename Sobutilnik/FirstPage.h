@@ -1,7 +1,9 @@
 #pragma once
 
 namespace Sobutilnik {
-
+	ref class Map;
+	ref class RegistrationForm;
+	ref class LoginForm;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -38,6 +40,9 @@ namespace Sobutilnik {
 	protected:
 
 	private:
+		Map ^newMap;
+		RegistrationForm^ newRegistr;
+		LoginForm^ newLogin;
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>

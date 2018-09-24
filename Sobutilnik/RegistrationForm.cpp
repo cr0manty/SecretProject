@@ -4,9 +4,8 @@
 void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char * _error, System::Object ^ _obj)
 {
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", mainPage->dbConnection);
+	reader = command->ExecuteReader();
 	reader->Read();
 
 	if (reader->HasRows) {

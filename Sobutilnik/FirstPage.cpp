@@ -4,18 +4,20 @@
 System::Void Sobutilnik::FirstPage::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	this->Visible = false;
-	Map ^newForm = gcnew Map(this); 
-	newForm->ShowDialog();
+	newMap = gcnew Map(this);
+	
+	newMap->ShowDialog();
+
 }
 
 System::Void Sobutilnik::FirstPage::button2_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	RegistrationForm^ form = gcnew RegistrationForm(this);
-	form->ShowDialog();
+	newRegistr = gcnew RegistrationForm(this);
+	newRegistr->ShowDialog();
 }
 
 System::Void Sobutilnik::FirstPage::button3_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	LoginForm^ form = gcnew LoginForm(this);
-	form->ShowDialog();
+	newLogin = gcnew LoginForm(this);
+	newLogin->ShowDialog();
 }

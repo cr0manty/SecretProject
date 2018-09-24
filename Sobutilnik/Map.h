@@ -22,12 +22,12 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f), userId(5)
+		Map(FirstPage ^f) : mainPage(f), userId(5), isExitButton(0)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
 		}
-		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id)
+		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id), isExitButton(0)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
@@ -53,6 +53,10 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  ExitAccount;
 	private:
 		FirstPage ^mainPage;
+		OleDbCommand ^command;
+		OleDbDataReader ^reader;
+		marshal_context^ marshal;
+		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
@@ -953,10 +957,16 @@ namespace Sobutilnik {
 				 // 
 				 // ExitAccount
 				 // 
+<<<<<<< HEAD
 				 this->ExitAccount->Location = System::Drawing::Point(49, 508);
 				 this->ExitAccount->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 				 this->ExitAccount->Name = L"ExitAccount";
 				 this->ExitAccount->Size = System::Drawing::Size(100, 28);
+=======
+				 this->ExitAccount->Location = System::Drawing::Point(11, 439);
+				 this->ExitAccount->Name = L"ExitAccount";
+				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
+>>>>>>> bf0cd9815c8bfd3eb76ad684f64b60523b817333
 				 this->ExitAccount->TabIndex = 14;
 				 this->ExitAccount->Text = L"Выйти";
 				 this->ExitAccount->UseVisualStyleBackColor = true;
@@ -1081,7 +1091,8 @@ namespace Sobutilnik {
 			 }
 #pragma endregion
 	private: System::Void Map_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
-		mainPage->Close();
+		if(!isExitButton)
+			mainPage->Close();
 	}
 	private: System::Void Settings_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void Messages_Click(System::Object^  sender, System::EventArgs^  e);

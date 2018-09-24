@@ -32,6 +32,8 @@ namespace Sobutilnik {
 		}
 	private:
 		FirstPage ^mainPage;
+		OleDbCommand ^command;
+		OleDbDataReader ^reader;
 		void fieldCheck();
 		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;
@@ -214,9 +216,9 @@ namespace Sobutilnik {
 			// monthCalendar1
 			// 
 			this->monthCalendar1->Location = System::Drawing::Point(215, 59);
+			this->monthCalendar1->MaxDate = this->monthCalendar1->TodayDate;
 			this->monthCalendar1->Name = L"monthCalendar1";
 			this->monthCalendar1->TabIndex = 8;
-			this->monthCalendar1->MaxDate = this->monthCalendar1->TodayDate;
 			// 
 			// button1
 			// 
@@ -252,7 +254,7 @@ namespace Sobutilnik {
 			this->ProfilePicture->Controls->Add(this->button3);
 			this->ProfilePicture->Controls->Add(this->button2);
 			this->ProfilePicture->Controls->Add(this->SetProfilePicture);
-			this->ProfilePicture->Location = System::Drawing::Point(404, 150);
+			this->ProfilePicture->Location = System::Drawing::Point(66, 59);
 			this->ProfilePicture->Name = L"ProfilePicture";
 			this->ProfilePicture->Size = System::Drawing::Size(417, 335);
 			this->ProfilePicture->TabIndex = 19;
@@ -371,12 +373,11 @@ private: System::Void RegistrationForm_Load(System::Object^  sender, System::Eve
 	this->ClientSize = System::Drawing::Size(414, 334);
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	mainPage->Visible = false;
-	Map ^NewForm = gcnew Map(mainPage);
+	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
+	mainPage->Visible = true;
 	this->Close();
-	NewForm->ShowDialog();
 	mainPage->dbConnection->Open();
-	OleDbCommand ^command = gcnew OleDbCommand();
+	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
 	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
 		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
@@ -398,14 +399,12 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	mainPage->dbConnection->Close();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	String ^imageProfile;
 	openFileDialog1->InitialDirectory = "c:\\";
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
-		imageProfile = openFileDialog1->FileName;
-		SetProfilePicture->Load(imageProfile);
-		SetProfilePicture->Load(imageProfile);
+		SetProfilePicture->Load(openFileDialog1->FileName);
+		SetProfilePicture->Load(openFileDialog1->FileName);
 		//Внесение в бд картинки
 	}
 }
