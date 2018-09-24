@@ -13,7 +13,6 @@ namespace Sobutilnik {
 	using namespace System::Drawing;
 	using namespace msclr::interop;
 	
-
 	public ref class RegistrationForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -60,13 +59,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::CheckBox^  locationCheckBox;
-	private:
-		System::ComponentModel::Container ^components;
-
-
-
+	private: System::ComponentModel::Container ^components;
 #pragma region Windows Form Designer generated code
-
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(RegistrationForm::typeid));
@@ -355,7 +349,6 @@ namespace Sobutilnik {
 			this->PerformLayout();
 
 		}
-		
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		try
@@ -405,7 +398,6 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	mainPage->dbConnection->Close();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	
 	String ^imageProfile;
 	openFileDialog1->InitialDirectory = "c:\\";
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";

@@ -27,7 +27,6 @@ void Sobutilnik::Map::initLabels()
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
-	Rating->Value = reader->GetInt32(13);
 	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
 
 	mainPage->dbConnection->Close();
@@ -44,13 +43,9 @@ void Sobutilnik::Map::checkSearch()
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 
-	while (reader->Read()) {
-		String^ name = reader->GetValue(1)->ToString();
-		String^ surname = reader->GetValue(2)->ToString();
-		String^ login = reader->GetValue(4)->ToString();
+	while (reader->Read())
+		resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
 
-		resultListBox->Items->Add(name + " " + surname + " " + login + "\n");
-	}
 	mainPage->dbConnection->Close();
 }
 
@@ -74,6 +69,7 @@ System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::Ev
 {
 	SettingsPanel->Visible = true;
 	SettingsPanel->Location = System::Drawing::Point(215, 15);
+	SettingsPanel->Size = System::Drawing::Size(854, 539);
 
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -85,6 +81,7 @@ System::Void Sobutilnik::Map::Messages_Click(System::Object ^ sender, System::Ev
 {
 	MessagesPanel->Visible = true;
 	MessagesPanel->Location = System::Drawing::Point(215, 15);
+	MessagesPanel->Size = System::Drawing::Size(854, 539);
 	
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -97,6 +94,7 @@ System::Void Sobutilnik::Map::History_Click(System::Object ^ sender, System::Eve
 {
 	HistoryPanel->Visible = true;
 	HistoryPanel->Location = System::Drawing::Point(215, 15);
+	HistoryPanel->Size = System::Drawing::Size(854, 539);
 
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -108,6 +106,7 @@ System::Void Sobutilnik::Map::Friends_Click(System::Object ^ sender, System::Eve
 {
 	FriendsPanel->Visible = true;
 	FriendsPanel->Location = System::Drawing::Point(215, 15);
+	FriendsPanel->Size = System::Drawing::Size(854, 539);
 
 	profilePanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -132,6 +131,7 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 {
 	profilePanel->Visible = true;
 	profilePanel->Location = System::Drawing::Point(215, 15);
+	FriendsPanel->Size = System::Drawing::Size(854, 539);
 
 	FriendsPanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -141,38 +141,6 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 
 System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	/*String^ CmdRule = "UPDATE MyDatabase SET ";
-	marshal_context^ marshal = gcnew marshal_context();
-
-	if (userDescriptionChangeField->Text->Length) {
-		CmdRule += "w_userDescription = @u_userDescription";
-	}
-
-	if (userHobbyChangeField->Text->Length) {
-		CmdRule += "w_userHobby = @u_userHobby";
-	}
-
-	if (userHobbyChangeField->Text->Length) {
-		CmdRule += "w_userDrinks = @u_userDrinks";
-	}
-	
-
-	CmdRule += " WHERE w_id = @u_id";
-	OleDbCommand ^command = gcnew OleDbCommand();
-	command->CommandType = CommandType::Text;
-	command->CommandText = CmdRule;
-	command->Connection = mainPage->dbConnection;
-	if (userDescriptionChangeField->Text->Length)
-		command->Parameters->AddWithValue("@u_userDescription", userDescriptionChangeField->Text);
-	command->Parameters->AddWithValue("@u_id", userId);
-	mainPage->dbConnection->Open();
-	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
-
-	MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
-
-	return;
-	throw std::logic_error(Errors::NonFieldWasChanged);*/
 	std::vector<const char*> fieldForChanges;
 	std::vector<const char*> Changes;
 	std::vector<const char*> pathFieldForChanges;
@@ -267,4 +235,18 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		return;
 	}
 	MessageBox::Show(marshal_as<String^>(Errors::NonFieldWasChanged));
+}
+
+System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc));
+
+	mainPage->dbConnection->Open();
+	OleDbCommand ^command = gcnew OleDbCommand();
+	command->CommandType = CommandType::Text;
+	command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
+	command->Connection = mainPage->dbConnection;
+	command->Parameters->AddWithValue("@u_id", userId);
+	command->ExecuteReader();
+	mainPage->dbConnection->Close();
 }

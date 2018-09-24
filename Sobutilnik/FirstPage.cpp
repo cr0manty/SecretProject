@@ -4,7 +4,7 @@
 System::Void Sobutilnik::FirstPage::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	this->Visible = false;
-	Map ^newForm = gcnew Map(this);
+	Map ^newForm = gcnew Map(this); 
 	newForm->ShowDialog();
 }
 

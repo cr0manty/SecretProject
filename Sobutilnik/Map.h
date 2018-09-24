@@ -19,7 +19,7 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f) : mainPage(f), userId(1)
+		Map(FirstPage ^f) : mainPage(f), userId(5)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
@@ -43,6 +43,17 @@ namespace Sobutilnik {
 			delete mainPage;
 			delete profileImage;
 		}
+	private: System::Windows::Forms::Button^  DeleteAcc;
+	protected:
+	private: System::Windows::Forms::Button^  ExitAccount;
+	private:
+		FirstPage ^mainPage;
+		void initLabels();
+		String^ profileImage;
+		void checkSearch();
+		int userId;
+		void uniqUser(System::Object^, const char*, System::Object^);
+
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  label14;
@@ -59,13 +70,6 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  MainLogin;
 	private: System::Windows::Forms::TextBox^  newLogin;
 	private: System::Windows::Forms::Label^  label23;
-	private:
-		FirstPage ^mainPage;
-		void initLabels();
-		String^ profileImage;
-		void checkSearch();
-		int userId;
-		void uniqUser(System::Object^, const char*, System::Object^);
 	private: System::Windows::Forms::Label^  userSurname;
 	private: System::Windows::Forms::Label^  userFirstName;
 	private: System::Windows::Forms::Label^  userLogin;
@@ -154,7 +158,21 @@ namespace Sobutilnik {
 				 this->label22 = (gcnew System::Windows::Forms::Label());
 				 this->MainBirth = (gcnew System::Windows::Forms::Label());
 				 this->MainSex = (gcnew System::Windows::Forms::Label());
+				 this->label25 = (gcnew System::Windows::Forms::Label());
+				 this->MainSurname = (gcnew System::Windows::Forms::Label());
+				 this->MainName = (gcnew System::Windows::Forms::Label());
+				 this->MainLogin = (gcnew System::Windows::Forms::Label());
+				 this->label15 = (gcnew System::Windows::Forms::Label());
+				 this->usersAlcoholLabel = (gcnew System::Windows::Forms::Label());
+				 this->Drinks = (gcnew System::Windows::Forms::Label());
+				 this->userHobbiesLabel = (gcnew System::Windows::Forms::Label());
+				 this->Hobbies = (gcnew System::Windows::Forms::Label());
+				 this->userDescriptionLabel = (gcnew System::Windows::Forms::Label());
+				 this->aboutYourself = (gcnew System::Windows::Forms::Label());
+				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
+				 this->newLogin = (gcnew System::Windows::Forms::TextBox());
+				 this->label23 = (gcnew System::Windows::Forms::Label());
 				 this->label14 = (gcnew System::Windows::Forms::Label());
 				 this->label13 = (gcnew System::Windows::Forms::Label());
 				 this->label8 = (gcnew System::Windows::Forms::Label());
@@ -187,18 +205,6 @@ namespace Sobutilnik {
 				 this->currentPasswordField = (gcnew System::Windows::Forms::TextBox());
 				 this->ChangeProfileImage = (gcnew System::Windows::Forms::Button());
 				 this->ProfileImage = (gcnew System::Windows::Forms::PictureBox());
-				 this->label25 = (gcnew System::Windows::Forms::Label());
-				 this->MainSurname = (gcnew System::Windows::Forms::Label());
-				 this->MainName = (gcnew System::Windows::Forms::Label());
-				 this->MainLogin = (gcnew System::Windows::Forms::Label());
-				 this->label15 = (gcnew System::Windows::Forms::Label());
-				 this->usersAlcoholLabel = (gcnew System::Windows::Forms::Label());
-				 this->Drinks = (gcnew System::Windows::Forms::Label());
-				 this->userHobbiesLabel = (gcnew System::Windows::Forms::Label());
-				 this->Hobbies = (gcnew System::Windows::Forms::Label());
-				 this->userDescriptionLabel = (gcnew System::Windows::Forms::Label());
-				 this->aboutYourself = (gcnew System::Windows::Forms::Label());
-				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->Settings = (gcnew System::Windows::Forms::Button());
 				 this->Friends = (gcnew System::Windows::Forms::Button());
 				 this->History = (gcnew System::Windows::Forms::Button());
@@ -207,8 +213,8 @@ namespace Sobutilnik {
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-				 this->label23 = (gcnew System::Windows::Forms::Label());
-				 this->newLogin = (gcnew System::Windows::Forms::TextBox());
+				 this->ExitAccount = (gcnew System::Windows::Forms::Button());
+				 this->DeleteAcc = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -231,9 +237,9 @@ namespace Sobutilnik {
 				 // 
 				 // Drunk
 				 // 
-				 this->Drunk->Location = System::Drawing::Point(242, 356);
+				 this->Drunk->Location = System::Drawing::Point(22, 212);
 				 this->Drunk->Name = L"Drunk";
-				 this->Drunk->Size = System::Drawing::Size(115, 38);
+				 this->Drunk->Size = System::Drawing::Size(140, 38);
 				 this->Drunk->TabIndex = 6;
 				 this->Drunk->Text = L"Хочу бухать!";
 				 this->Drunk->UseVisualStyleBackColor = true;
@@ -261,9 +267,9 @@ namespace Sobutilnik {
 				 this->FriendsPanel->Controls->Add(this->searchButton);
 				 this->FriendsPanel->Controls->Add(this->searchField);
 				 this->FriendsPanel->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-				 this->FriendsPanel->Location = System::Drawing::Point(40, 105);
+				 this->FriendsPanel->Location = System::Drawing::Point(160, 45);
 				 this->FriendsPanel->Name = L"FriendsPanel";
-				 this->FriendsPanel->Size = System::Drawing::Size(854, 539);
+				 this->FriendsPanel->Size = System::Drawing::Size(364, 203);
 				 this->FriendsPanel->TabIndex = 12;
 				 this->FriendsPanel->Visible = false;
 				 // 
@@ -308,16 +314,16 @@ namespace Sobutilnik {
 				 // HistoryPanel
 				 // 
 				 this->HistoryPanel->Controls->Add(this->label9);
-				 this->HistoryPanel->Location = System::Drawing::Point(623, 6);
+				 this->HistoryPanel->Location = System::Drawing::Point(160, 404);
 				 this->HistoryPanel->Name = L"HistoryPanel";
-				 this->HistoryPanel->Size = System::Drawing::Size(854, 539);
+				 this->HistoryPanel->Size = System::Drawing::Size(144, 132);
 				 this->HistoryPanel->TabIndex = 12;
 				 this->HistoryPanel->Visible = false;
 				 // 
 				 // label9
 				 // 
 				 this->label9->AutoSize = true;
-				 this->label9->Location = System::Drawing::Point(435, 16);
+				 this->label9->Location = System::Drawing::Point(16, 25);
 				 this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label9->Name = L"label9";
 				 this->label9->Size = System::Drawing::Size(50, 13);
@@ -336,16 +342,16 @@ namespace Sobutilnik {
 				 // MessagesPanel
 				 // 
 				 this->MessagesPanel->Controls->Add(this->label10);
-				 this->MessagesPanel->Location = System::Drawing::Point(463, 18);
+				 this->MessagesPanel->Location = System::Drawing::Point(160, 254);
 				 this->MessagesPanel->Name = L"MessagesPanel";
-				 this->MessagesPanel->Size = System::Drawing::Size(854, 539);
+				 this->MessagesPanel->Size = System::Drawing::Size(144, 144);
 				 this->MessagesPanel->TabIndex = 12;
 				 this->MessagesPanel->Visible = false;
 				 // 
 				 // label10
 				 // 
 				 this->label10->AutoSize = true;
-				 this->label10->Location = System::Drawing::Point(140, 33);
+				 this->label10->Location = System::Drawing::Point(33, 22);
 				 this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label10->Name = L"label10";
 				 this->label10->Size = System::Drawing::Size(65, 13);
@@ -359,7 +365,6 @@ namespace Sobutilnik {
 				 this->profilePanel->Controls->Add(this->label22);
 				 this->profilePanel->Controls->Add(this->MainBirth);
 				 this->profilePanel->Controls->Add(this->MainSex);
-				 this->profilePanel->Controls->Add(this->SettingsPanel);
 				 this->profilePanel->Controls->Add(this->label25);
 				 this->profilePanel->Controls->Add(this->MainSurname);
 				 this->profilePanel->Controls->Add(this->MainName);
@@ -376,7 +381,7 @@ namespace Sobutilnik {
 				 this->profilePanel->Controls->Add(this->RatingPersent);
 				 this->profilePanel->Controls->Add(this->Rating);
 				 this->profilePanel->Controls->Add(this->label1);
-				 this->profilePanel->Location = System::Drawing::Point(338, 15);
+				 this->profilePanel->Location = System::Drawing::Point(121, 570);
 				 this->profilePanel->Margin = System::Windows::Forms::Padding(2);
 				 this->profilePanel->Name = L"profilePanel";
 				 this->profilePanel->Size = System::Drawing::Size(862, 540);
@@ -427,337 +432,6 @@ namespace Sobutilnik {
 				 this->MainSex->TabIndex = 56;
 				 this->MainSex->Text = L"Пол: М";
 				 // 
-				 // SettingsPanel
-				 // 
-				 this->SettingsPanel->Controls->Add(this->newLogin);
-				 this->SettingsPanel->Controls->Add(this->label23);
-				 this->SettingsPanel->Controls->Add(this->label14);
-				 this->SettingsPanel->Controls->Add(this->label13);
-				 this->SettingsPanel->Controls->Add(this->label8);
-				 this->SettingsPanel->Controls->Add(this->UserBirth);
-				 this->SettingsPanel->Controls->Add(this->userSex);
-				 this->SettingsPanel->Controls->Add(this->userAgeStatic);
-				 this->SettingsPanel->Controls->Add(this->userSurname);
-				 this->SettingsPanel->Controls->Add(this->userFirstName);
-				 this->SettingsPanel->Controls->Add(this->userLogin);
-				 this->SettingsPanel->Controls->Add(this->label19);
-				 this->SettingsPanel->Controls->Add(this->userDrinksChangeField);
-				 this->SettingsPanel->Controls->Add(this->userHobbyChangeField);
-				 this->SettingsPanel->Controls->Add(this->userDescriptionChangeField);
-				 this->SettingsPanel->Controls->Add(this->label18);
-				 this->SettingsPanel->Controls->Add(this->label17);
-				 this->SettingsPanel->Controls->Add(this->label16);
-				 this->SettingsPanel->Controls->Add(this->userMail);
-				 this->SettingsPanel->Controls->Add(this->label6);
-				 this->SettingsPanel->Controls->Add(this->label7);
-				 this->SettingsPanel->Controls->Add(this->newEmail);
-				 this->SettingsPanel->Controls->Add(this->saveChanges);
-				 this->SettingsPanel->Controls->Add(this->label4);
-				 this->SettingsPanel->Controls->Add(this->label5);
-				 this->SettingsPanel->Controls->Add(this->newNameField);
-				 this->SettingsPanel->Controls->Add(this->newSurnameField);
-				 this->SettingsPanel->Controls->Add(this->GeoPosition);
-				 this->SettingsPanel->Controls->Add(this->label3);
-				 this->SettingsPanel->Controls->Add(this->label2);
-				 this->SettingsPanel->Controls->Add(this->newPasswordField);
-				 this->SettingsPanel->Controls->Add(this->currentPasswordField);
-				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
-				 this->SettingsPanel->Controls->Add(this->ProfileImage);
-				 this->SettingsPanel->Location = System::Drawing::Point(252, 17);
-				 this->SettingsPanel->Name = L"SettingsPanel";
-				 this->SettingsPanel->Size = System::Drawing::Size(854, 539);
-				 this->SettingsPanel->TabIndex = 12;
-				 this->SettingsPanel->Visible = false;
-				 // 
-				 // label14
-				 // 
-				 this->label14->AutoSize = true;
-				 this->label14->Location = System::Drawing::Point(20, 80);
-				 this->label14->Name = L"label14";
-				 this->label14->Size = System::Drawing::Size(59, 13);
-				 this->label14->TabIndex = 51;
-				 this->label14->Text = L"Фамилия:";
-				 // 
-				 // label13
-				 // 
-				 this->label13->AutoSize = true;
-				 this->label13->Location = System::Drawing::Point(20, 44);
-				 this->label13->Name = L"label13";
-				 this->label13->Size = System::Drawing::Size(32, 13);
-				 this->label13->TabIndex = 50;
-				 this->label13->Text = L"Имя:";
-				 // 
-				 // label8
-				 // 
-				 this->label8->AutoSize = true;
-				 this->label8->Location = System::Drawing::Point(189, 326);
-				 this->label8->Name = L"label8";
-				 this->label8->Size = System::Drawing::Size(87, 13);
-				 this->label8->TabIndex = 49;
-				 this->label8->Text = L"Текущий логин:";
-				 // 
-				 // UserBirth
-				 // 
-				 this->UserBirth->AutoSize = true;
-				 this->UserBirth->Location = System::Drawing::Point(20, 134);
-				 this->UserBirth->Name = L"UserBirth";
-				 this->UserBirth->Size = System::Drawing::Size(65, 13);
-				 this->UserBirth->TabIndex = 48;
-				 this->UserBirth->Text = L"02/03/2018";
-				 // 
-				 // userSex
-				 // 
-				 this->userSex->AutoSize = true;
-				 this->userSex->Location = System::Drawing::Point(20, 155);
-				 this->userSex->Name = L"userSex";
-				 this->userSex->Size = System::Drawing::Size(42, 13);
-				 this->userSex->TabIndex = 47;
-				 this->userSex->Text = L"Пол: М";
-				 // 
-				 // userAgeStatic
-				 // 
-				 this->userAgeStatic->AutoSize = true;
-				 this->userAgeStatic->Location = System::Drawing::Point(20, 115);
-				 this->userAgeStatic->Name = L"userAgeStatic";
-				 this->userAgeStatic->Size = System::Drawing::Size(89, 13);
-				 this->userAgeStatic->TabIndex = 46;
-				 this->userAgeStatic->Text = L"Дата рождения:\r\n";
-				 // 
-				 // userSurname
-				 // 
-				 this->userSurname->AutoSize = true;
-				 this->userSurname->Location = System::Drawing::Point(20, 93);
-				 this->userSurname->Name = L"userSurname";
-				 this->userSurname->Size = System::Drawing::Size(44, 13);
-				 this->userSurname->TabIndex = 45;
-				 this->userSurname->Text = L"Пупкин";
-				 // 
-				 // userFirstName
-				 // 
-				 this->userFirstName->AutoSize = true;
-				 this->userFirstName->Location = System::Drawing::Point(20, 57);
-				 this->userFirstName->Name = L"userFirstName";
-				 this->userFirstName->Size = System::Drawing::Size(50, 13);
-				 this->userFirstName->TabIndex = 44;
-				 this->userFirstName->Text = L"Василий";
-				 // 
-				 // userLogin
-				 // 
-				 this->userLogin->AutoSize = true;
-				 this->userLogin->Location = System::Drawing::Point(189, 340);
-				 this->userLogin->Name = L"userLogin";
-				 this->userLogin->Size = System::Drawing::Size(69, 13);
-				 this->userLogin->TabIndex = 43;
-				 this->userLogin->Text = L"nagibator228";
-				 // 
-				 // label19
-				 // 
-				 this->label19->AutoSize = true;
-				 this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(204)));
-				 this->label19->Location = System::Drawing::Point(28, 199);
-				 this->label19->Name = L"label19";
-				 this->label19->Size = System::Drawing::Size(116, 13);
-				 this->label19->TabIndex = 42;
-				 this->label19->Text = L"Изменить пароль:";
-				 // 
-				 // userDrinksChangeField
-				 // 
-				 this->userDrinksChangeField->Location = System::Drawing::Point(521, 406);
-				 this->userDrinksChangeField->Margin = System::Windows::Forms::Padding(2);
-				 this->userDrinksChangeField->Multiline = true;
-				 this->userDrinksChangeField->Name = L"userDrinksChangeField";
-				 this->userDrinksChangeField->Size = System::Drawing::Size(180, 102);
-				 this->userDrinksChangeField->TabIndex = 38;
-				 // 
-				 // userHobbyChangeField
-				 // 
-				 this->userHobbyChangeField->Location = System::Drawing::Point(521, 224);
-				 this->userHobbyChangeField->Margin = System::Windows::Forms::Padding(2);
-				 this->userHobbyChangeField->Multiline = true;
-				 this->userHobbyChangeField->Name = L"userHobbyChangeField";
-				 this->userHobbyChangeField->Size = System::Drawing::Size(180, 101);
-				 this->userHobbyChangeField->TabIndex = 37;
-				 // 
-				 // userDescriptionChangeField
-				 // 
-				 this->userDescriptionChangeField->Location = System::Drawing::Point(521, 37);
-				 this->userDescriptionChangeField->Margin = System::Windows::Forms::Padding(2);
-				 this->userDescriptionChangeField->Multiline = true;
-				 this->userDescriptionChangeField->Name = L"userDescriptionChangeField";
-				 this->userDescriptionChangeField->Size = System::Drawing::Size(180, 102);
-				 this->userDescriptionChangeField->TabIndex = 36;
-				 // 
-				 // label18
-				 // 
-				 this->label18->AutoSize = true;
-				 this->label18->Location = System::Drawing::Point(518, 388);
-				 this->label18->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-				 this->label18->Name = L"label18";
-				 this->label18->Size = System::Drawing::Size(104, 13);
-				 this->label18->TabIndex = 35;
-				 this->label18->Text = L"Любимые напитки:";
-				 // 
-				 // label17
-				 // 
-				 this->label17->AutoSize = true;
-				 this->label17->Location = System::Drawing::Point(518, 208);
-				 this->label17->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-				 this->label17->Name = L"label17";
-				 this->label17->Size = System::Drawing::Size(125, 13);
-				 this->label17->TabIndex = 34;
-				 this->label17->Text = L"Интересы и увлечения:";
-				 // 
-				 // label16
-				 // 
-				 this->label16->AutoSize = true;
-				 this->label16->Location = System::Drawing::Point(518, 19);
-				 this->label16->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-				 this->label16->Name = L"label16";
-				 this->label16->Size = System::Drawing::Size(45, 13);
-				 this->label16->TabIndex = 33;
-				 this->label16->Text = L"О себе:";
-				 // 
-				 // userMail
-				 // 
-				 this->userMail->AutoSize = true;
-				 this->userMail->Location = System::Drawing::Point(30, 339);
-				 this->userMail->Name = L"userMail";
-				 this->userMail->Size = System::Drawing::Size(118, 13);
-				 this->userMail->TabIndex = 32;
-				 this->userMail->Text = L"exmple@sobutilnik.com";
-				 // 
-				 // label6
-				 // 
-				 this->label6->AutoSize = true;
-				 this->label6->Location = System::Drawing::Point(30, 359);
-				 this->label6->Name = L"label6";
-				 this->label6->Size = System::Drawing::Size(73, 13);
-				 this->label6->TabIndex = 31;
-				 this->label6->Text = L"Новая почта:";
-				 // 
-				 // label7
-				 // 
-				 this->label7->AutoSize = true;
-				 this->label7->Location = System::Drawing::Point(30, 326);
-				 this->label7->Name = L"label7";
-				 this->label7->Size = System::Drawing::Size(86, 13);
-				 this->label7->TabIndex = 30;
-				 this->label7->Text = L"Текущая почта:";
-				 // 
-				 // newEmail
-				 // 
-				 this->newEmail->Location = System::Drawing::Point(33, 375);
-				 this->newEmail->Name = L"newEmail";
-				 this->newEmail->Size = System::Drawing::Size(100, 20);
-				 this->newEmail->TabIndex = 28;
-				 // 
-				 // saveChanges
-				 // 
-				 this->saveChanges->Location = System::Drawing::Point(114, 503);
-				 this->saveChanges->Name = L"saveChanges";
-				 this->saveChanges->Size = System::Drawing::Size(135, 23);
-				 this->saveChanges->TabIndex = 27;
-				 this->saveChanges->Text = L"Сохранить изменения";
-				 this->saveChanges->UseVisualStyleBackColor = true;
-				 this->saveChanges->Click += gcnew System::EventHandler(this, &Map::saveChanges_Click);
-				 // 
-				 // label4
-				 // 
-				 this->label4->AutoSize = true;
-				 this->label4->Location = System::Drawing::Point(189, 223);
-				 this->label4->Name = L"label4";
-				 this->label4->Size = System::Drawing::Size(91, 13);
-				 this->label4->TabIndex = 26;
-				 this->label4->Text = L"Новая фамилия:";
-				 // 
-				 // label5
-				 // 
-				 this->label5->AutoSize = true;
-				 this->label5->Location = System::Drawing::Point(189, 262);
-				 this->label5->Name = L"label5";
-				 this->label5->Size = System::Drawing::Size(65, 13);
-				 this->label5->TabIndex = 25;
-				 this->label5->Text = L"Новое имя:";
-				 // 
-				 // newNameField
-				 // 
-				 this->newNameField->Location = System::Drawing::Point(192, 278);
-				 this->newNameField->Name = L"newNameField";
-				 this->newNameField->Size = System::Drawing::Size(100, 20);
-				 this->newNameField->TabIndex = 24;
-				 // 
-				 // newSurnameField
-				 // 
-				 this->newSurnameField->Location = System::Drawing::Point(192, 239);
-				 this->newSurnameField->Name = L"newSurnameField";
-				 this->newSurnameField->Size = System::Drawing::Size(100, 20);
-				 this->newSurnameField->TabIndex = 23;
-				 // 
-				 // GeoPosition
-				 // 
-				 this->GeoPosition->AutoSize = true;
-				 this->GeoPosition->Checked = true;
-				 this->GeoPosition->CheckState = System::Windows::Forms::CheckState::Checked;
-				 this->GeoPosition->Location = System::Drawing::Point(48, 428);
-				 this->GeoPosition->Name = L"GeoPosition";
-				 this->GeoPosition->Size = System::Drawing::Size(232, 17);
-				 this->GeoPosition->TabIndex = 21;
-				 this->GeoPosition->Text = L"Согласен на использования геолокации";
-				 this->GeoPosition->UseVisualStyleBackColor = true;
-				 // 
-				 // label3
-				 // 
-				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(28, 223);
-				 this->label3->Name = L"label3";
-				 this->label3->Size = System::Drawing::Size(94, 13);
-				 this->label3->TabIndex = 20;
-				 this->label3->Text = L"Текущий пароль:";
-				 // 
-				 // label2
-				 // 
-				 this->label2->AutoSize = true;
-				 this->label2->Location = System::Drawing::Point(28, 262);
-				 this->label2->Name = L"label2";
-				 this->label2->Size = System::Drawing::Size(83, 13);
-				 this->label2->TabIndex = 19;
-				 this->label2->Text = L"Новый пароль:";
-				 // 
-				 // newPasswordField
-				 // 
-				 this->newPasswordField->Location = System::Drawing::Point(31, 278);
-				 this->newPasswordField->Name = L"newPasswordField";
-				 this->newPasswordField->Size = System::Drawing::Size(100, 20);
-				 this->newPasswordField->TabIndex = 18;
-				 // 
-				 // currentPasswordField
-				 // 
-				 this->currentPasswordField->Location = System::Drawing::Point(31, 239);
-				 this->currentPasswordField->Name = L"currentPasswordField";
-				 this->currentPasswordField->Size = System::Drawing::Size(100, 20);
-				 this->currentPasswordField->TabIndex = 17;
-				 // 
-				 // ChangeProfileImage
-				 // 
-				 this->ChangeProfileImage->Location = System::Drawing::Point(152, 151);
-				 this->ChangeProfileImage->Name = L"ChangeProfileImage";
-				 this->ChangeProfileImage->Size = System::Drawing::Size(140, 23);
-				 this->ChangeProfileImage->TabIndex = 15;
-				 this->ChangeProfileImage->Text = L"Изменить";
-				 this->ChangeProfileImage->UseVisualStyleBackColor = true;
-				 this->ChangeProfileImage->Click += gcnew System::EventHandler(this, &Map::ChangeProfileImage_Click);
-				 // 
-				 // ProfileImage
-				 // 
-				 this->ProfileImage->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ProfileImage.Image")));
-				 this->ProfileImage->Location = System::Drawing::Point(152, 7);
-				 this->ProfileImage->Name = L"ProfileImage";
-				 this->ProfileImage->Size = System::Drawing::Size(140, 137);
-				 this->ProfileImage->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-				 this->ProfileImage->TabIndex = 14;
-				 this->ProfileImage->TabStop = false;
-				 // 
 				 // label25
 				 // 
 				 this->label25->AutoSize = true;
@@ -799,7 +473,7 @@ namespace Sobutilnik {
 				 this->label15->AutoSize = true;
 				 this->label15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(204)));
-				 this->label15->Location = System::Drawing::Point(155, 311);
+				 this->label15->Location = System::Drawing::Point(19, 371);
 				 this->label15->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->label15->Name = L"label15";
 				 this->label15->Size = System::Drawing::Size(298, 17);
@@ -809,7 +483,7 @@ namespace Sobutilnik {
 				 // usersAlcoholLabel
 				 // 
 				 this->usersAlcoholLabel->AutoSize = true;
-				 this->usersAlcoholLabel->Location = System::Drawing::Point(475, 259);
+				 this->usersAlcoholLabel->Location = System::Drawing::Point(397, 254);
 				 this->usersAlcoholLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->usersAlcoholLabel->Name = L"usersAlcoholLabel";
 				 this->usersAlcoholLabel->Size = System::Drawing::Size(109, 13);
@@ -819,7 +493,7 @@ namespace Sobutilnik {
 				 // Drinks
 				 // 
 				 this->Drinks->AutoSize = true;
-				 this->Drinks->Location = System::Drawing::Point(475, 234);
+				 this->Drinks->Location = System::Drawing::Point(397, 229);
 				 this->Drinks->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->Drinks->Name = L"Drinks";
 				 this->Drinks->Size = System::Drawing::Size(104, 13);
@@ -829,7 +503,7 @@ namespace Sobutilnik {
 				 // userHobbiesLabel
 				 // 
 				 this->userHobbiesLabel->AutoSize = true;
-				 this->userHobbiesLabel->Location = System::Drawing::Point(475, 146);
+				 this->userHobbiesLabel->Location = System::Drawing::Point(397, 141);
 				 this->userHobbiesLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->userHobbiesLabel->Name = L"userHobbiesLabel";
 				 this->userHobbiesLabel->Size = System::Drawing::Size(120, 13);
@@ -839,7 +513,7 @@ namespace Sobutilnik {
 				 // Hobbies
 				 // 
 				 this->Hobbies->AutoSize = true;
-				 this->Hobbies->Location = System::Drawing::Point(475, 123);
+				 this->Hobbies->Location = System::Drawing::Point(397, 118);
 				 this->Hobbies->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->Hobbies->Name = L"Hobbies";
 				 this->Hobbies->Size = System::Drawing::Size(125, 13);
@@ -849,7 +523,7 @@ namespace Sobutilnik {
 				 // userDescriptionLabel
 				 // 
 				 this->userDescriptionLabel->AutoSize = true;
-				 this->userDescriptionLabel->Location = System::Drawing::Point(475, 38);
+				 this->userDescriptionLabel->Location = System::Drawing::Point(397, 33);
 				 this->userDescriptionLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->userDescriptionLabel->Name = L"userDescriptionLabel";
 				 this->userDescriptionLabel->Size = System::Drawing::Size(118, 13);
@@ -859,7 +533,7 @@ namespace Sobutilnik {
 				 // aboutYourself
 				 // 
 				 this->aboutYourself->AutoSize = true;
-				 this->aboutYourself->Location = System::Drawing::Point(475, 17);
+				 this->aboutYourself->Location = System::Drawing::Point(397, 12);
 				 this->aboutYourself->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 				 this->aboutYourself->Name = L"aboutYourself";
 				 this->aboutYourself->Size = System::Drawing::Size(45, 13);
@@ -875,6 +549,355 @@ namespace Sobutilnik {
 				 this->RatingPersent->TabIndex = 11;
 				 this->RatingPersent->Text = L"60%";
 				 this->RatingPersent->TextAlign = System::Drawing::ContentAlignment::TopRight;
+				 // 
+				 // SettingsPanel
+				 // 
+				 this->SettingsPanel->Controls->Add(this->DeleteAcc);
+				 this->SettingsPanel->Controls->Add(this->ExitAccount);
+				 this->SettingsPanel->Controls->Add(this->newLogin);
+				 this->SettingsPanel->Controls->Add(this->label23);
+				 this->SettingsPanel->Controls->Add(this->label14);
+				 this->SettingsPanel->Controls->Add(this->label13);
+				 this->SettingsPanel->Controls->Add(this->label8);
+				 this->SettingsPanel->Controls->Add(this->UserBirth);
+				 this->SettingsPanel->Controls->Add(this->userSex);
+				 this->SettingsPanel->Controls->Add(this->userAgeStatic);
+				 this->SettingsPanel->Controls->Add(this->userSurname);
+				 this->SettingsPanel->Controls->Add(this->userFirstName);
+				 this->SettingsPanel->Controls->Add(this->userLogin);
+				 this->SettingsPanel->Controls->Add(this->label19);
+				 this->SettingsPanel->Controls->Add(this->userDrinksChangeField);
+				 this->SettingsPanel->Controls->Add(this->userHobbyChangeField);
+				 this->SettingsPanel->Controls->Add(this->userDescriptionChangeField);
+				 this->SettingsPanel->Controls->Add(this->label18);
+				 this->SettingsPanel->Controls->Add(this->label17);
+				 this->SettingsPanel->Controls->Add(this->label16);
+				 this->SettingsPanel->Controls->Add(this->userMail);
+				 this->SettingsPanel->Controls->Add(this->label6);
+				 this->SettingsPanel->Controls->Add(this->label7);
+				 this->SettingsPanel->Controls->Add(this->newEmail);
+				 this->SettingsPanel->Controls->Add(this->saveChanges);
+				 this->SettingsPanel->Controls->Add(this->label4);
+				 this->SettingsPanel->Controls->Add(this->label5);
+				 this->SettingsPanel->Controls->Add(this->newNameField);
+				 this->SettingsPanel->Controls->Add(this->newSurnameField);
+				 this->SettingsPanel->Controls->Add(this->GeoPosition);
+				 this->SettingsPanel->Controls->Add(this->label3);
+				 this->SettingsPanel->Controls->Add(this->label2);
+				 this->SettingsPanel->Controls->Add(this->newPasswordField);
+				 this->SettingsPanel->Controls->Add(this->currentPasswordField);
+				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
+				 this->SettingsPanel->Controls->Add(this->ProfileImage);
+				 this->SettingsPanel->Location = System::Drawing::Point(530, 26);
+				 this->SettingsPanel->Name = L"SettingsPanel";
+				 this->SettingsPanel->Size = System::Drawing::Size(854, 539);
+				 this->SettingsPanel->TabIndex = 12;
+				 this->SettingsPanel->Visible = false;
+				 // 
+				 // newLogin
+				 // 
+				 this->newLogin->Location = System::Drawing::Point(177, 376);
+				 this->newLogin->Name = L"newLogin";
+				 this->newLogin->Size = System::Drawing::Size(100, 20);
+				 this->newLogin->TabIndex = 53;
+				 // 
+				 // label23
+				 // 
+				 this->label23->AutoSize = true;
+				 this->label23->Location = System::Drawing::Point(174, 360);
+				 this->label23->Name = L"label23";
+				 this->label23->Size = System::Drawing::Size(76, 13);
+				 this->label23->TabIndex = 52;
+				 this->label23->Text = L"Новый логин:";
+				 // 
+				 // label14
+				 // 
+				 this->label14->AutoSize = true;
+				 this->label14->Location = System::Drawing::Point(13, 48);
+				 this->label14->Name = L"label14";
+				 this->label14->Size = System::Drawing::Size(59, 13);
+				 this->label14->TabIndex = 51;
+				 this->label14->Text = L"Фамилия:";
+				 // 
+				 // label13
+				 // 
+				 this->label13->AutoSize = true;
+				 this->label13->Location = System::Drawing::Point(13, 12);
+				 this->label13->Name = L"label13";
+				 this->label13->Size = System::Drawing::Size(32, 13);
+				 this->label13->TabIndex = 50;
+				 this->label13->Text = L"Имя:";
+				 // 
+				 // label8
+				 // 
+				 this->label8->AutoSize = true;
+				 this->label8->Location = System::Drawing::Point(174, 327);
+				 this->label8->Name = L"label8";
+				 this->label8->Size = System::Drawing::Size(87, 13);
+				 this->label8->TabIndex = 49;
+				 this->label8->Text = L"Текущий логин:";
+				 // 
+				 // UserBirth
+				 // 
+				 this->UserBirth->AutoSize = true;
+				 this->UserBirth->Location = System::Drawing::Point(13, 102);
+				 this->UserBirth->Name = L"UserBirth";
+				 this->UserBirth->Size = System::Drawing::Size(65, 13);
+				 this->UserBirth->TabIndex = 48;
+				 this->UserBirth->Text = L"02/03/2018";
+				 // 
+				 // userSex
+				 // 
+				 this->userSex->AutoSize = true;
+				 this->userSex->Location = System::Drawing::Point(13, 123);
+				 this->userSex->Name = L"userSex";
+				 this->userSex->Size = System::Drawing::Size(42, 13);
+				 this->userSex->TabIndex = 47;
+				 this->userSex->Text = L"Пол: М";
+				 // 
+				 // userAgeStatic
+				 // 
+				 this->userAgeStatic->AutoSize = true;
+				 this->userAgeStatic->Location = System::Drawing::Point(13, 83);
+				 this->userAgeStatic->Name = L"userAgeStatic";
+				 this->userAgeStatic->Size = System::Drawing::Size(89, 13);
+				 this->userAgeStatic->TabIndex = 46;
+				 this->userAgeStatic->Text = L"Дата рождения:\r\n";
+				 // 
+				 // userSurname
+				 // 
+				 this->userSurname->AutoSize = true;
+				 this->userSurname->Location = System::Drawing::Point(13, 61);
+				 this->userSurname->Name = L"userSurname";
+				 this->userSurname->Size = System::Drawing::Size(44, 13);
+				 this->userSurname->TabIndex = 45;
+				 this->userSurname->Text = L"Пупкин";
+				 // 
+				 // userFirstName
+				 // 
+				 this->userFirstName->AutoSize = true;
+				 this->userFirstName->Location = System::Drawing::Point(13, 25);
+				 this->userFirstName->Name = L"userFirstName";
+				 this->userFirstName->Size = System::Drawing::Size(50, 13);
+				 this->userFirstName->TabIndex = 44;
+				 this->userFirstName->Text = L"Василий";
+				 // 
+				 // userLogin
+				 // 
+				 this->userLogin->AutoSize = true;
+				 this->userLogin->Location = System::Drawing::Point(174, 341);
+				 this->userLogin->Name = L"userLogin";
+				 this->userLogin->Size = System::Drawing::Size(69, 13);
+				 this->userLogin->TabIndex = 43;
+				 this->userLogin->Text = L"nagibator228";
+				 // 
+				 // label19
+				 // 
+				 this->label19->AutoSize = true;
+				 this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(204)));
+				 this->label19->Location = System::Drawing::Point(13, 200);
+				 this->label19->Name = L"label19";
+				 this->label19->Size = System::Drawing::Size(176, 13);
+				 this->label19->TabIndex = 42;
+				 this->label19->Text = L"Изменить данные аккаунта:";
+				 // 
+				 // userDrinksChangeField
+				 // 
+				 this->userDrinksChangeField->Location = System::Drawing::Point(336, 303);
+				 this->userDrinksChangeField->Margin = System::Windows::Forms::Padding(2);
+				 this->userDrinksChangeField->Multiline = true;
+				 this->userDrinksChangeField->Name = L"userDrinksChangeField";
+				 this->userDrinksChangeField->Size = System::Drawing::Size(180, 102);
+				 this->userDrinksChangeField->TabIndex = 38;
+				 // 
+				 // userHobbyChangeField
+				 // 
+				 this->userHobbyChangeField->Location = System::Drawing::Point(336, 170);
+				 this->userHobbyChangeField->Margin = System::Windows::Forms::Padding(2);
+				 this->userHobbyChangeField->Multiline = true;
+				 this->userHobbyChangeField->Name = L"userHobbyChangeField";
+				 this->userHobbyChangeField->Size = System::Drawing::Size(180, 101);
+				 this->userHobbyChangeField->TabIndex = 37;
+				 // 
+				 // userDescriptionChangeField
+				 // 
+				 this->userDescriptionChangeField->Location = System::Drawing::Point(336, 33);
+				 this->userDescriptionChangeField->Margin = System::Windows::Forms::Padding(2);
+				 this->userDescriptionChangeField->Multiline = true;
+				 this->userDescriptionChangeField->Name = L"userDescriptionChangeField";
+				 this->userDescriptionChangeField->Size = System::Drawing::Size(180, 102);
+				 this->userDescriptionChangeField->TabIndex = 36;
+				 // 
+				 // label18
+				 // 
+				 this->label18->AutoSize = true;
+				 this->label18->Location = System::Drawing::Point(333, 285);
+				 this->label18->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+				 this->label18->Name = L"label18";
+				 this->label18->Size = System::Drawing::Size(104, 13);
+				 this->label18->TabIndex = 35;
+				 this->label18->Text = L"Любимые напитки:";
+				 // 
+				 // label17
+				 // 
+				 this->label17->AutoSize = true;
+				 this->label17->Location = System::Drawing::Point(333, 154);
+				 this->label17->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+				 this->label17->Name = L"label17";
+				 this->label17->Size = System::Drawing::Size(125, 13);
+				 this->label17->TabIndex = 34;
+				 this->label17->Text = L"Интересы и увлечения:";
+				 // 
+				 // label16
+				 // 
+				 this->label16->AutoSize = true;
+				 this->label16->Location = System::Drawing::Point(333, 15);
+				 this->label16->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+				 this->label16->Name = L"label16";
+				 this->label16->Size = System::Drawing::Size(45, 13);
+				 this->label16->TabIndex = 33;
+				 this->label16->Text = L"О себе:";
+				 // 
+				 // userMail
+				 // 
+				 this->userMail->AutoSize = true;
+				 this->userMail->Location = System::Drawing::Point(15, 340);
+				 this->userMail->Name = L"userMail";
+				 this->userMail->Size = System::Drawing::Size(118, 13);
+				 this->userMail->TabIndex = 32;
+				 this->userMail->Text = L"exmple@sobutilnik.com";
+				 // 
+				 // label6
+				 // 
+				 this->label6->AutoSize = true;
+				 this->label6->Location = System::Drawing::Point(15, 360);
+				 this->label6->Name = L"label6";
+				 this->label6->Size = System::Drawing::Size(73, 13);
+				 this->label6->TabIndex = 31;
+				 this->label6->Text = L"Новая почта:";
+				 // 
+				 // label7
+				 // 
+				 this->label7->AutoSize = true;
+				 this->label7->Location = System::Drawing::Point(15, 327);
+				 this->label7->Name = L"label7";
+				 this->label7->Size = System::Drawing::Size(86, 13);
+				 this->label7->TabIndex = 30;
+				 this->label7->Text = L"Текущая почта:";
+				 // 
+				 // newEmail
+				 // 
+				 this->newEmail->Location = System::Drawing::Point(18, 376);
+				 this->newEmail->Name = L"newEmail";
+				 this->newEmail->Size = System::Drawing::Size(100, 20);
+				 this->newEmail->TabIndex = 28;
+				 // 
+				 // saveChanges
+				 // 
+				 this->saveChanges->Location = System::Drawing::Point(381, 413);
+				 this->saveChanges->Name = L"saveChanges";
+				 this->saveChanges->Size = System::Drawing::Size(135, 23);
+				 this->saveChanges->TabIndex = 27;
+				 this->saveChanges->Text = L"Сохранить изменения";
+				 this->saveChanges->UseVisualStyleBackColor = true;
+				 this->saveChanges->Click += gcnew System::EventHandler(this, &Map::saveChanges_Click);
+				 // 
+				 // label4
+				 // 
+				 this->label4->AutoSize = true;
+				 this->label4->Location = System::Drawing::Point(174, 224);
+				 this->label4->Name = L"label4";
+				 this->label4->Size = System::Drawing::Size(91, 13);
+				 this->label4->TabIndex = 26;
+				 this->label4->Text = L"Новая фамилия:";
+				 // 
+				 // label5
+				 // 
+				 this->label5->AutoSize = true;
+				 this->label5->Location = System::Drawing::Point(174, 263);
+				 this->label5->Name = L"label5";
+				 this->label5->Size = System::Drawing::Size(65, 13);
+				 this->label5->TabIndex = 25;
+				 this->label5->Text = L"Новое имя:";
+				 // 
+				 // newNameField
+				 // 
+				 this->newNameField->Location = System::Drawing::Point(177, 279);
+				 this->newNameField->Name = L"newNameField";
+				 this->newNameField->Size = System::Drawing::Size(100, 20);
+				 this->newNameField->TabIndex = 24;
+				 // 
+				 // newSurnameField
+				 // 
+				 this->newSurnameField->Location = System::Drawing::Point(177, 240);
+				 this->newSurnameField->Name = L"newSurnameField";
+				 this->newSurnameField->Size = System::Drawing::Size(100, 20);
+				 this->newSurnameField->TabIndex = 23;
+				 // 
+				 // GeoPosition
+				 // 
+				 this->GeoPosition->AutoSize = true;
+				 this->GeoPosition->Checked = true;
+				 this->GeoPosition->CheckState = System::Windows::Forms::CheckState::Checked;
+				 this->GeoPosition->Location = System::Drawing::Point(16, 141);
+				 this->GeoPosition->Name = L"GeoPosition";
+				 this->GeoPosition->Size = System::Drawing::Size(107, 43);
+				 this->GeoPosition->TabIndex = 21;
+				 this->GeoPosition->Text = L"Согласен на\r\nиспользование \r\nгеолокации";
+				 this->GeoPosition->UseVisualStyleBackColor = true;
+				 // 
+				 // label3
+				 // 
+				 this->label3->AutoSize = true;
+				 this->label3->Location = System::Drawing::Point(13, 224);
+				 this->label3->Name = L"label3";
+				 this->label3->Size = System::Drawing::Size(94, 13);
+				 this->label3->TabIndex = 20;
+				 this->label3->Text = L"Текущий пароль:";
+				 // 
+				 // label2
+				 // 
+				 this->label2->AutoSize = true;
+				 this->label2->Location = System::Drawing::Point(13, 263);
+				 this->label2->Name = L"label2";
+				 this->label2->Size = System::Drawing::Size(83, 13);
+				 this->label2->TabIndex = 19;
+				 this->label2->Text = L"Новый пароль:";
+				 // 
+				 // newPasswordField
+				 // 
+				 this->newPasswordField->Location = System::Drawing::Point(16, 279);
+				 this->newPasswordField->Name = L"newPasswordField";
+				 this->newPasswordField->Size = System::Drawing::Size(100, 20);
+				 this->newPasswordField->TabIndex = 18;
+				 // 
+				 // currentPasswordField
+				 // 
+				 this->currentPasswordField->Location = System::Drawing::Point(16, 240);
+				 this->currentPasswordField->Name = L"currentPasswordField";
+				 this->currentPasswordField->Size = System::Drawing::Size(100, 20);
+				 this->currentPasswordField->TabIndex = 17;
+				 // 
+				 // ChangeProfileImage
+				 // 
+				 this->ChangeProfileImage->Location = System::Drawing::Point(137, 152);
+				 this->ChangeProfileImage->Name = L"ChangeProfileImage";
+				 this->ChangeProfileImage->Size = System::Drawing::Size(140, 23);
+				 this->ChangeProfileImage->TabIndex = 15;
+				 this->ChangeProfileImage->Text = L"Изменить";
+				 this->ChangeProfileImage->UseVisualStyleBackColor = true;
+				 this->ChangeProfileImage->Click += gcnew System::EventHandler(this, &Map::ChangeProfileImage_Click);
+				 // 
+				 // ProfileImage
+				 // 
+				 this->ProfileImage->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ProfileImage.Image")));
+				 this->ProfileImage->Location = System::Drawing::Point(137, 8);
+				 this->ProfileImage->Name = L"ProfileImage";
+				 this->ProfileImage->Size = System::Drawing::Size(140, 137);
+				 this->ProfileImage->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->ProfileImage->TabIndex = 14;
+				 this->ProfileImage->TabStop = false;
 				 // 
 				 // Settings
 				 // 
@@ -954,36 +977,41 @@ namespace Sobutilnik {
 				 // 
 				 this->openFileDialog1->FileName = L"openFileDialog1";
 				 // 
-				 // label23
+				 // ExitAccount
 				 // 
-				 this->label23->AutoSize = true;
-				 this->label23->Location = System::Drawing::Point(189, 359);
-				 this->label23->Name = L"label23";
-				 this->label23->Size = System::Drawing::Size(76, 13);
-				 this->label23->TabIndex = 52;
-				 this->label23->Text = L"Новый логин:";
+				 this->ExitAccount->Location = System::Drawing::Point(18, 413);
+				 this->ExitAccount->Name = L"ExitAccount";
+				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
+				 this->ExitAccount->TabIndex = 14;
+				 this->ExitAccount->Text = L"Выйти";
+				 this->ExitAccount->UseVisualStyleBackColor = true;
 				 // 
-				 // newLogin
+				 // DeleteAcc
 				 // 
-				 this->newLogin->Location = System::Drawing::Point(192, 375);
-				 this->newLogin->Name = L"newLogin";
-				 this->newLogin->Size = System::Drawing::Size(100, 20);
-				 this->newLogin->TabIndex = 53;
+				 this->DeleteAcc->Location = System::Drawing::Point(202, 413);
+				 this->DeleteAcc->Name = L"DeleteAcc";
+				 this->DeleteAcc->Size = System::Drawing::Size(75, 23);
+				 this->DeleteAcc->TabIndex = 54;
+				 this->DeleteAcc->Text = L"Удалить";
+				 this->DeleteAcc->UseVisualStyleBackColor = true;
+				 this->DeleteAcc->Click += gcnew System::EventHandler(this, &Map::DeleteAcc_Click);
 				 // 
 				 // Map
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				 this->ClientSize = System::Drawing::Size(1022, 547);
+				 this->ClientSize = System::Drawing::Size(1434, 836);
 				 this->Controls->Add(this->profilePanel);
 				 this->Controls->Add(this->Buttons);
 				 this->Controls->Add(this->HistoryPanel);
 				 this->Controls->Add(this->FriendsPanel);
 				 this->Controls->Add(this->MessagesPanel);
+				 this->Controls->Add(this->SettingsPanel);
 				 this->Name = L"Map";
-				 this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+				 this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 				 this->Text = L"Map";
 				 this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &Map::Map_FormClosed);
+				 this->Load += gcnew System::EventHandler(this, &Map::Map_Load);
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->EndInit();
 				 this->FriendsPanel->ResumeLayout(false);
 				 this->FriendsPanel->PerformLayout();
@@ -1024,5 +1052,10 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
+	profilePanel->Location = System::Drawing::Point(215, 15);
+	Map::Size = System::Drawing::Size(800, 530);
+}
+private: System::Void DeleteAcc_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

@@ -45,13 +45,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Button^  Entry;
 	private: System::Windows::Forms::PictureBox^  PassOnOff;
-
-
 	private: System::Windows::Forms::TextBox^  LoginField;
 	private: System::Windows::Forms::TextBox^  PassField;
-
-
-
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
