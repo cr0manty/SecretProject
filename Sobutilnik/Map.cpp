@@ -48,8 +48,13 @@ void Sobutilnik::Map::checkSearch()
 	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 
-	while (reader->Read())
-		resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
+	int itemCounter = 0;
+	while (reader->Read()) {
+		String^ foundUser = reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString();
+		searchResult->insert(std::pair<int, int>(itemCounter++, int::Parse(reader->GetValue(0)->ToString())));
+		resultListBox->Items->Add(foundUser);
+	}
+
 
 	mainPage->dbConnection->Close();
 }
@@ -272,4 +277,15 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 		exitAcc();
 	}
 	else return;
+}
+
+System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
+{
+	std::map<int, int>::iterator iter = searchResult->find(int::Parse(resultListBox->SelectedItem->ToString()));
+
+	Form^ userProfile = gcnew Form();
+	userProfile->Size = System::Drawing::Size(600,400);
+	userProfile->Location = Point(30,20);
+	userProfile->Visible = true;
+
 }
