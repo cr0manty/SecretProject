@@ -1,5 +1,4 @@
 #include "RegistrationForm.h"
-#include "ErrorMessages.h"
 
 void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char * _error, System::Object ^ _obj)
 {

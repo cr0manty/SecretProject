@@ -141,6 +141,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnoutherAccount.cpp" />
     <ClCompile Include="FirstPage.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -148,6 +149,9 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnoutherAccount.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ErrorMessages.h" />
     <ClInclude Include="FirstPage.h">
       <FileType>CppForm</FileType>
@@ -163,6 +167,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AnoutherAccount.resx">
+      <DependentUpon>AnoutherAccount.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FirstPage.resx">
       <DependentUpon>FirstPage.h</DependentUpon>
     </EmbeddedResource>

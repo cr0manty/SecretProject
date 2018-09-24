@@ -281,6 +281,7 @@ namespace Sobutilnik {
 			// 
 			// button2
 			// 
+			this->button2->Enabled = false;
 			this->button2->Location = System::Drawing::Point(178, 218);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);

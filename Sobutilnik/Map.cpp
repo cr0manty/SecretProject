@@ -1,6 +1,6 @@
 #include "Map.h"
-#include "ErrorMessages.h"
 #include <vector>
+#include "AnoutherAccount.h"
 
 void Sobutilnik::Map::initLabels()
 {
@@ -31,9 +31,11 @@ void Sobutilnik::Map::initLabels()
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
+	Rating->Value = reader->GetInt32(13);
 	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
 
 	mainPage->dbConnection->Close();
+	resultListBox->Items->Add("Введите логин чтоб начать поиск");
 }
 
 void Sobutilnik::Map::checkSearch()
@@ -43,31 +45,22 @@ void Sobutilnik::Map::checkSearch()
 
 	resultListBox->Items->Clear();
 	mainPage->dbConnection->Open();
-<<<<<<< HEAD
-	String ^select = "SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
-
-	int itemCounter = 0;
-	while (reader->Read()) {
-		int currentUsersId = Convert::ToInt16(reader->GetValue(0)->ToString());
-		searchResult->insert(std::pair<int,int>(itemCounter++, 2));
-		resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
-	}
-
-=======
 	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
 	reader = command->ExecuteReader();
+	resultListBox->Items->Clear();
+	int itemCounter = 0;
 	if (reader->HasRows) {
-		while (reader->Read())
-			resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
->>>>>>> bf0cd9815c8bfd3eb76ad684f64b60523b817333
-
+		while (reader->Read()) {
+			int currentUsersId = reader->GetInt32(0);
+			if (currentUsersId != userId) {
+				searchResult->insert(std::pair<int, int>(itemCounter++, currentUsersId));
+				resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
+			}
+		}
 		mainPage->dbConnection->Close();
-		return;
+		if(!resultListBox->Items->Count)
+			resultListBox->Items->Add("Поиск не дал результатов:(");
 	}
-	mainPage->dbConnection->Close();
-	throw std::logic_error(Errors::AccountNotFound);
 }
 
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
@@ -293,21 +286,11 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
+	if (searchResult->size()) {
+		std::map<int, int>::iterator iter = searchResult->find(resultListBox->SelectedIndex);
+		int id = int::Parse(iter->second.ToString());
 
-	std::map<int, int>::iterator iter = searchResult->find(resultListBox->SelectedIndex);
-	int id = int::Parse(iter->second.ToString());
-
-	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where w_id like '%" + id + "'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
-	reader->Read();
-
-	Form^ userProfile = gcnew Form();
-	userProfile->Size = System::Drawing::Size(600,400);
-	userProfile->Location = Point(30,20);
-	userProfile->Visible = true;
-	userProfile->Text = reader->GetValue(1)->ToString()+" "+reader->GetValue(2)->ToString();
-
-	mainPage->dbConnection->Close();
+		AnoutherAccount ^userProfile = gcnew AnoutherAccount(this, id, mainPage->dbConnection);
+		userProfile->ShowDialog();
+	}
 }
