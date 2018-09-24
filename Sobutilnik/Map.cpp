@@ -45,10 +45,13 @@ void Sobutilnik::Map::checkSearch()
 	mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
 	reader = command->ExecuteReader();
-	if (reader->HasRows)
+	if (reader->HasRows) {
 		while (reader->Read())
 			resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
 
+		mainPage->dbConnection->Close();
+		return;
+	}
 	mainPage->dbConnection->Close();
 	throw std::logic_error(Errors::AccountNotFound);
 }
