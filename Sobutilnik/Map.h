@@ -1062,7 +1062,6 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
-	FirstPage::Close();
 	profilePanel->Location = System::Drawing::Point(215, 15);
 	Map::Size = System::Drawing::Size(800, 530);
 }
