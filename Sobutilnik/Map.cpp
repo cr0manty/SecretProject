@@ -50,9 +50,9 @@ void Sobutilnik::Map::checkSearch()
 
 	int itemCounter = 0;
 	while (reader->Read()) {
-		String^ foundUser = reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString();
-		searchResult->insert(std::pair<int, int>(itemCounter++, int::Parse(reader->GetValue(0)->ToString())));
-		resultListBox->Items->Add(foundUser);
+		int currentUsersId = Convert::ToInt16(reader->GetValue(0)->ToString());
+		searchResult->insert(std::pair<int,int>(itemCounter++, 2));
+		resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
 	}
 
 
@@ -281,11 +281,21 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
-	std::map<int, int>::iterator iter = searchResult->find(int::Parse(resultListBox->SelectedItem->ToString()));
+
+	std::map<int, int>::iterator iter = searchResult->find(resultListBox->SelectedIndex);
+	int id = int::Parse(iter->second.ToString());
+
+	mainPage->dbConnection->Open();
+	String ^select = "SELECT * from MyDatabase where w_id like '%" + id + "'";
+	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbDataReader ^reader = command->ExecuteReader();
+	reader->Read();
 
 	Form^ userProfile = gcnew Form();
 	userProfile->Size = System::Drawing::Size(600,400);
 	userProfile->Location = Point(30,20);
 	userProfile->Visible = true;
+	userProfile->Text = reader->GetValue(1)->ToString()+" "+reader->GetValue(2)->ToString();
 
+	mainPage->dbConnection->Close();
 }

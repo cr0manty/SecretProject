@@ -3,6 +3,7 @@
 #include<map>
 #include "FirstPage.h"
 #include <msclr/marshal.h>
+#include <msclr\auto_gcroot.h>
 
 namespace Sobutilnik {
 
@@ -40,6 +41,8 @@ namespace Sobutilnik {
 		{
 			if (components)
 			{
+				delete searchResult;
+
 				delete components;
 			}
 			delete mainPage;
@@ -54,7 +57,7 @@ namespace Sobutilnik {
 		String^ profileImage;
 		void checkSearch();
 		int userId;
-		std::map<int,int> *searchResult;
+		std::map<int,int> *searchResult = new std::map<int, int>;
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
 	private: System::Windows::Forms::Label^  userSex;
@@ -140,6 +143,7 @@ namespace Sobutilnik {
 #pragma region Windows Form Designer generated code
 			 void InitializeComponent(void)
 			 {
+
 				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Map::typeid));
 				 this->PictureProfile = (gcnew System::Windows::Forms::PictureBox());
 				 this->Drunk = (gcnew System::Windows::Forms::Button());
