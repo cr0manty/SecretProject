@@ -553,7 +553,6 @@ namespace Sobutilnik {
 				 // SettingsPanel
 				 // 
 				 this->SettingsPanel->Controls->Add(this->DeleteAcc);
-				 this->SettingsPanel->Controls->Add(this->ExitAccount);
 				 this->SettingsPanel->Controls->Add(this->newLogin);
 				 this->SettingsPanel->Controls->Add(this->label23);
 				 this->SettingsPanel->Controls->Add(this->label14);
@@ -588,7 +587,7 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Controls->Add(this->currentPasswordField);
 				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
 				 this->SettingsPanel->Controls->Add(this->ProfileImage);
-				 this->SettingsPanel->Location = System::Drawing::Point(530, 26);
+				 this->SettingsPanel->Location = System::Drawing::Point(530, 6);
 				 this->SettingsPanel->Name = L"SettingsPanel";
 				 this->SettingsPanel->Size = System::Drawing::Size(854, 539);
 				 this->SettingsPanel->TabIndex = 12;
@@ -596,7 +595,7 @@ namespace Sobutilnik {
 				 // 
 				 // DeleteAcc
 				 // 
-				 this->DeleteAcc->Location = System::Drawing::Point(202, 413);
+				 this->DeleteAcc->Location = System::Drawing::Point(16, 413);
 				 this->DeleteAcc->Name = L"DeleteAcc";
 				 this->DeleteAcc->Size = System::Drawing::Size(75, 23);
 				 this->DeleteAcc->TabIndex = 54;
@@ -606,7 +605,7 @@ namespace Sobutilnik {
 				 // 
 				 // ExitAccount
 				 // 
-				 this->ExitAccount->Location = System::Drawing::Point(18, 413);
+				 this->ExitAccount->Location = System::Drawing::Point(37, 413);
 				 this->ExitAccount->Name = L"ExitAccount";
 				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
 				 this->ExitAccount->TabIndex = 14;
@@ -962,6 +961,7 @@ namespace Sobutilnik {
 				 // Buttons
 				 // 
 				 this->Buttons->Controls->Add(this->mapButton);
+				 this->Buttons->Controls->Add(this->ExitAccount);
 				 this->Buttons->Controls->Add(this->profileButton);
 				 this->Buttons->Controls->Add(this->Friends);
 				 this->Buttons->Controls->Add(this->Messages);
