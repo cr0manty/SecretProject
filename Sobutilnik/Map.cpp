@@ -4,9 +4,9 @@
 
 void Sobutilnik::Map::initLabels()
 {
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	String ^select = "SELECT * from MyDatabase where w_id like '%" + userId + "'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbCommand ^command = gcnew OleDbCommand(select, dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 	reader->Read();
 	String^ sex = nullptr;
@@ -34,7 +34,7 @@ void Sobutilnik::Map::initLabels()
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
 	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
 
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 void Sobutilnik::Map::checkSearch()
@@ -43,30 +43,30 @@ void Sobutilnik::Map::checkSearch()
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
 	resultListBox->Items->Clear();
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	String ^select = "SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbCommand ^command = gcnew OleDbCommand(select, dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 
 	while (reader->Read())
 		resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
 
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
 {
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	String ^select = "SELECT * from MyDatabase where " + _type + " like '%" + _obj+ "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
+	OleDbCommand ^command = gcnew OleDbCommand(select, dbConnection);
 	OleDbDataReader ^reader = command->ExecuteReader();
 	reader->Read();
 
 	if (reader->HasRows) {
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		throw std::logic_error(_error);
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 
 }
 
@@ -230,15 +230,15 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		OleDbCommand ^command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
 		command->CommandText = CmdRule;
-		command->Connection = mainPage->dbConnection;
+		command->Connection = dbConnection;
 
 		for (int i = 0; i < pathFieldForChanges.size(); i++)
 			command->Parameters->AddWithValue(marshal_as<String^>(pathFieldForChanges[i]), marshal_as<String^>(Changes[i]));
 
 		command->Parameters->AddWithValue("@u_id", userId);
-		mainPage->dbConnection->Open();
+		dbConnection->Open();
 		command->ExecuteNonQuery();
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 
 		MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
 		initLabels();
@@ -252,14 +252,14 @@ System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::E
 	if (MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc), "Удаление аккаунта", MessageBoxButtons::YesNo,
 		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
 
-		mainPage->dbConnection->Open();
+		dbConnection->Open();
 		OleDbCommand ^command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
 		command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
-		command->Connection = mainPage->dbConnection;
+		command->Connection = dbConnection;
 		command->Parameters->AddWithValue("@u_id", userId);
 		command->ExecuteReader();
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		exitAcc();
 	}
 	else return;

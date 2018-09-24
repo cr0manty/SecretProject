@@ -30,6 +30,13 @@ namespace Sobutilnik {
 			profileImage = nullptr;
 			initLabels();
 		}
+		Map(int _id) : userId(_id)
+		{
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
+			InitializeComponent();
+			profileImage = nullptr;
+			initLabels();
+		}
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -54,6 +61,7 @@ namespace Sobutilnik {
 		int userId;
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
+	public: OleDb::OleDbConnection ^dbConnection;
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  label14;
@@ -1031,7 +1039,7 @@ namespace Sobutilnik {
 			 }
 #pragma endregion
 	private: System::Void Map_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
-		mainPage->Close();
+	//	mainPage->Close();
 	}
 	private: System::Void Settings_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void Messages_Click(System::Object^  sender, System::EventArgs^  e);
@@ -1054,6 +1062,7 @@ private: System::Void searchButton_Click(System::Object^  sender, System::EventA
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
+	FirstPage::Close();
 	profilePanel->Location = System::Drawing::Point(215, 15);
 	Map::Size = System::Drawing::Size(800, 530);
 }
