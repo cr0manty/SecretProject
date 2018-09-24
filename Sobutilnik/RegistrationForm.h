@@ -32,6 +32,8 @@ namespace Sobutilnik {
 		}
 	private:
 		FirstPage ^mainPage;
+		OleDbCommand ^command;
+		OleDbDataReader ^reader;
 		void fieldCheck();
 		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;
@@ -375,7 +377,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	mainPage->Visible = true;
 	this->Close();
 	mainPage->dbConnection->Open();
-	OleDbCommand ^command = gcnew OleDbCommand();
+	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
 	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
 		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
@@ -397,14 +399,12 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	mainPage->dbConnection->Close();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	String ^imageProfile;
 	openFileDialog1->InitialDirectory = "c:\\";
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
-		imageProfile = openFileDialog1->FileName;
-		SetProfilePicture->Load(imageProfile);
-		SetProfilePicture->Load(imageProfile);
+		SetProfilePicture->Load(openFileDialog1->FileName);
+		SetProfilePicture->Load(openFileDialog1->FileName);
 		//Внесение в бд картинки
 	}
 }

@@ -5,9 +5,8 @@
 void Sobutilnik::Map::initLabels()
 {
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where w_id like '%" + userId + "'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like '%" + userId + "'", mainPage->dbConnection);
+	reader = command->ExecuteReader();
 	reader->Read();
 	String^ sex = nullptr;
 	if (reader->GetValue(6)->ToString() == "M")
@@ -44,9 +43,8 @@ void Sobutilnik::Map::checkSearch()
 
 	resultListBox->Items->Clear();
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
+	reader = command->ExecuteReader();
 	if (reader->HasRows)
 		while (reader->Read())
 			resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString() + "\n");
@@ -58,9 +56,8 @@ void Sobutilnik::Map::checkSearch()
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
 {
 	mainPage->dbConnection->Open();
-	String ^select = "SELECT * from MyDatabase where " + _type + " like '%" + _obj+ "%'";
-	OleDbCommand ^command = gcnew OleDbCommand(select, mainPage->dbConnection);
-	OleDbDataReader ^reader = command->ExecuteReader();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", mainPage->dbConnection);
+	reader = command->ExecuteReader();
 	reader->Read();
 
 	if (reader->HasRows) {
@@ -156,7 +153,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 	std::vector<const char*> Changes;
 	std::vector<const char*> pathFieldForChanges;
 	String^ CmdRule = "UPDATE MyDatabase SET ";
-	marshal_context^ marshal = gcnew marshal_context();
+	marshal = gcnew marshal_context();
 
 	if (userDescriptionChangeField->Text->Length) {
 		fieldForChanges.push_back("w_userDescription = @u_userDescription");
@@ -228,7 +225,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		}
 		CmdRule += " WHERE w_id = @u_id";
 
-		OleDbCommand ^command = gcnew OleDbCommand();
+		command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
 		command->CommandText = CmdRule;
 		command->Connection = mainPage->dbConnection;
@@ -254,7 +251,7 @@ System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::E
 		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
 
 		mainPage->dbConnection->Open();
-		OleDbCommand ^command = gcnew OleDbCommand();
+		command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
 		command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
 		command->Connection = mainPage->dbConnection;

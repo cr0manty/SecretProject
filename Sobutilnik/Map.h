@@ -48,6 +48,9 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  ExitAccount;
 	private:
 		FirstPage ^mainPage;
+		OleDbCommand ^command;
+		OleDbDataReader ^reader;
+		marshal_context^ marshal;
 		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
@@ -173,7 +176,6 @@ namespace Sobutilnik {
 				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
 				 this->DeleteAcc = (gcnew System::Windows::Forms::Button());
-				 this->ExitAccount = (gcnew System::Windows::Forms::Button());
 				 this->newLogin = (gcnew System::Windows::Forms::TextBox());
 				 this->label23 = (gcnew System::Windows::Forms::Label());
 				 this->label14 = (gcnew System::Windows::Forms::Label());
@@ -208,6 +210,7 @@ namespace Sobutilnik {
 				 this->currentPasswordField = (gcnew System::Windows::Forms::TextBox());
 				 this->ChangeProfileImage = (gcnew System::Windows::Forms::Button());
 				 this->ProfileImage = (gcnew System::Windows::Forms::PictureBox());
+				 this->ExitAccount = (gcnew System::Windows::Forms::Button());
 				 this->Settings = (gcnew System::Windows::Forms::Button());
 				 this->Friends = (gcnew System::Windows::Forms::Button());
 				 this->History = (gcnew System::Windows::Forms::Button());
@@ -604,16 +607,6 @@ namespace Sobutilnik {
 				 this->DeleteAcc->UseVisualStyleBackColor = true;
 				 this->DeleteAcc->Click += gcnew System::EventHandler(this, &Map::DeleteAcc_Click);
 				 // 
-				 // ExitAccount
-				 // 
-				 this->ExitAccount->Location = System::Drawing::Point(37, 413);
-				 this->ExitAccount->Name = L"ExitAccount";
-				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
-				 this->ExitAccount->TabIndex = 14;
-				 this->ExitAccount->Text = L"Выйти";
-				 this->ExitAccount->UseVisualStyleBackColor = true;
-				 this->ExitAccount->Click += gcnew System::EventHandler(this, &Map::ExitAccount_Click);
-				 // 
 				 // newLogin
 				 // 
 				 this->newLogin->Location = System::Drawing::Point(177, 376);
@@ -918,6 +911,16 @@ namespace Sobutilnik {
 				 this->ProfileImage->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 				 this->ProfileImage->TabIndex = 14;
 				 this->ProfileImage->TabStop = false;
+				 // 
+				 // ExitAccount
+				 // 
+				 this->ExitAccount->Location = System::Drawing::Point(11, 439);
+				 this->ExitAccount->Name = L"ExitAccount";
+				 this->ExitAccount->Size = System::Drawing::Size(75, 23);
+				 this->ExitAccount->TabIndex = 14;
+				 this->ExitAccount->Text = L"Выйти";
+				 this->ExitAccount->UseVisualStyleBackColor = true;
+				 this->ExitAccount->Click += gcnew System::EventHandler(this, &Map::ExitAccount_Click);
 				 // 
 				 // Settings
 				 // 
