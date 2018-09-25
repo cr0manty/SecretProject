@@ -99,14 +99,14 @@ namespace Sobutilnik {
 			// 
 			this->nameTextBox->Location = System::Drawing::Point(41, 59);
 			this->nameTextBox->Name = L"nameTextBox";
-			this->nameTextBox->Size = System::Drawing::Size(129, 20);
+			this->nameTextBox->Size = System::Drawing::Size(129, 22);
 			this->nameTextBox->TabIndex = 0;
 			// 
 			// surnameTextBox
 			// 
 			this->surnameTextBox->Location = System::Drawing::Point(41, 98);
 			this->surnameTextBox->Name = L"surnameTextBox";
-			this->surnameTextBox->Size = System::Drawing::Size(129, 20);
+			this->surnameTextBox->Size = System::Drawing::Size(129, 22);
 			this->surnameTextBox->TabIndex = 1;
 			// 
 			// label1
@@ -114,7 +114,7 @@ namespace Sobutilnik {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(38, 43);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(75, 13);
+			this->label1->Size = System::Drawing::Size(96, 17);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Введите имя:";
 			// 
@@ -123,7 +123,7 @@ namespace Sobutilnik {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(38, 82);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(100, 13);
+			this->label2->Size = System::Drawing::Size(129, 17);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Введите фамилию";
 			// 
@@ -131,7 +131,7 @@ namespace Sobutilnik {
 			// 
 			this->emailTextBox->Location = System::Drawing::Point(41, 137);
 			this->emailTextBox->Name = L"emailTextBox";
-			this->emailTextBox->Size = System::Drawing::Size(129, 20);
+			this->emailTextBox->Size = System::Drawing::Size(129, 22);
 			this->emailTextBox->TabIndex = 2;
 			// 
 			// label3
@@ -139,7 +139,7 @@ namespace Sobutilnik {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(38, 121);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(35, 13);
+			this->label3->Size = System::Drawing::Size(45, 17);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"eMail:";
 			// 
@@ -147,14 +147,14 @@ namespace Sobutilnik {
 			// 
 			this->passwordTextBox->Location = System::Drawing::Point(41, 215);
 			this->passwordTextBox->Name = L"passwordTextBox";
-			this->passwordTextBox->Size = System::Drawing::Size(129, 20);
+			this->passwordTextBox->Size = System::Drawing::Size(129, 22);
 			this->passwordTextBox->TabIndex = 4;
 			// 
 			// passwordCheckTextBox
 			// 
 			this->passwordCheckTextBox->Location = System::Drawing::Point(41, 254);
 			this->passwordCheckTextBox->Name = L"passwordCheckTextBox";
-			this->passwordCheckTextBox->Size = System::Drawing::Size(129, 20);
+			this->passwordCheckTextBox->Size = System::Drawing::Size(129, 22);
 			this->passwordCheckTextBox->TabIndex = 5;
 			// 
 			// label4
@@ -162,7 +162,7 @@ namespace Sobutilnik {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(38, 199);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(111, 13);
+			this->label4->Size = System::Drawing::Size(144, 17);
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Придумайте пароль:";
 			// 
@@ -171,7 +171,7 @@ namespace Sobutilnik {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(38, 238);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(103, 13);
+			this->label5->Size = System::Drawing::Size(134, 17);
 			this->label5->TabIndex = 10;
 			this->label5->Text = L"Повторите пароль:";
 			// 
@@ -179,7 +179,7 @@ namespace Sobutilnik {
 			// 
 			this->loginTextBox->Location = System::Drawing::Point(41, 176);
 			this->loginTextBox->Name = L"loginTextBox";
-			this->loginTextBox->Size = System::Drawing::Size(129, 20);
+			this->loginTextBox->Size = System::Drawing::Size(129, 22);
 			this->loginTextBox->TabIndex = 3;
 			// 
 			// label6
@@ -187,7 +187,7 @@ namespace Sobutilnik {
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(38, 160);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(104, 13);
+			this->label6->Size = System::Drawing::Size(134, 17);
 			this->label6->TabIndex = 12;
 			this->label6->Text = L"Придумайте логин:";
 			// 
@@ -196,7 +196,7 @@ namespace Sobutilnik {
 			this->SexMale->AutoSize = true;
 			this->SexMale->Location = System::Drawing::Point(110, 295);
 			this->SexMale->Name = L"SexMale";
-			this->SexMale->Size = System::Drawing::Size(34, 17);
+			this->SexMale->Size = System::Drawing::Size(40, 21);
 			this->SexMale->TabIndex = 7;
 			this->SexMale->TabStop = true;
 			this->SexMale->Text = L"М";
@@ -207,7 +207,7 @@ namespace Sobutilnik {
 			this->SexFem->AutoSize = true;
 			this->SexFem->Location = System::Drawing::Point(46, 295);
 			this->SexFem->Name = L"SexFem";
-			this->SexFem->Size = System::Drawing::Size(36, 17);
+			this->SexFem->Size = System::Drawing::Size(42, 21);
 			this->SexFem->TabIndex = 6;
 			this->SexFem->TabStop = true;
 			this->SexFem->Text = L"Ж";
@@ -235,7 +235,7 @@ namespace Sobutilnik {
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(43, 280);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(30, 13);
+			this->label7->Size = System::Drawing::Size(38, 17);
 			this->label7->TabIndex = 17;
 			this->label7->Text = L"Пол:";
 			// 
@@ -244,7 +244,7 @@ namespace Sobutilnik {
 			this->label8->AutoSize = true;
 			this->label8->Location = System::Drawing::Point(212, 43);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(89, 13);
+			this->label8->Size = System::Drawing::Size(115, 17);
 			this->label8->TabIndex = 18;
 			this->label8->Text = L"Дата рождения:";
 			// 
@@ -265,7 +265,7 @@ namespace Sobutilnik {
 			this->label9->AutoSize = true;
 			this->label9->Location = System::Drawing::Point(141, 34);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(145, 13);
+			this->label9->Size = System::Drawing::Size(190, 17);
 			this->label9->TabIndex = 3;
 			this->label9->Text = L"Установите фото профиля:";
 			// 
@@ -311,7 +311,7 @@ namespace Sobutilnik {
 			this->locationCheckBox->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->locationCheckBox->Location = System::Drawing::Point(215, 233);
 			this->locationCheckBox->Name = L"locationCheckBox";
-			this->locationCheckBox->Size = System::Drawing::Size(188, 17);
+			this->locationCheckBox->Size = System::Drawing::Size(235, 21);
 			this->locationCheckBox->TabIndex = 20;
 			this->locationCheckBox->Text = L"Использовать мою геолокацию";
 			this->locationCheckBox->UseVisualStyleBackColor = true;
@@ -320,8 +320,8 @@ namespace Sobutilnik {
 			// 
 			this->AutoScrollMargin = System::Drawing::Size(100, 100);
 			this->ClientSize = System::Drawing::Size(466, 400);
-			this->Controls->Add(this->locationCheckBox);
 			this->Controls->Add(this->ProfilePicture);
+			this->Controls->Add(this->locationCheckBox);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->button1);
