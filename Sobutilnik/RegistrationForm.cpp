@@ -14,9 +14,10 @@ void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char *
 	mainPage->dbConnection->Close();
 }
 
+
 void Sobutilnik::RegistrationForm::fieldCheck()
 {
-	String ^buffer;
+	/*String ^buffer;
 	///empty check
 	if (!nameTextBox->Text->Length || !surnameTextBox->Text->Length || !passwordTextBox->Text->Length ||
 		!passwordCheckTextBox->Text->Length || !SexFem->Checked && !SexMale->Checked)
@@ -46,6 +47,6 @@ void Sobutilnik::RegistrationForm::fieldCheck()
 	///email
 	if (emailTextBox->Text->Length < 5)
 		throw std::logic_error(Errors::LoginToSmall);
-	uniqUser("w_email", Errors::EmailNotUniq, emailTextBox->Text);
+	uniqUser("w_email", Errors::EmailNotUniq, emailTextBox->Text);*/
 }
 

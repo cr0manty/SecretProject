@@ -409,13 +409,13 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	
-	openFileDialog1->InitialDirectory = "c:\\";
+	/*openFileDialog1->InitialDirectory = "c:\\";
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
 		SetProfilePicture->Load(openFileDialog1->FileName);
 		SetProfilePicture->Load(openFileDialog1->FileName);
-		
+		SetProfilePicture->Image = gcnew Bitmap(openFileDialog1->FileName);
 		mainPage->dbConnection->Open();
 		command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
@@ -438,10 +438,44 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		MemoryStream^ ms = gcnew MemoryStream();
 		SetProfilePicture->Image->Save(ms,SetProfilePicture->Image->RawFormat);
 		command->Parameters->AddWithValue("@u_picture",ms->GetBuffer());
+		command->ExecuteNonQuery();
+		mainPage->dbConnection->Close();
+	}*/
+	openFileDialog1->InitialDirectory = "c:\\";
+	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+	openFileDialog1->RestoreDirectory = true;
+	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
+		//SetProfilePicture->Load(openFileDialog1->FileName);
+		SetProfilePicture->Load(openFileDialog1->FileName);
+		SetProfilePicture->Image = gcnew Bitmap(openFileDialog1->FileName);
+		mainPage->dbConnection->Open();
+		command = gcnew OleDbCommand();
+		command->CommandType = CommandType::Text;
+		command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation,w_picture,w_pictureSize) \
+		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation,@u_picture,@u_pictureSize)";
+		command->Connection = mainPage->dbConnection;
+		command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
+		command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
+		command->Parameters->AddWithValue("@u_password", passwordTextBox->Text);
+		command->Parameters->AddWithValue("@u_login", loginTextBox->Text);
+		command->Parameters->AddWithValue("@u_email", emailTextBox->Text);
 
+		if (SexFem->Checked)
+			command->Parameters->AddWithValue("@u_sex", "F");
+		else
+			command->Parameters->AddWithValue("@u_sex", "M");
+
+		command->Parameters->AddWithValue("@u_birthday", monthCalendar1->SelectionRange->Start.ToShortDateString());
+		command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
+		MemoryStream^ ms = gcnew MemoryStream();
+		SetProfilePicture->Image->Save(ms, SetProfilePicture->Image->RawFormat);
+		command->Parameters->AddWithValue("@u_picture", ms->GetBuffer());
+		command->Parameters->AddWithValue("@u_pictureSize", ms->GetBuffer()->Length);
+		//SetProfilePicture->Image = loadPhoto(ms->GetBuffer());
 		command->ExecuteNonQuery();
 		mainPage->dbConnection->Close();
 	}
+	
 }
 };
 }

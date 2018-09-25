@@ -62,6 +62,12 @@ namespace Sobutilnik {
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
 		void deleteForm();
+		void loadPhoto(array<unsigned char> ^_byte)
+		{
+			MemoryStream ^ms = gcnew MemoryStream(_byte);
+			ProfileImage->Image = Image::FromStream(ms);
+			PictureProfile->Image = Image::FromStream(ms);
+		}
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  label14;

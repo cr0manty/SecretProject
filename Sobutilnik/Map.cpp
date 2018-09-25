@@ -31,10 +31,13 @@ void Sobutilnik::Map::initLabels()
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
 	Rating->Value = reader->GetInt32(13);
-	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
+	array<byte> ^type = gcnew array<byte>(reader->GetByte(14));
+	//reader->GetBytes(14, userId, type, 0, reader->GetInt32(15));//marshal_as<array<unsigned char>>(reader->GetValue(14)->ToString());
+	//loadPhoto(type);
 
 	mainPage->dbConnection->Close();
 	resultListBox->Items->Add("¬ведите логин чтоб начать поиск");
+	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
 }
 
 void Sobutilnik::Map::checkSearch()
