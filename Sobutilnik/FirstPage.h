@@ -12,6 +12,7 @@ namespace Sobutilnik {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace OleDb;
+	using namespace System::Device::Location;
 
 	/// <summary>
 	/// Сводка для FirstPage

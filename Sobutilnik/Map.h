@@ -12,6 +12,7 @@ namespace Sobutilnik {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::IO;
 	using namespace System::Drawing;
 	using namespace msclr::interop;
 	using namespace OleDb;

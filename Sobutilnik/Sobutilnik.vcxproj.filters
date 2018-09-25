@@ -67,6 +67,9 @@
     <EmbeddedResource Include="LoginForm.resx">
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="AnoutherAccount.resx">
+      <Filter>Файлы ресурсов</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="MyDatabase.mdb">

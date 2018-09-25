@@ -10,6 +10,7 @@ namespace Sobutilnik {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::IO;
 	using namespace System::Drawing;
 	using namespace msclr::interop;
 	
@@ -34,6 +35,7 @@ namespace Sobutilnik {
 		FirstPage ^mainPage;
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
+		int usersId;
 		void fieldCheck();
 		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;
@@ -288,6 +290,7 @@ namespace Sobutilnik {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Обзор...";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Enabled = true;
 			this->button2->Click += gcnew System::EventHandler(this, &RegistrationForm::button2_Click);
 			// 
 			// SetProfilePicture
@@ -378,7 +381,8 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
 	mainPage->Visible = true;
 	this->Close();
-	mainPage->dbConnection->Open();
+
+	/*mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
 	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
@@ -397,17 +401,46 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 
 	command->Parameters->AddWithValue("@u_birthday",monthCalendar1->SelectionRange->Start.ToShortDateString());
 	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
+	reader = command->ExecuteReader();
+	reader->Read();
+	usersId =int::Parse(reader->GetValue(0)->ToString());
 	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
+	mainPage->dbConnection->Close();*/
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	
 	openFileDialog1->InitialDirectory = "c:\\";
-	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
 		SetProfilePicture->Load(openFileDialog1->FileName);
 		SetProfilePicture->Load(openFileDialog1->FileName);
-		//Внесение в бд картинки
+		
+		mainPage->dbConnection->Open();
+		command = gcnew OleDbCommand();
+		command->CommandType = CommandType::Text;
+		command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation,w_picture) \
+		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation,@u_picture)";
+		command->Connection = mainPage->dbConnection;
+		command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
+		command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
+		command->Parameters->AddWithValue("@u_password", passwordTextBox->Text);
+		command->Parameters->AddWithValue("@u_login", loginTextBox->Text);
+		command->Parameters->AddWithValue("@u_email", emailTextBox->Text);
+
+		if (SexFem->Checked)
+			command->Parameters->AddWithValue("@u_sex", "F");
+		else
+			command->Parameters->AddWithValue("@u_sex", "M");
+
+		command->Parameters->AddWithValue("@u_birthday", monthCalendar1->SelectionRange->Start.ToShortDateString());
+		command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
+		MemoryStream^ ms = gcnew MemoryStream();
+		SetProfilePicture->Image->Save(ms,SetProfilePicture->Image->RawFormat);
+		command->Parameters->AddWithValue("@u_picture",ms->GetBuffer());
+
+		command->ExecuteNonQuery();
+		mainPage->dbConnection->Close();
 	}
 }
 };

@@ -147,7 +147,7 @@ System::Void Sobutilnik::Map::Search_Click(System::Object ^ sender, System::Even
 System::Void Sobutilnik::Map::ChangeProfileImage_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	openFileDialog1->InitialDirectory = "c:\\";
-	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
 		profileImage = openFileDialog1->FileName;
@@ -155,6 +155,7 @@ System::Void Sobutilnik::Map::ChangeProfileImage_Click(System::Object ^ sender, 
 		PictureProfile->Load(profileImage);
 		//Внесение в бд картинки
 	}
+
 }
 
 System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, System::EventArgs ^ e)
