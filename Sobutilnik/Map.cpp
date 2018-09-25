@@ -43,6 +43,8 @@ void Sobutilnik::Map::checkSearch()
 	if (!searchField->Text->Length)
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
+	searchResult->clear();
+
 	resultListBox->Items->Clear();
 	mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
