@@ -1,5 +1,4 @@
 #include "Map.h"
-#include <vector>
 #include "AnoutherAccount.h"
 
 void Sobutilnik::Map::initLabels()
@@ -44,8 +43,6 @@ void Sobutilnik::Map::checkSearch()
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
 	searchResult->clear();
-
-	resultListBox->Items->Clear();
 	mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
 	reader = command->ExecuteReader();
@@ -55,7 +52,7 @@ void Sobutilnik::Map::checkSearch()
 		while (reader->Read()) {
 			int currentUsersId = reader->GetInt32(0);
 			if (currentUsersId != userId) {
-				searchResult->insert(std::pair<int, int>(itemCounter++, currentUsersId));
+				searchResult->push_back(currentUsersId);
 				resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
 			}
 		}
@@ -83,7 +80,18 @@ void Sobutilnik::Map::exitAcc()
 {
 	isExitButton = true;
 	mainPage->Visible = true;
+	this->deleteForm();
 	this->Close();
+}
+
+void Sobutilnik::Map::deleteForm()
+{
+	if (components)
+	{
+		delete components;
+	}
+	delete profileImage;
+	delete searchResult;
 }
 
 System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -91,6 +99,7 @@ System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::Ev
 	SettingsPanel->Visible = true;
 	SettingsPanel->Location = System::Drawing::Point(215, 15);
 	SettingsPanel->Size = System::Drawing::Size(854, 539);
+	Map::Size = System::Drawing::Size(800, 515);
 
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -122,11 +131,12 @@ System::Void Sobutilnik::Map::History_Click(System::Object ^ sender, System::Eve
 	MessagesPanel->Visible = false;
 }
 
-System::Void Sobutilnik::Map::Friends_Click(System::Object ^ sender, System::EventArgs ^ e)
+System::Void Sobutilnik::Map::Search_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	FriendsPanel->Visible = true;
 	FriendsPanel->Location = System::Drawing::Point(215, 15);
 	FriendsPanel->Size = System::Drawing::Size(854, 539);
+	Map::Size = System::Drawing::Size(750, 430);
 
 	profilePanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -152,6 +162,7 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 	profilePanel->Visible = true;
 	profilePanel->Location = System::Drawing::Point(215, 15);
 	FriendsPanel->Size = System::Drawing::Size(854, 539);
+	Map::Size = System::Drawing::Size(750, 430);
 
 	FriendsPanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -230,7 +241,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 	}
 
 	if (fieldForChanges.size()) {
-		for (int i = 0; i < fieldForChanges.size(); i++) {
+		for (size_t i = 0; i < fieldForChanges.size(); i++) {
 			CmdRule += marshal_as<String^>(fieldForChanges[i]);
 			if (i + 1 < fieldForChanges.size())
 				CmdRule += ", ";
@@ -242,7 +253,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		command->CommandText = CmdRule;
 		command->Connection = mainPage->dbConnection;
 
-		for (int i = 0; i < pathFieldForChanges.size(); i++)
+		for (size_t i = 0; i < pathFieldForChanges.size(); i++)
 			command->Parameters->AddWithValue(marshal_as<String^>(pathFieldForChanges[i]), marshal_as<String^>(Changes[i]));
 
 		command->Parameters->AddWithValue("@u_id", userId);
@@ -288,10 +299,7 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
 	if (searchResult->size()) {
-		std::map<int, int>::iterator iter = searchResult->find(resultListBox->SelectedIndex);
-		int id = int::Parse(iter->second.ToString());
-
-		AnoutherAccount^ userProfile = gcnew AnoutherAccount(this, id, mainPage->dbConnection);
+		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], mainPage->dbConnection);
 		userProfile->ShowDialog();
 	}
 }

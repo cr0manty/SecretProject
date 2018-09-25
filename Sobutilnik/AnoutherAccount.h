@@ -15,8 +15,8 @@ namespace Sobutilnik {
 	public ref class AnoutherAccount : public System::Windows::Forms::Form
 	{
 	public:
-		AnoutherAccount(Map ^map, int id, OleDbConnection^ db) :
-			mainPage(map), userID(id), dbConnection(db)
+		AnoutherAccount(int id, OleDbConnection^ db) :
+			userID(id), dbConnection(db)
 		{
 			InitializeComponent();
 		}
@@ -33,7 +33,6 @@ namespace Sobutilnik {
 		}
 
 	private:
-		Map^ mainPage;
 		int userID;
 		OleDbConnection^ dbConnection;
 		OleDbDataReader ^reader;
@@ -52,7 +51,8 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  userDescriptionLabel;
 	private: System::Windows::Forms::Label^  aboutYourself;
 	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  FriendOrNot;
+
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::ProgressBar^  Rating;
@@ -89,7 +89,7 @@ namespace Sobutilnik {
 			this->userDescriptionLabel = (gcnew System::Windows::Forms::Label());
 			this->aboutYourself = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->FriendOrNot = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->Rating = (gcnew System::Windows::Forms::ProgressBar());
@@ -229,14 +229,14 @@ namespace Sobutilnik {
 			this->button1->Text = L"Добавить в друзья";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
-			// label1
+			// FriendOrNot
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(9, 311);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(191, 13);
-			this->label1->TabIndex = 67;
-			this->label1->Text = L"Василий не является вашим другом";
+			this->FriendOrNot->AutoSize = true;
+			this->FriendOrNot->Location = System::Drawing::Point(9, 311);
+			this->FriendOrNot->Name = L"FriendOrNot";
+			this->FriendOrNot->Size = System::Drawing::Size(191, 13);
+			this->FriendOrNot->TabIndex = 67;
+			this->FriendOrNot->Text = L"Василий не является вашим другом";
 			// 
 			// button2
 			// 
@@ -306,6 +306,7 @@ namespace Sobutilnik {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(584, 333);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->userLogin);
@@ -314,7 +315,7 @@ namespace Sobutilnik {
 			this->Controls->Add(this->Rating);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->FriendOrNot);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->usersAlcoholLabel);
 			this->Controls->Add(this->Drinks);
