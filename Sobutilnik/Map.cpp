@@ -57,10 +57,10 @@ void Sobutilnik::Map::checkSearch()
 				resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
 			}
 		}
-		mainPage->dbConnection->Close();
 		if(!resultListBox->Items->Count)
 			resultListBox->Items->Add("Поиск не дал результатов:(");
 	}
+	mainPage->dbConnection->Close();
 }
 
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
@@ -258,7 +258,7 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	if (MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc), "Удаление аккаунта", MessageBoxButtons::YesNo,
-		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 
 		mainPage->dbConnection->Open();
 		command = gcnew OleDbCommand();
@@ -275,13 +275,12 @@ System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::E
 
 System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	if (MessageBox::Show(marshal_as<String^>(Errors::ExitFromAcc), "Выход из аккаунта", MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+		exitAcc();
+	}
+	else return;
 	
-	/*if (MessageBox::Show(marshal_as<String^>(Errors::ExitFromAcc), "Выход из аккаунта", MessageBoxButtons::YesNo,
-		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
-		
-	}*/
-	//else return;
-	exitAcc();
 }
 
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
@@ -290,7 +289,7 @@ System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object 
 		std::map<int, int>::iterator iter = searchResult->find(resultListBox->SelectedIndex);
 		int id = int::Parse(iter->second.ToString());
 
-		AnoutherAccount ^userProfile = gcnew AnoutherAccount(this, id, mainPage->dbConnection);
+		AnoutherAccount^ userProfile = gcnew AnoutherAccount(this, id, mainPage->dbConnection);
 		userProfile->ShowDialog();
 	}
 }

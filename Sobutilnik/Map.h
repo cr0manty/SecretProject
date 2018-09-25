@@ -6,8 +6,8 @@
 #include <msclr\auto_gcroot.h>
 #include "ErrorMessages.h"
 
-namespace Sobutilnik {
 
+namespace Sobutilnik {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
