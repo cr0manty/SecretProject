@@ -22,5 +22,9 @@ System::Void Sobutilnik::AnoutherAccount::AnoutherAccount_Load(System::Object ^ 
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
 	Rating->Value = reader->GetInt32(13);
 	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
+	FriendOrNot->Text = reader->GetValue(1)->ToString();
+	if(!true) //если друг, то не работает
+		FriendOrNot->Text += " не";
+	FriendOrNot->Text += " является вашим другом";
 	dbConnection->Close();
 }

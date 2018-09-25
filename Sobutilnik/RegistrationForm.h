@@ -254,7 +254,7 @@ namespace Sobutilnik {
 			this->ProfilePicture->Controls->Add(this->button3);
 			this->ProfilePicture->Controls->Add(this->button2);
 			this->ProfilePicture->Controls->Add(this->SetProfilePicture);
-			this->ProfilePicture->Location = System::Drawing::Point(66, 59);
+			this->ProfilePicture->Location = System::Drawing::Point(299, 344);
 			this->ProfilePicture->Name = L"ProfilePicture";
 			this->ProfilePicture->Size = System::Drawing::Size(417, 335);
 			this->ProfilePicture->TabIndex = 19;
@@ -319,6 +319,7 @@ namespace Sobutilnik {
 			// RegistrationForm
 			// 
 			this->AutoScrollMargin = System::Drawing::Size(100, 100);
+			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(466, 400);
 			this->Controls->Add(this->locationCheckBox);
 			this->Controls->Add(this->ProfilePicture);

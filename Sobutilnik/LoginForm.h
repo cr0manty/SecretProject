@@ -136,6 +136,7 @@ namespace Sobutilnik {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Controls->Add(this->PassField);
 			this->Controls->Add(this->LoginField);
