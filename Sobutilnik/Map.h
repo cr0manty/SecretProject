@@ -54,7 +54,13 @@ namespace Sobutilnik {
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
 		marshal_context^ marshal;
-		bool isExitButton;
+	private: System::Windows::Forms::Button^  addPersonalSiteButton;
+	private: System::Windows::Forms::Button^  addVKButton;
+	private: System::Windows::Forms::Button^  addTwitterButton;
+	private: System::Windows::Forms::Button^  addInstagramButton;
+	private: System::Windows::Forms::Button^  addFacebookButton;
+
+			 bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
@@ -231,6 +237,11 @@ namespace Sobutilnik {
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+				 this->addFacebookButton = (gcnew System::Windows::Forms::Button());
+				 this->addInstagramButton = (gcnew System::Windows::Forms::Button());
+				 this->addTwitterButton = (gcnew System::Windows::Forms::Button());
+				 this->addVKButton = (gcnew System::Windows::Forms::Button());
+				 this->addPersonalSiteButton = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -586,6 +597,11 @@ namespace Sobutilnik {
 				 // SettingsPanel
 				 // 
 				 this->SettingsPanel->BackColor = System::Drawing::Color::White;
+				 this->SettingsPanel->Controls->Add(this->addPersonalSiteButton);
+				 this->SettingsPanel->Controls->Add(this->addVKButton);
+				 this->SettingsPanel->Controls->Add(this->addTwitterButton);
+				 this->SettingsPanel->Controls->Add(this->addInstagramButton);
+				 this->SettingsPanel->Controls->Add(this->addFacebookButton);
 				 this->SettingsPanel->Controls->Add(this->DeleteAcc);
 				 this->SettingsPanel->Controls->Add(this->newLogin);
 				 this->SettingsPanel->Controls->Add(this->label23);
@@ -621,7 +637,7 @@ namespace Sobutilnik {
 				 this->SettingsPanel->Controls->Add(this->currentPasswordField);
 				 this->SettingsPanel->Controls->Add(this->ChangeProfileImage);
 				 this->SettingsPanel->Controls->Add(this->ProfileImage);
-				 this->SettingsPanel->Location = System::Drawing::Point(707, 7);
+				 this->SettingsPanel->Location = System::Drawing::Point(296, 13);
 				 this->SettingsPanel->Margin = System::Windows::Forms::Padding(4);
 				 this->SettingsPanel->Name = L"SettingsPanel";
 				 this->SettingsPanel->Size = System::Drawing::Size(1139, 663);
@@ -1077,18 +1093,63 @@ namespace Sobutilnik {
 				 // 
 				 this->openFileDialog1->FileName = L"openFileDialog1";
 				 // 
+				 // addFacebookButton
+				 // 
+				 this->addFacebookButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addFacebookButton.Image")));
+				 this->addFacebookButton->Location = System::Drawing::Point(759, 31);
+				 this->addFacebookButton->Name = L"addFacebookButton";
+				 this->addFacebookButton->Size = System::Drawing::Size(32, 32);
+				 this->addFacebookButton->TabIndex = 55;
+				 this->addFacebookButton->UseVisualStyleBackColor = true;
+				 // 
+				 // addInstagramButton
+				 // 
+				 this->addInstagramButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addInstagramButton.Image")));
+				 this->addInstagramButton->Location = System::Drawing::Point(757, 105);
+				 this->addInstagramButton->Name = L"addInstagramButton";
+				 this->addInstagramButton->Size = System::Drawing::Size(32, 32);
+				 this->addInstagramButton->TabIndex = 56;
+				 this->addInstagramButton->UseVisualStyleBackColor = true;
+				 // 
+				 // addTwitterButton
+				 // 
+				 this->addTwitterButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addTwitterButton.Image")));
+				 this->addTwitterButton->Location = System::Drawing::Point(757, 180);
+				 this->addTwitterButton->Name = L"addTwitterButton";
+				 this->addTwitterButton->Size = System::Drawing::Size(32, 32);
+				 this->addTwitterButton->TabIndex = 57;
+				 this->addTwitterButton->UseVisualStyleBackColor = true;
+				 // 
+				 // addVKButton
+				 // 
+				 this->addVKButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addVKButton.Image")));
+				 this->addVKButton->Location = System::Drawing::Point(757, 263);
+				 this->addVKButton->Name = L"addVKButton";
+				 this->addVKButton->Size = System::Drawing::Size(32, 32);
+				 this->addVKButton->TabIndex = 58;
+				 this->addVKButton->UseVisualStyleBackColor = true;
+				 // 
+				 // addPersonalSiteButton
+				 // 
+				 this->addPersonalSiteButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addPersonalSiteButton.Image")));
+				 this->addPersonalSiteButton->Location = System::Drawing::Point(757, 351);
+				 this->addPersonalSiteButton->Name = L"addPersonalSiteButton";
+				 this->addPersonalSiteButton->Size = System::Drawing::Size(32, 32);
+				 this->addPersonalSiteButton->TabIndex = 59;
+				 this->addPersonalSiteButton->UseVisualStyleBackColor = true;
+				 // 
 				 // Map
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackColor = System::Drawing::Color::White;
-				 this->ClientSize = System::Drawing::Size(1912, 1029);
+				 this->ClientSize = System::Drawing::Size(1912, 1050);
+				 this->Controls->Add(this->SettingsPanel);
 				 this->Controls->Add(this->profilePanel);
 				 this->Controls->Add(this->Buttons);
 				 this->Controls->Add(this->HistoryPanel);
 				 this->Controls->Add(this->FriendsPanel);
 				 this->Controls->Add(this->MessagesPanel);
-				 this->Controls->Add(this->SettingsPanel);
 				 this->Margin = System::Windows::Forms::Padding(4);
 				 this->Name = L"Map";
 				 this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
