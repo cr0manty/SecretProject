@@ -35,7 +35,7 @@ namespace Sobutilnik {
 		FirstPage ^mainPage;
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
-		int usersId;
+		MemoryStream^ ms;
 		void fieldCheck();
 		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;
@@ -101,14 +101,14 @@ namespace Sobutilnik {
 			// 
 			this->nameTextBox->Location = System::Drawing::Point(41, 59);
 			this->nameTextBox->Name = L"nameTextBox";
-			this->nameTextBox->Size = System::Drawing::Size(129, 22);
+			this->nameTextBox->Size = System::Drawing::Size(129, 20);
 			this->nameTextBox->TabIndex = 0;
 			// 
 			// surnameTextBox
 			// 
 			this->surnameTextBox->Location = System::Drawing::Point(41, 98);
 			this->surnameTextBox->Name = L"surnameTextBox";
-			this->surnameTextBox->Size = System::Drawing::Size(129, 22);
+			this->surnameTextBox->Size = System::Drawing::Size(129, 20);
 			this->surnameTextBox->TabIndex = 1;
 			// 
 			// label1
@@ -116,7 +116,7 @@ namespace Sobutilnik {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(38, 43);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(96, 17);
+			this->label1->Size = System::Drawing::Size(75, 13);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Введите имя:";
 			// 
@@ -125,7 +125,7 @@ namespace Sobutilnik {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(38, 82);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(129, 17);
+			this->label2->Size = System::Drawing::Size(100, 13);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Введите фамилию";
 			// 
@@ -133,7 +133,7 @@ namespace Sobutilnik {
 			// 
 			this->emailTextBox->Location = System::Drawing::Point(41, 137);
 			this->emailTextBox->Name = L"emailTextBox";
-			this->emailTextBox->Size = System::Drawing::Size(129, 22);
+			this->emailTextBox->Size = System::Drawing::Size(129, 20);
 			this->emailTextBox->TabIndex = 2;
 			// 
 			// label3
@@ -141,7 +141,7 @@ namespace Sobutilnik {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(38, 121);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(45, 17);
+			this->label3->Size = System::Drawing::Size(35, 13);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"eMail:";
 			// 
@@ -149,14 +149,14 @@ namespace Sobutilnik {
 			// 
 			this->passwordTextBox->Location = System::Drawing::Point(41, 215);
 			this->passwordTextBox->Name = L"passwordTextBox";
-			this->passwordTextBox->Size = System::Drawing::Size(129, 22);
+			this->passwordTextBox->Size = System::Drawing::Size(129, 20);
 			this->passwordTextBox->TabIndex = 4;
 			// 
 			// passwordCheckTextBox
 			// 
 			this->passwordCheckTextBox->Location = System::Drawing::Point(41, 254);
 			this->passwordCheckTextBox->Name = L"passwordCheckTextBox";
-			this->passwordCheckTextBox->Size = System::Drawing::Size(129, 22);
+			this->passwordCheckTextBox->Size = System::Drawing::Size(129, 20);
 			this->passwordCheckTextBox->TabIndex = 5;
 			// 
 			// label4
@@ -164,7 +164,7 @@ namespace Sobutilnik {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(38, 199);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(144, 17);
+			this->label4->Size = System::Drawing::Size(111, 13);
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Придумайте пароль:";
 			// 
@@ -173,7 +173,7 @@ namespace Sobutilnik {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(38, 238);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(134, 17);
+			this->label5->Size = System::Drawing::Size(103, 13);
 			this->label5->TabIndex = 10;
 			this->label5->Text = L"Повторите пароль:";
 			// 
@@ -181,7 +181,7 @@ namespace Sobutilnik {
 			// 
 			this->loginTextBox->Location = System::Drawing::Point(41, 176);
 			this->loginTextBox->Name = L"loginTextBox";
-			this->loginTextBox->Size = System::Drawing::Size(129, 22);
+			this->loginTextBox->Size = System::Drawing::Size(129, 20);
 			this->loginTextBox->TabIndex = 3;
 			// 
 			// label6
@@ -189,7 +189,7 @@ namespace Sobutilnik {
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(38, 160);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(134, 17);
+			this->label6->Size = System::Drawing::Size(104, 13);
 			this->label6->TabIndex = 12;
 			this->label6->Text = L"Придумайте логин:";
 			// 
@@ -198,7 +198,7 @@ namespace Sobutilnik {
 			this->SexMale->AutoSize = true;
 			this->SexMale->Location = System::Drawing::Point(110, 295);
 			this->SexMale->Name = L"SexMale";
-			this->SexMale->Size = System::Drawing::Size(40, 21);
+			this->SexMale->Size = System::Drawing::Size(34, 17);
 			this->SexMale->TabIndex = 7;
 			this->SexMale->TabStop = true;
 			this->SexMale->Text = L"М";
@@ -209,7 +209,7 @@ namespace Sobutilnik {
 			this->SexFem->AutoSize = true;
 			this->SexFem->Location = System::Drawing::Point(46, 295);
 			this->SexFem->Name = L"SexFem";
-			this->SexFem->Size = System::Drawing::Size(42, 21);
+			this->SexFem->Size = System::Drawing::Size(36, 17);
 			this->SexFem->TabIndex = 6;
 			this->SexFem->TabStop = true;
 			this->SexFem->Text = L"Ж";
@@ -237,7 +237,7 @@ namespace Sobutilnik {
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(43, 280);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(38, 17);
+			this->label7->Size = System::Drawing::Size(30, 13);
 			this->label7->TabIndex = 17;
 			this->label7->Text = L"Пол:";
 			// 
@@ -246,7 +246,7 @@ namespace Sobutilnik {
 			this->label8->AutoSize = true;
 			this->label8->Location = System::Drawing::Point(212, 43);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(115, 17);
+			this->label8->Size = System::Drawing::Size(89, 13);
 			this->label8->TabIndex = 18;
 			this->label8->Text = L"Дата рождения:";
 			// 
@@ -256,7 +256,7 @@ namespace Sobutilnik {
 			this->ProfilePicture->Controls->Add(this->button3);
 			this->ProfilePicture->Controls->Add(this->button2);
 			this->ProfilePicture->Controls->Add(this->SetProfilePicture);
-			this->ProfilePicture->Location = System::Drawing::Point(299, 344);
+			this->ProfilePicture->Location = System::Drawing::Point(301, 339);
 			this->ProfilePicture->Name = L"ProfilePicture";
 			this->ProfilePicture->Size = System::Drawing::Size(417, 335);
 			this->ProfilePicture->TabIndex = 19;
@@ -267,7 +267,7 @@ namespace Sobutilnik {
 			this->label9->AutoSize = true;
 			this->label9->Location = System::Drawing::Point(141, 34);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(190, 17);
+			this->label9->Size = System::Drawing::Size(145, 13);
 			this->label9->TabIndex = 3;
 			this->label9->Text = L"Установите фото профиля:";
 			// 
@@ -283,14 +283,12 @@ namespace Sobutilnik {
 			// 
 			// button2
 			// 
-			this->button2->Enabled = false;
 			this->button2->Location = System::Drawing::Point(178, 218);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Обзор...";
 			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Enabled = true;
 			this->button2->Click += gcnew System::EventHandler(this, &RegistrationForm::button2_Click);
 			// 
 			// SetProfilePicture
@@ -303,10 +301,6 @@ namespace Sobutilnik {
 			this->SetProfilePicture->TabIndex = 0;
 			this->SetProfilePicture->TabStop = false;
 			// 
-			// openFileDialog1
-			// 
-			this->openFileDialog1->FileName = L"openFileDialog1";
-			// 
 			// locationCheckBox
 			// 
 			this->locationCheckBox->AutoSize = true;
@@ -314,7 +308,7 @@ namespace Sobutilnik {
 			this->locationCheckBox->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->locationCheckBox->Location = System::Drawing::Point(215, 233);
 			this->locationCheckBox->Name = L"locationCheckBox";
-			this->locationCheckBox->Size = System::Drawing::Size(235, 21);
+			this->locationCheckBox->Size = System::Drawing::Size(188, 17);
 			this->locationCheckBox->TabIndex = 20;
 			this->locationCheckBox->Text = L"Использовать мою геолокацию";
 			this->locationCheckBox->UseVisualStyleBackColor = true;
@@ -378,15 +372,11 @@ private: System::Void RegistrationForm_Load(System::Object^  sender, System::Eve
 	this->ClientSize = System::Drawing::Size(414, 334);
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
-	mainPage->Visible = true;
-	this->Close();
-
-	/*mainPage->dbConnection->Open();
+	mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
-	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
-		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
+	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation,w_picture) \
+		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation,@u_picture)";
 	command->Connection = mainPage->dbConnection;
 	command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
 	command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
@@ -401,11 +391,16 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 
 	command->Parameters->AddWithValue("@u_birthday",monthCalendar1->SelectionRange->Start.ToShortDateString());
 	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
-	reader = command->ExecuteReader();
-	reader->Read();
-	usersId =int::Parse(reader->GetValue(0)->ToString());
+	if(ms !=nullptr)
+		command->Parameters->AddWithValue("@u_picture", ms->GetBuffer());
+	else command->Parameters->AddWithValue("@u_picture", "NULL");
+
 	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();*/
+	mainPage->dbConnection->Close();
+
+	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
+	mainPage->Visible = true;
+	this->Close();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	
@@ -445,37 +440,9 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
-		//SetProfilePicture->Load(openFileDialog1->FileName);
-		SetProfilePicture->Load(openFileDialog1->FileName);
-		SetProfilePicture->Image = gcnew Bitmap(openFileDialog1->FileName);
-		mainPage->dbConnection->Open();
-		command = gcnew OleDbCommand();
-		command->CommandType = CommandType::Text;
-		command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation,w_picture,w_pictureSize) \
-		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation,@u_picture,@u_pictureSize)";
-		command->Connection = mainPage->dbConnection;
-		command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
-		command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
-		command->Parameters->AddWithValue("@u_password", passwordTextBox->Text);
-		command->Parameters->AddWithValue("@u_login", loginTextBox->Text);
-		command->Parameters->AddWithValue("@u_email", emailTextBox->Text);
-
-		if (SexFem->Checked)
-			command->Parameters->AddWithValue("@u_sex", "F");
-		else
-			command->Parameters->AddWithValue("@u_sex", "M");
-
-		command->Parameters->AddWithValue("@u_birthday", monthCalendar1->SelectionRange->Start.ToShortDateString());
-		command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
-		MemoryStream^ ms = gcnew MemoryStream();
+		ms = gcnew MemoryStream();
 		SetProfilePicture->Image->Save(ms, SetProfilePicture->Image->RawFormat);
-		command->Parameters->AddWithValue("@u_picture", ms->GetBuffer());
-		command->Parameters->AddWithValue("@u_pictureSize", ms->GetBuffer()->Length);
-		//SetProfilePicture->Image = loadPhoto(ms->GetBuffer());
-		command->ExecuteNonQuery();
-		mainPage->dbConnection->Close();
 	}
-	
 }
 };
 }
