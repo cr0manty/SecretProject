@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="AnoutherAccount.cpp" />
     <ClCompile Include="FirstPage.cpp" />
+    <ClCompile Include="GeolocationForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="RegistrationForm.cpp" />
@@ -155,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="ErrorMessages.h" />
     <ClInclude Include="FirstPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="GeolocationForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -173,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FirstPage.resx">
       <DependentUpon>FirstPage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeolocationForm.resx">
+      <DependentUpon>GeolocationForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>

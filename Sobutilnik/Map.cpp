@@ -307,3 +307,9 @@ System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object 
 		userProfile->ShowDialog();
 	}
 }
+
+System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	geolocationForm = gcnew GeolocationForm();
+	geolocationForm->Visible = true;
+}

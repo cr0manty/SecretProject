@@ -1,10 +1,12 @@
 #pragma once
+#include"GeolocationForm.h"
 
 namespace Sobutilnik {
 	ref class FirstPage;
 	ref class Map;
 	ref class RegistrationForm;
 	ref class LoginForm;
+	ref class GeolocationForm;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;

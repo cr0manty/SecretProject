@@ -33,6 +33,9 @@
     <ClCompile Include="AnoutherAccount.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="GeolocationForm.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FirstPage.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="AnoutherAccount.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="GeolocationForm.h">
+      <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
