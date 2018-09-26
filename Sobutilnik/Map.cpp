@@ -313,8 +313,3 @@ System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::E
 	geolocationForm = gcnew GeolocationForm();
 	geolocationForm->Visible = true;
 }
-
-System::Void Sobutilnik::Map::addLinksButton_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	return System::Void();
-}

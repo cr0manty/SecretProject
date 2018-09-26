@@ -4,7 +4,6 @@
 #include <msclr/marshal.h>
 #include <msclr\auto_gcroot.h>
 #include "ErrorMessages.h"
-#include"GeolocationForm.h"
 
 namespace Sobutilnik {
 	using namespace System;

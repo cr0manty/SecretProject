@@ -178,9 +178,6 @@
     <EmbeddedResource Include="FirstPage.resx">
       <DependentUpon>FirstPage.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeolocationForm.resx">
-      <DependentUpon>GeolocationForm.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
