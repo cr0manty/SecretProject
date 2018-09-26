@@ -21,5 +21,26 @@ int Sobutilnik::LoginForm::findAccount()
 			throw std::logic_error(Errors::AccountNotFound);
 		return userId;
 	}
+	mainPage->dbConnection->Close();
 	throw std::logic_error(Errors::AccountNotFound);
+}
+
+System::Void Sobutilnik::LoginForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	int userId;
+	try
+	{
+		userId = findAccount();
+	}
+	catch (const std::exception & e)
+	{
+		MessageBox::Show(marshal_as<String^>(e.what()));
+		return;
+	}
+	mainPage->Visible = false;
+	NewForm = gcnew Map(mainPage, userId);
+
+	this->Visible = false;
+	NewForm->ShowDialog();
+	this->Close();
 }

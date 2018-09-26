@@ -163,24 +163,7 @@ private: System::Void pictureBox1_MouseEnter(System::Object^  sender, System::Ev
 private: System::Void pictureBox1_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
 	PassField->UseSystemPasswordChar = true;
 }
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	int userId;
-	try
-	{
-		userId = findAccount();
-	}
-	catch (const std::exception & e)
-	{
-		MessageBox::Show(marshal_as<String^>(e.what()));
-		return;
-	}
-	mainPage->Visible = false;
-	NewForm = gcnew Map(mainPage, userId);
-	
-	this->Visible = false;
-	NewForm->ShowDialog();
-	this->Close();
-}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void LoginForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	mainPage->Enabled = false;
 }

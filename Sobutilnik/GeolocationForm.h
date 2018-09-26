@@ -19,7 +19,6 @@ namespace Sobutilnik {
 		{
 			InitializeComponent();
 		}
-
 	protected:
 
 		~GeolocationForm()
@@ -32,10 +31,9 @@ namespace Sobutilnik {
 
 
 	private: System::Windows::Forms::WebBrowser^  webBrowser1;
-
-
 			 GeoCoordinateWatcher^ Watcher;
-
+			 GeoCoordinate^ coordinate;
+			 StringBuilder^ userPosition;
 			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code

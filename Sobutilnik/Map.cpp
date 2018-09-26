@@ -153,9 +153,21 @@ System::Void Sobutilnik::Map::ChangeProfileImage_Click(System::Object ^ sender, 
 		profileImage = openFileDialog1->FileName;
 		ProfileImage->Load(profileImage);
 		PictureProfile->Load(profileImage);
-		//Внесение в бд картинки
 	}
 
+}
+
+System::Void Sobutilnik::Map::searchButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	try
+	{
+		checkSearch();
+	}
+	catch (const std::exception & e)
+	{
+		MessageBox::Show(marshal_as<String^>(e.what()));
+		return;
+	}
 }
 
 System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -307,6 +319,6 @@ System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object 
 
 System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	geolocationForm = gcnew GeolocationForm();
+	GeolocationForm^ geolocationForm = gcnew GeolocationForm();
 	geolocationForm->Visible = true;
 }

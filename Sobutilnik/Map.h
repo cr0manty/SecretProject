@@ -49,7 +49,6 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  ExitAccount;
 	private:
 		FirstPage ^mainPage;
-		GeolocationForm^ geolocationForm;
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
 		marshal_context^ marshal;
@@ -58,10 +57,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  addTwitterButton;
 	private: System::Windows::Forms::Button^  addInstagramButton;
 	private: System::Windows::Forms::Button^  addFacebookButton;
-
-
-
-			 bool isExitButton;
+		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
@@ -1137,18 +1133,7 @@ namespace Sobutilnik {
 	private: System::Void Search_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void ChangeProfileImage_Click(System::Object^  sender, System::EventArgs^  e);
 
-private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	try
-	{
-		checkSearch();
-	}
-	catch (const std::exception & e)
-	{
-		MessageBox::Show(marshal_as<String^>(e.what()));
-		return;
-	}
-}
-
+private: System::Void searchButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void profileButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void saveChanges_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void Map_Load(System::Object^  sender, System::EventArgs^  e) {
