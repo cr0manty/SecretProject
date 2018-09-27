@@ -35,7 +35,6 @@ namespace Sobutilnik {
 		FirstPage ^mainPage;
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
-		MemoryStream^ ms;
 		void fieldCheck();
 		void uniqUser(System::Object ^, const char*, System::Object ^);
 	private: System::Windows::Forms::TextBox^  nameTextBox;

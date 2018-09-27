@@ -16,15 +16,15 @@ void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char *
 
 System::Void Sobutilnik::RegistrationForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	try
-	{
-		fieldCheck();
-	}
-	catch (const std::exception & e)
-	{
-		MessageBox::Show(marshal_as<String^>(e.what()));
-		return;
-	}
+	//try
+	//{
+	//	fieldCheck();
+	//}
+	//catch (const std::exception & e)
+	//{
+	//	MessageBox::Show(marshal_as<String^>(e.what()));
+	//	return;
+	//}
 	locationCheckBox->Visible = false;
 	this->ProfilePicture->Location = System::Drawing::Point(0, 0);
 	ProfilePicture->Visible = true;
@@ -35,8 +35,8 @@ System::Void Sobutilnik::RegistrationForm::button3_Click(System::Object ^ sender
 	mainPage->dbConnection->Open();
 	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
-	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation,w_picture) \
-		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation,@u_picture)";
+	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
+		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
 	command->Connection = mainPage->dbConnection;
 	command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
 	command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
@@ -51,9 +51,6 @@ System::Void Sobutilnik::RegistrationForm::button3_Click(System::Object ^ sender
 
 	command->Parameters->AddWithValue("@u_birthday", monthCalendar1->SelectionRange->Start.ToShortDateString());
 	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
-	if (ms != nullptr)
-		command->Parameters->AddWithValue("@u_picture", ms->GetBuffer());
-	else command->Parameters->AddWithValue("@u_picture", "NULL");
 
 	command->ExecuteNonQuery();
 	mainPage->dbConnection->Close();
@@ -69,8 +66,7 @@ System::Void Sobutilnik::RegistrationForm::button2_Click(System::Object ^ sender
 	openFileDialog1->Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 	openFileDialog1->RestoreDirectory = true;
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK && openFileDialog1->FileName != nullptr) {
-		ms = gcnew MemoryStream();
-		SetProfilePicture->Image->Save(ms, SetProfilePicture->Image->RawFormat);
+		SetProfilePicture->Load(openFileDialog1->FileName);
 	}
 }
 

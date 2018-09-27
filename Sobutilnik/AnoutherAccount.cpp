@@ -21,7 +21,7 @@ System::Void Sobutilnik::AnoutherAccount::AnoutherAccount_Load(System::Object ^ 
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
 	Rating->Value = reader->GetInt32(13);
-	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
+	RatingPersent->Text = Rating->Value.ToString() + "%";
 	FriendOrNot->Text = reader->GetValue(1)->ToString();
 	if(!true) //если друг, то не работает
 		FriendOrNot->Text += " не";
