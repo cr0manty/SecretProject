@@ -76,9 +76,6 @@
     <EmbeddedResource Include="AnoutherAccount.resx">
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeolocationForm.resx">
-      <Filter>Файлы ресурсов</Filter>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="MyDatabase.mdb">

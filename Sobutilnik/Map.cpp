@@ -31,6 +31,11 @@ void Sobutilnik::Map::initLabels()
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
 	Rating->Value = reader->GetInt32(13);
+	fbLink = reader->GetValue(15)->ToString();
+	instLink = reader->GetValue(16)->ToString();
+	vkLink = reader->GetValue(17)->ToString();
+	twitterLink = reader->GetValue(18)->ToString();
+	webPageLink = reader->GetValue(19)->ToString();
 
 	mainPage->dbConnection->Close();
 	resultListBox->Items->Add("¬ведите логин чтоб начать поиск");
@@ -98,8 +103,8 @@ System::Void Sobutilnik::Map::Settings_Click(System::Object ^ sender, System::Ev
 {
 	SettingsPanel->Visible = true;
 	SettingsPanel->Location = System::Drawing::Point(215, 15);
-	SettingsPanel->Size = System::Drawing::Size(854, 539);
-	Map::Size = System::Drawing::Size(800, 515);
+	//SettingsPanel->Size = System::Drawing::Size(854, 539);
+	//Map::Size = System::Drawing::Size(800, 515);
 
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -111,7 +116,7 @@ System::Void Sobutilnik::Map::Messages_Click(System::Object ^ sender, System::Ev
 {
 	MessagesPanel->Visible = true;
 	MessagesPanel->Location = System::Drawing::Point(215, 15);
-	MessagesPanel->Size = System::Drawing::Size(854, 539);
+	//MessagesPanel->Size = System::Drawing::Size(854, 539);
 	
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -123,7 +128,7 @@ System::Void Sobutilnik::Map::History_Click(System::Object ^ sender, System::Eve
 {
 	HistoryPanel->Visible = true;
 	HistoryPanel->Location = System::Drawing::Point(215, 15);
-	HistoryPanel->Size = System::Drawing::Size(854, 539);
+	//HistoryPanel->Size = System::Drawing::Size(854, 539);
 
 	FriendsPanel->Visible = false;
 	profilePanel->Visible = false;
@@ -135,8 +140,8 @@ System::Void Sobutilnik::Map::Search_Click(System::Object ^ sender, System::Even
 {
 	FriendsPanel->Visible = true;
 	FriendsPanel->Location = System::Drawing::Point(215, 15);
-	FriendsPanel->Size = System::Drawing::Size(854, 539);
-	Map::Size = System::Drawing::Size(750, 430);
+	//FriendsPanel->Size = System::Drawing::Size(854, 539);
+	//Map::Size = System::Drawing::Size(750, 430);
 
 	profilePanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -174,8 +179,8 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 {
 	profilePanel->Visible = true;
 	profilePanel->Location = System::Drawing::Point(215, 15);
-	FriendsPanel->Size = System::Drawing::Size(854, 539);
-	Map::Size = System::Drawing::Size(750, 430);
+	//FriendsPanel->Size = System::Drawing::Size(854, 539);
+	//Map::Size = System::Drawing::Size(750, 430);
 
 	FriendsPanel->Visible = false;
 	HistoryPanel->Visible = false;
@@ -253,6 +258,36 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		pathFieldForChanges.push_back("@u_userDrinks");
 	}
 
+	if (instagramkLinkField->Text->Length){
+		fieldForChanges.push_back("w_instagram = @u_instagram");
+		Changes.push_back(marshal->marshal_as<const char*>(instagramkLinkField->Text));
+		pathFieldForChanges.push_back("@u_instagram");
+	}
+
+	if (twitterLinkField->Text->Length){
+		fieldForChanges.push_back("w_twitter = @u_twitter");
+		Changes.push_back(marshal->marshal_as<const char*>(twitterLinkField->Text));
+		pathFieldForChanges.push_back("@u_twitter");
+	}
+
+	if (vkLinkField->Text->Length){
+		fieldForChanges.push_back("w_vk = @u_vk");
+		Changes.push_back(marshal->marshal_as<const char*>(vkLinkField->Text));
+		pathFieldForChanges.push_back("@u_vk");
+	}
+
+	if (webPageLinkField->Text->Length){
+		fieldForChanges.push_back("w_personalSite = @u_personalSite");
+		Changes.push_back(marshal->marshal_as<const char*>(webPageLinkField->Text));
+		pathFieldForChanges.push_back("@u_personalSite");
+	}
+
+	if (facebookLinkField->Text->Length){
+		fieldForChanges.push_back("w_facebook = @u_facebook");
+		Changes.push_back(marshal->marshal_as<const char*>(facebookLinkField->Text));
+		pathFieldForChanges.push_back("@u_facebook");
+	}
+
 	if (fieldForChanges.size()) {
 		for (size_t i = 0; i < fieldForChanges.size(); i++) {
 			CmdRule += marshal_as<String^>(fieldForChanges[i]);
@@ -321,4 +356,27 @@ System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::E
 {
 	GeolocationForm^ geolocationForm = gcnew GeolocationForm();
 	geolocationForm->Visible = true;
+}
+
+System::Void Sobutilnik::Map::facebookButton_Click(System::Object^  sender, System::EventArgs^  e){
+	
+	Process::Start("chrome.exe", fbLink);
+
+}
+
+System::Void Sobutilnik::Map::instagramButton_Click(System::Object^  sender, System::EventArgs^  e){
+
+	Process::Start("chrome.exe", instLink);
+}
+
+System::Void Sobutilnik::Map::twitterButton_Click(System::Object^  sender, System::EventArgs^  e){
+	Process::Start("chrome.exe", twitterLink);
+}
+
+System::Void Sobutilnik::Map::vkButton_Click(System::Object^  sender, System::EventArgs^  e){
+	Process::Start("chrome.exe", vkLink);
+}
+
+System::Void Sobutilnik::Map::webPageButton_Click(System::Object^  sender, System::EventArgs^  e){
+	Process::Start("chrome.exe", webPageLink);
 }
