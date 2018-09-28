@@ -359,24 +359,26 @@ System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::E
 }
 
 System::Void Sobutilnik::Map::facebookButton_Click(System::Object^  sender, System::EventArgs^  e){
-	
-	Process::Start("chrome.exe", fbLink);
-
+	if(fbLink->Length)
+		Process::Start(fbLink);
 }
 
 System::Void Sobutilnik::Map::instagramButton_Click(System::Object^  sender, System::EventArgs^  e){
-
-	Process::Start("chrome.exe", instLink);
-}
+	if (instLink->Length)
+		Process::Start(instLink);
+}	
 
 System::Void Sobutilnik::Map::twitterButton_Click(System::Object^  sender, System::EventArgs^  e){
-	Process::Start("chrome.exe", twitterLink);
+	if (twitterLink->Length)
+		Process::Start(twitterLink);
 }
 
 System::Void Sobutilnik::Map::vkButton_Click(System::Object^  sender, System::EventArgs^  e){
-	Process::Start("chrome.exe", vkLink);
+	if (vkLink->Length)
+		Process::Start(vkLink);
 }
 
 System::Void Sobutilnik::Map::webPageButton_Click(System::Object^  sender, System::EventArgs^  e){
-	Process::Start("chrome.exe", webPageLink);
+	if (webPageLink->Length)
+		Process::Start(webPageLink);
 }

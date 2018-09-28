@@ -53,6 +53,11 @@ namespace Sobutilnik {
 		OleDbCommand ^command;
 		OleDbDataReader ^reader;
 		marshal_context^ marshal;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Button^  button5;
 
 
 
@@ -256,6 +261,11 @@ namespace Sobutilnik {
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+				 this->button1 = (gcnew System::Windows::Forms::Button());
+				 this->button2 = (gcnew System::Windows::Forms::Button());
+				 this->button3 = (gcnew System::Windows::Forms::Button());
+				 this->button4 = (gcnew System::Windows::Forms::Button());
+				 this->button5 = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -436,7 +446,7 @@ namespace Sobutilnik {
 				 this->profilePanel->Controls->Add(this->RatingPersent);
 				 this->profilePanel->Controls->Add(this->Rating);
 				 this->profilePanel->Controls->Add(this->label1);
-				 this->profilePanel->Location = System::Drawing::Point(179, 38);
+				 this->profilePanel->Location = System::Drawing::Point(149, 571);
 				 this->profilePanel->Margin = System::Windows::Forms::Padding(2);
 				 this->profilePanel->Name = L"profilePanel";
 				 this->profilePanel->Size = System::Drawing::Size(862, 540);
@@ -658,6 +668,11 @@ namespace Sobutilnik {
 				 // SettingsPanel
 				 // 
 				 this->SettingsPanel->BackColor = System::Drawing::Color::White;
+				 this->SettingsPanel->Controls->Add(this->button1);
+				 this->SettingsPanel->Controls->Add(this->button2);
+				 this->SettingsPanel->Controls->Add(this->button3);
+				 this->SettingsPanel->Controls->Add(this->button4);
+				 this->SettingsPanel->Controls->Add(this->button5);
 				 this->SettingsPanel->Controls->Add(this->webPageLinkField);
 				 this->SettingsPanel->Controls->Add(this->vkLinkField);
 				 this->SettingsPanel->Controls->Add(this->twitterLinkField);
@@ -706,35 +721,35 @@ namespace Sobutilnik {
 				 // 
 				 // webPageLinkField
 				 // 
-				 this->webPageLinkField->Location = System::Drawing::Point(635, 289);
+				 this->webPageLinkField->Location = System::Drawing::Point(635, 279);
 				 this->webPageLinkField->Name = L"webPageLinkField";
 				 this->webPageLinkField->Size = System::Drawing::Size(191, 20);
 				 this->webPageLinkField->TabIndex = 64;
 				 // 
 				 // vkLinkField
 				 // 
-				 this->vkLinkField->Location = System::Drawing::Point(635, 218);
+				 this->vkLinkField->Location = System::Drawing::Point(635, 215);
 				 this->vkLinkField->Name = L"vkLinkField";
 				 this->vkLinkField->Size = System::Drawing::Size(191, 20);
 				 this->vkLinkField->TabIndex = 63;
 				 // 
 				 // twitterLinkField
 				 // 
-				 this->twitterLinkField->Location = System::Drawing::Point(635, 150);
+				 this->twitterLinkField->Location = System::Drawing::Point(635, 152);
 				 this->twitterLinkField->Name = L"twitterLinkField";
 				 this->twitterLinkField->Size = System::Drawing::Size(191, 20);
 				 this->twitterLinkField->TabIndex = 62;
 				 // 
 				 // instagramkLinkField
 				 // 
-				 this->instagramkLinkField->Location = System::Drawing::Point(634, 95);
+				 this->instagramkLinkField->Location = System::Drawing::Point(635, 87);
 				 this->instagramkLinkField->Name = L"instagramkLinkField";
 				 this->instagramkLinkField->Size = System::Drawing::Size(191, 20);
 				 this->instagramkLinkField->TabIndex = 61;
 				 // 
 				 // facebookLinkField
 				 // 
-				 this->facebookLinkField->Location = System::Drawing::Point(635, 25);
+				 this->facebookLinkField->Location = System::Drawing::Point(635, 32);
 				 this->facebookLinkField->Name = L"facebookLinkField";
 				 this->facebookLinkField->Size = System::Drawing::Size(191, 20);
 				 this->facebookLinkField->TabIndex = 60;
@@ -1151,6 +1166,51 @@ namespace Sobutilnik {
 				 this->profileButton->Text = L"Мой профиль";
 				 this->profileButton->UseVisualStyleBackColor = false;
 				 this->profileButton->Click += gcnew System::EventHandler(this, &Map::profileButton_Click);
+				 // 
+				 // button1
+				 // 
+				 this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
+				 this->button1->Location = System::Drawing::Point(585, 269);
+				 this->button1->Name = L"button1";
+				 this->button1->Size = System::Drawing::Size(32, 32);
+				 this->button1->TabIndex = 70;
+				 this->button1->UseVisualStyleBackColor = true;
+				 // 
+				 // button2
+				 // 
+				 this->button2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.Image")));
+				 this->button2->Location = System::Drawing::Point(585, 208);
+				 this->button2->Name = L"button2";
+				 this->button2->Size = System::Drawing::Size(32, 32);
+				 this->button2->TabIndex = 69;
+				 this->button2->UseVisualStyleBackColor = true;
+				 // 
+				 // button3
+				 // 
+				 this->button3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.Image")));
+				 this->button3->Location = System::Drawing::Point(585, 144);
+				 this->button3->Name = L"button3";
+				 this->button3->Size = System::Drawing::Size(32, 32);
+				 this->button3->TabIndex = 68;
+				 this->button3->UseVisualStyleBackColor = true;
+				 // 
+				 // button4
+				 // 
+				 this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
+				 this->button4->Location = System::Drawing::Point(585, 80);
+				 this->button4->Name = L"button4";
+				 this->button4->Size = System::Drawing::Size(32, 32);
+				 this->button4->TabIndex = 67;
+				 this->button4->UseVisualStyleBackColor = true;
+				 // 
+				 // button5
+				 // 
+				 this->button5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button5.Image")));
+				 this->button5->Location = System::Drawing::Point(585, 25);
+				 this->button5->Name = L"button5";
+				 this->button5->Size = System::Drawing::Size(32, 32);
+				 this->button5->TabIndex = 66;
+				 this->button5->UseVisualStyleBackColor = true;
 				 // 
 				 // Map
 				 // 

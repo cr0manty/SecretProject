@@ -16,15 +16,15 @@ void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char *
 
 System::Void Sobutilnik::RegistrationForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	//try
-	//{
-	//	fieldCheck();
-	//}
-	//catch (const std::exception & e)
-	//{
-	//	MessageBox::Show(marshal_as<String^>(e.what()));
-	//	return;
-	//}
+	try
+	{
+		fieldCheck();
+	}
+	catch (const std::exception & e)
+	{
+		MessageBox::Show(marshal_as<String^>(e.what()));
+		return;
+	}
 	locationCheckBox->Visible = false;
 	this->ProfilePicture->Location = System::Drawing::Point(0, 0);
 	ProfilePicture->Visible = true;
