@@ -58,16 +58,18 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::Button^  button5;
+	private: System::Windows::Forms::Button^  FriendsButton;
 
 
 
 
 
 	
-			 bool isExitButton;
+		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
+		void checkFriends();
 		int userId;
 		std::vector<int> *searchResult;
 		void uniqUser(System::Object^, const char*, System::Object^);
@@ -212,6 +214,11 @@ namespace Sobutilnik {
 				 this->aboutYourself = (gcnew System::Windows::Forms::Label());
 				 this->RatingPersent = (gcnew System::Windows::Forms::Label());
 				 this->SettingsPanel = (gcnew System::Windows::Forms::Panel());
+				 this->button1 = (gcnew System::Windows::Forms::Button());
+				 this->button2 = (gcnew System::Windows::Forms::Button());
+				 this->button3 = (gcnew System::Windows::Forms::Button());
+				 this->button4 = (gcnew System::Windows::Forms::Button());
+				 this->button5 = (gcnew System::Windows::Forms::Button());
 				 this->webPageLinkField = (gcnew System::Windows::Forms::TextBox());
 				 this->vkLinkField = (gcnew System::Windows::Forms::TextBox());
 				 this->twitterLinkField = (gcnew System::Windows::Forms::TextBox());
@@ -258,14 +265,10 @@ namespace Sobutilnik {
 				 this->History = (gcnew System::Windows::Forms::Button());
 				 this->Messages = (gcnew System::Windows::Forms::Button());
 				 this->Buttons = (gcnew System::Windows::Forms::Panel());
+				 this->FriendsButton = (gcnew System::Windows::Forms::Button());
 				 this->mapButton = (gcnew System::Windows::Forms::Button());
 				 this->profileButton = (gcnew System::Windows::Forms::Button());
 				 this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-				 this->button1 = (gcnew System::Windows::Forms::Button());
-				 this->button2 = (gcnew System::Windows::Forms::Button());
-				 this->button3 = (gcnew System::Windows::Forms::Button());
-				 this->button4 = (gcnew System::Windows::Forms::Button());
-				 this->button5 = (gcnew System::Windows::Forms::Button());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureProfile))->BeginInit();
 				 this->FriendsPanel->SuspendLayout();
 				 this->HistoryPanel->SuspendLayout();
@@ -719,6 +722,51 @@ namespace Sobutilnik {
 				 this->SettingsPanel->TabIndex = 12;
 				 this->SettingsPanel->Visible = false;
 				 // 
+				 // button1
+				 // 
+				 this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
+				 this->button1->Location = System::Drawing::Point(585, 269);
+				 this->button1->Name = L"button1";
+				 this->button1->Size = System::Drawing::Size(32, 32);
+				 this->button1->TabIndex = 70;
+				 this->button1->UseVisualStyleBackColor = true;
+				 // 
+				 // button2
+				 // 
+				 this->button2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.Image")));
+				 this->button2->Location = System::Drawing::Point(585, 208);
+				 this->button2->Name = L"button2";
+				 this->button2->Size = System::Drawing::Size(32, 32);
+				 this->button2->TabIndex = 69;
+				 this->button2->UseVisualStyleBackColor = true;
+				 // 
+				 // button3
+				 // 
+				 this->button3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.Image")));
+				 this->button3->Location = System::Drawing::Point(585, 144);
+				 this->button3->Name = L"button3";
+				 this->button3->Size = System::Drawing::Size(32, 32);
+				 this->button3->TabIndex = 68;
+				 this->button3->UseVisualStyleBackColor = true;
+				 // 
+				 // button4
+				 // 
+				 this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
+				 this->button4->Location = System::Drawing::Point(585, 80);
+				 this->button4->Name = L"button4";
+				 this->button4->Size = System::Drawing::Size(32, 32);
+				 this->button4->TabIndex = 67;
+				 this->button4->UseVisualStyleBackColor = true;
+				 // 
+				 // button5
+				 // 
+				 this->button5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button5.Image")));
+				 this->button5->Location = System::Drawing::Point(585, 25);
+				 this->button5->Name = L"button5";
+				 this->button5->Size = System::Drawing::Size(32, 32);
+				 this->button5->TabIndex = 66;
+				 this->button5->UseVisualStyleBackColor = true;
+				 // 
 				 // webPageLinkField
 				 // 
 				 this->webPageLinkField->Location = System::Drawing::Point(635, 279);
@@ -1074,7 +1122,7 @@ namespace Sobutilnik {
 				 // ExitAccount
 				 // 
 				 this->ExitAccount->BackColor = System::Drawing::Color::White;
-				 this->ExitAccount->Location = System::Drawing::Point(11, 189);
+				 this->ExitAccount->Location = System::Drawing::Point(11, 219);
 				 this->ExitAccount->Name = L"ExitAccount";
 				 this->ExitAccount->Size = System::Drawing::Size(125, 25);
 				 this->ExitAccount->TabIndex = 14;
@@ -1085,7 +1133,7 @@ namespace Sobutilnik {
 				 // Settings
 				 // 
 				 this->Settings->BackColor = System::Drawing::Color::White;
-				 this->Settings->Location = System::Drawing::Point(11, 159);
+				 this->Settings->Location = System::Drawing::Point(11, 189);
 				 this->Settings->Name = L"Settings";
 				 this->Settings->Size = System::Drawing::Size(125, 25);
 				 this->Settings->TabIndex = 5;
@@ -1131,6 +1179,7 @@ namespace Sobutilnik {
 				 // Buttons
 				 // 
 				 this->Buttons->BackColor = System::Drawing::Color::White;
+				 this->Buttons->Controls->Add(this->FriendsButton);
 				 this->Buttons->Controls->Add(this->mapButton);
 				 this->Buttons->Controls->Add(this->ExitAccount);
 				 this->Buttons->Controls->Add(this->profileButton);
@@ -1143,10 +1192,23 @@ namespace Sobutilnik {
 				 this->Buttons->Size = System::Drawing::Size(144, 530);
 				 this->Buttons->TabIndex = 10;
 				 // 
+				 // FriendsButton
+				 // 
+				 this->FriendsButton->BackColor = System::Drawing::Color::White;
+				 this->FriendsButton->Enabled = false;
+				 this->FriendsButton->Location = System::Drawing::Point(11, 99);
+				 this->FriendsButton->Margin = System::Windows::Forms::Padding(2);
+				 this->FriendsButton->Name = L"FriendsButton";
+				 this->FriendsButton->Size = System::Drawing::Size(125, 25);
+				 this->FriendsButton->TabIndex = 15;
+				 this->FriendsButton->Text = L"Друзья";
+				 this->FriendsButton->UseVisualStyleBackColor = false;
+				 this->FriendsButton->Click += gcnew System::EventHandler(this, &Map::FriendsButton_Click);
+				 // 
 				 // mapButton
 				 // 
 				 this->mapButton->BackColor = System::Drawing::Color::White;
-				 this->mapButton->Location = System::Drawing::Point(11, 99);
+				 this->mapButton->Location = System::Drawing::Point(11, 159);
 				 this->mapButton->Margin = System::Windows::Forms::Padding(2);
 				 this->mapButton->Name = L"mapButton";
 				 this->mapButton->Size = System::Drawing::Size(125, 25);
@@ -1166,51 +1228,6 @@ namespace Sobutilnik {
 				 this->profileButton->Text = L"Мой профиль";
 				 this->profileButton->UseVisualStyleBackColor = false;
 				 this->profileButton->Click += gcnew System::EventHandler(this, &Map::profileButton_Click);
-				 // 
-				 // button1
-				 // 
-				 this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
-				 this->button1->Location = System::Drawing::Point(585, 269);
-				 this->button1->Name = L"button1";
-				 this->button1->Size = System::Drawing::Size(32, 32);
-				 this->button1->TabIndex = 70;
-				 this->button1->UseVisualStyleBackColor = true;
-				 // 
-				 // button2
-				 // 
-				 this->button2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.Image")));
-				 this->button2->Location = System::Drawing::Point(585, 208);
-				 this->button2->Name = L"button2";
-				 this->button2->Size = System::Drawing::Size(32, 32);
-				 this->button2->TabIndex = 69;
-				 this->button2->UseVisualStyleBackColor = true;
-				 // 
-				 // button3
-				 // 
-				 this->button3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.Image")));
-				 this->button3->Location = System::Drawing::Point(585, 144);
-				 this->button3->Name = L"button3";
-				 this->button3->Size = System::Drawing::Size(32, 32);
-				 this->button3->TabIndex = 68;
-				 this->button3->UseVisualStyleBackColor = true;
-				 // 
-				 // button4
-				 // 
-				 this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
-				 this->button4->Location = System::Drawing::Point(585, 80);
-				 this->button4->Name = L"button4";
-				 this->button4->Size = System::Drawing::Size(32, 32);
-				 this->button4->TabIndex = 67;
-				 this->button4->UseVisualStyleBackColor = true;
-				 // 
-				 // button5
-				 // 
-				 this->button5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button5.Image")));
-				 this->button5->Location = System::Drawing::Point(585, 25);
-				 this->button5->Name = L"button5";
-				 this->button5->Size = System::Drawing::Size(32, 32);
-				 this->button5->TabIndex = 66;
-				 this->button5->UseVisualStyleBackColor = true;
 				 // 
 				 // Map
 				 // 
@@ -1273,5 +1290,6 @@ private: System::Void instagramButton_Click(System::Object^  sender, System::Eve
 private: System::Void twitterButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void vkButton_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void webPageButton_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void FriendsButton_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

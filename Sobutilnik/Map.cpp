@@ -52,7 +52,6 @@ void Sobutilnik::Map::checkSearch()
 	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
 	reader = command->ExecuteReader();
 	resultListBox->Items->Clear();
-	int itemCounter = 0;
 	if (reader->HasRows) {
 		while (reader->Read()) {
 			int currentUsersId = reader->GetInt32(0);
@@ -63,6 +62,34 @@ void Sobutilnik::Map::checkSearch()
 		}
 		if(!resultListBox->Items->Count)
 			resultListBox->Items->Add("Поиск не дал результатов:(");
+	}
+	mainPage->dbConnection->Close();
+}
+
+void Sobutilnik::Map::checkFriends()
+{
+	label11->Text = "Друзья:";
+	searchButton->Visible = false;
+	searchField->Visible = false;
+	command = gcnew OleDbCommand();
+	command->CommandType = CommandType::Text;
+	command->CommandText = "SELECT * from Friends where w_userId like @u_id";
+	command->Connection = mainPage->dbConnection;
+	command->Parameters->AddWithValue("@u_id", userId);
+	mainPage->dbConnection->Open();
+	reader = command->ExecuteReader();
+	resultListBox->Items->Clear();
+	int itemCounter = 0;
+	if (reader->HasRows) {
+		while (reader->Read()) {
+			int currentUsersId = reader->GetInt32(0);
+			if (currentUsersId != userId) {
+				searchResult->push_back(currentUsersId);
+				resultListBox->Items->Add(itemCounter++ + reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
+			}
+		}
+		if (!resultListBox->Items->Count)
+			resultListBox->Items->Add("В вашем списке друзей пусто:(");
 	}
 	mainPage->dbConnection->Close();
 }
@@ -167,6 +194,19 @@ System::Void Sobutilnik::Map::searchButton_Click(System::Object ^ sender, System
 	try
 	{
 		checkSearch();
+	}
+	catch (const std::exception & e)
+	{
+		MessageBox::Show(marshal_as<String^>(e.what()));
+		return;
+	}
+}
+
+System::Void Sobutilnik::Map::FriendsButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	try
+	{
+		checkFriends();
 	}
 	catch (const std::exception & e)
 	{
