@@ -82,7 +82,7 @@ void Sobutilnik::Map::checkFriends()
 	int itemCounter = 0;
 	if (reader->HasRows) {
 		while (reader->Read()) {
-			int currentUsersId = reader->GetInt32(0);
+			int currentUsersId = reader->GetInt32(1);
 			if (currentUsersId != userId) {
 				searchResult->push_back(currentUsersId);
 				resultListBox->Items->Add(itemCounter++ + reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
@@ -204,6 +204,15 @@ System::Void Sobutilnik::Map::searchButton_Click(System::Object ^ sender, System
 
 System::Void Sobutilnik::Map::FriendsButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	FriendsPanel->Visible = true;
+	FriendsPanel->Location = System::Drawing::Point(215, 15);
+	//FriendsPanel->Size = System::Drawing::Size(854, 539);
+	//Map::Size = System::Drawing::Size(750, 430);
+
+	profilePanel->Visible = false;
+	HistoryPanel->Visible = false;
+	SettingsPanel->Visible = false;
+	MessagesPanel->Visible = false;
 	try
 	{
 		checkFriends();

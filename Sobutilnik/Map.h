@@ -1195,7 +1195,6 @@ namespace Sobutilnik {
 				 // FriendsButton
 				 // 
 				 this->FriendsButton->BackColor = System::Drawing::Color::White;
-				 this->FriendsButton->Enabled = false;
 				 this->FriendsButton->Location = System::Drawing::Point(11, 99);
 				 this->FriendsButton->Margin = System::Windows::Forms::Padding(2);
 				 this->FriendsButton->Name = L"FriendsButton";
