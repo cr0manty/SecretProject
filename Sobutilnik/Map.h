@@ -4,6 +4,7 @@
 #include <msclr/marshal.h>
 #include <msclr\auto_gcroot.h>
 #include "ErrorMessages.h"
+#include <map>
 
 namespace Sobutilnik {
 	using namespace System;
@@ -59,19 +60,16 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::Button^  button5;
 	private: System::Windows::Forms::Button^  FriendsButton;
-
-
-
-
-
-	
+			 std::map<int,bool> findFriends();
 		bool isExitButton;
 		void initLabels();
 		String^ profileImage;
 		void checkSearch();
 		void checkFriends();
+		void AcceptFriendReq(bool,int);
 		int userId;
 		std::vector<int> *searchResult;
+		std::map<int,bool>*friends;
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
 		void deleteForm();

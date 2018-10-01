@@ -15,8 +15,8 @@ namespace Sobutilnik {
 	public ref class AnoutherAccount : public System::Windows::Forms::Form
 	{
 	public:
-		AnoutherAccount(int id, OleDbConnection^ db) :
-			userID(id), dbConnection(db)
+		AnoutherAccount(int friendID,int _myID, OleDbConnection^ db, bool _isFriend) :
+			friendID(friendID), dbConnection(db), isFriend(_isFriend), myId(_myID)
 		{
 			InitializeComponent();
 		}
@@ -33,7 +33,8 @@ namespace Sobutilnik {
 		}
 
 	private:
-		int userID;
+		int friendID, myId;
+		bool isFriend;
 		OleDbConnection^ dbConnection;
 		OleDbDataReader ^reader;
 		OleDbCommand ^command;
@@ -50,8 +51,9 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::Label^  Hobbies;
 	private: System::Windows::Forms::Label^  userDescriptionLabel;
 	private: System::Windows::Forms::Label^  aboutYourself;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Label^  FriendOrNot;
+	private: System::Windows::Forms::Button^  AddDeleteFriend;
+
+
 
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
@@ -88,8 +90,7 @@ namespace Sobutilnik {
 			this->Hobbies = (gcnew System::Windows::Forms::Label());
 			this->userDescriptionLabel = (gcnew System::Windows::Forms::Label());
 			this->aboutYourself = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->FriendOrNot = (gcnew System::Windows::Forms::Label());
+			this->AddDeleteFriend = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->Rating = (gcnew System::Windows::Forms::ProgressBar());
@@ -219,24 +220,15 @@ namespace Sobutilnik {
 			this->aboutYourself->TabIndex = 60;
 			this->aboutYourself->Text = L"О себе:";
 			// 
-			// button1
+			// AddDeleteFriend
 			// 
-			this->button1->Enabled = false;
-			this->button1->Location = System::Drawing::Point(33, 285);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(126, 23);
-			this->button1->TabIndex = 66;
-			this->button1->Text = L"Добавить в друзья";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// FriendOrNot
-			// 
-			this->FriendOrNot->AutoSize = true;
-			this->FriendOrNot->Location = System::Drawing::Point(9, 311);
-			this->FriendOrNot->Name = L"FriendOrNot";
-			this->FriendOrNot->Size = System::Drawing::Size(191, 13);
-			this->FriendOrNot->TabIndex = 67;
-			this->FriendOrNot->Text = L"Василий не является вашим другом";
+			this->AddDeleteFriend->Location = System::Drawing::Point(33, 269);
+			this->AddDeleteFriend->Name = L"AddDeleteFriend";
+			this->AddDeleteFriend->Size = System::Drawing::Size(126, 23);
+			this->AddDeleteFriend->TabIndex = 66;
+			this->AddDeleteFriend->Text = L"Добавить в друзья";
+			this->AddDeleteFriend->UseVisualStyleBackColor = true;
+			this->AddDeleteFriend->Click += gcnew System::EventHandler(this, &AnoutherAccount::AddDeleteFriend_Click);
 			// 
 			// button2
 			// 
@@ -315,8 +307,7 @@ namespace Sobutilnik {
 			this->Controls->Add(this->Rating);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->FriendOrNot);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->AddDeleteFriend);
 			this->Controls->Add(this->usersAlcoholLabel);
 			this->Controls->Add(this->Drinks);
 			this->Controls->Add(this->userHobbiesLabel);
@@ -342,5 +333,6 @@ namespace Sobutilnik {
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Close();
 	}
+private: System::Void AddDeleteFriend_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }
