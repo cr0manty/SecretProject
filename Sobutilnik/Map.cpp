@@ -146,6 +146,18 @@ void Sobutilnik::Map::exitAcc()
 	this->Close();
 }
 
+System::String^ Sobutilnik::Map::getLocalIPAddress()
+{
+	IPHostEntry^ host;
+	host = Dns::GetHostEntry(Dns::GetHostName());
+
+	for each (IPAddress^ ipAddr in host->AddressList)
+		if (ipAddr->AddressFamily == AddressFamily::InterNetwork)
+			return ipAddr->ToString();
+
+	return "127.0.0.1";
+}
+
 void Sobutilnik::Map::deleteForm()
 {
 	if (components)

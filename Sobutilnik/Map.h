@@ -15,8 +15,11 @@ namespace Sobutilnik {
 	using namespace System::IO;
 	using namespace System::Drawing;
 	using namespace System::Diagnostics;
+	using namespace System::Net;
+	using namespace System::Net::Sockets;
 	using namespace msclr::interop;
 	using namespace OleDb;
+
 
 	/// <summary>
 	/// Сводка для Map
@@ -28,6 +31,8 @@ namespace Sobutilnik {
 		{
 			InitializeComponent();
 			profileImage = nullptr;
+			socket = gcnew Socket(AddressFamily::InterNetwork,SocketType::Dgram,ProtocolType::Udp);
+			socket->SetSocketOption(SocketOptionLevel::Socket,SocketOptionName::ReuseAddress,true);
 		}
 		Map(FirstPage ^f, int _id) : mainPage(f), userId(_id), isExitButton(0)
 		{
@@ -72,13 +77,15 @@ namespace Sobutilnik {
 		std::map<int,bool>*friends;
 		void uniqUser(System::Object^, const char*, System::Object^);
 		void exitAcc();
+		String^ getLocalIPAddress();
 		void deleteForm();
 		String^ fbLink;
 		String^ instLink;
 		String^ twitterLink;
 		String^ vkLink;
 		String^ webPageLink;
-
+		Socket^ socket;
+		
 	private: System::Windows::Forms::TextBox^  webPageLinkField;
 	private: System::Windows::Forms::TextBox^  vkLinkField;
 	private: System::Windows::Forms::TextBox^  twitterLinkField;
