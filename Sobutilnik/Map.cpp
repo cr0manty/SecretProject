@@ -2,14 +2,14 @@
 #include "AnoutherAccount.h"
 
 
-std::map<int,bool> Sobutilnik::Map::findFriends()
+std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 {
-	std::map<int,bool> friends;
+	std::vector<std::pair<int, bool>> friends;
 	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like '%" + userId + "%'", mainPage->dbConnection);
 	mainPage->dbConnection->Open();
 	reader = command->ExecuteReader();
 	while (reader->Read())
-		friends.emplace(reader->GetInt32(1), reader->GetBoolean(2));
+		friends.push_back(std::make_pair<int, bool>(reader->GetInt32(1), reader->GetBoolean(2)));
 	mainPage->dbConnection->Close();
 	return friends;
 }
@@ -83,17 +83,20 @@ void Sobutilnik::Map::checkFriends()
 	label11->Text = "Друзья:";
 	searchButton->Visible = false;
 	searchField->Visible = false;
-	friends = new std::map<int, bool>(findFriends());
+	friends = new std::vector<std::pair<int, bool>>(findFriends());
 	resultListBox->Items->Clear();
-	
-	if(friends->size())
+
+	if (friends->size())
 		for (auto i : friends[0]) {
 			command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like @u_id", mainPage->dbConnection);
 			command->Parameters->AddWithValue("@u_id", i.first);
 			mainPage->dbConnection->Open();
 			reader = command->ExecuteReader();
 			reader->Read();
-			resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
+			String ^listBoxText = reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString();
+			if (!i.second)
+				listBoxText += "   [Req]";
+			resultListBox->Items->Add(listBoxText);
 			mainPage->dbConnection->Close();
 		}
 	else {
@@ -104,19 +107,20 @@ void Sobutilnik::Map::checkFriends()
 
 void Sobutilnik::Map::AcceptFriendReq(bool _accept,int _friendId)
 {
+	//колонка, кто послал запрос и только !идВЭтойКолонке может принять
 	mainPage->dbConnection->Open();
 	if (_accept) {
-		
+
 		command = gcnew OleDbCommand("UPDATE Friends SET w_isFriend = @u_isFriend WHERE w_userId = @u_id AND w_friendId = @u_friendId", mainPage->dbConnection);
 		command->Parameters->AddWithValue("@u_isFriend", true);
 		MessageBox::Show("Заявка принята!");
-		friends->find(_friendId)->second = true;
+	//	friends[0][resultListBox->SelectedIndex] =
 	}
 
 	else {
 		command = gcnew OleDbCommand("DELETE FROM Friends WHERE w_userId = @u_id AND w_friendId = @u_friendId", mainPage->dbConnection);
 		MessageBox::Show("Запрос отклонен!");
-		friends->erase(_friendId);
+	//	friends[0].erase(std::make_pair<int,bool>(resultListBox->SelectedIndex,false));
 	}
 	command->Parameters->AddWithValue("@u_id", userId);
 	command->Parameters->AddWithValue("@u_friendId", _friendId);
@@ -252,6 +256,7 @@ System::Void Sobutilnik::Map::searchButton_Click(System::Object ^ sender, System
 
 System::Void Sobutilnik::Map::FriendsButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	checkFriends();
 	FriendsPanel->Visible = true;
 	FriendsPanel->Location = System::Drawing::Point(215, 15);
 	//FriendsPanel->Size = System::Drawing::Size(854, 539);
@@ -261,15 +266,6 @@ System::Void Sobutilnik::Map::FriendsButton_Click(System::Object ^ sender, Syste
 	HistoryPanel->Visible = false;
 	SettingsPanel->Visible = false;
 	MessagesPanel->Visible = false;
-	try
-	{
-		checkFriends();
-	}
-	catch (const std::exception & e)
-	{
-		MessageBox::Show(marshal_as<String^>(e.what()));
-		return;
-	}
 }
 
 System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -443,21 +439,22 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
+
 	if (searchResult->size() && searchButton->Visible) {
 		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, mainPage->dbConnection, false);
 		userProfile->ShowDialog();
 	}
 	else if (friends->size()) {
-			if (!friends->find(resultListBox->SelectedIndex)->second) {
-				if (MessageBox::Show(" ","Добавить пользователч в друзья?", MessageBoxButtons::YesNo,
-					MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) 
-					AcceptFriendReq(true, friends[0].find(resultListBox->SelectedIndex)->first);
-				else AcceptFriendReq(false, friends[0].find(resultListBox->SelectedIndex)->first);
-			}
-			else {
-				AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends->find(resultListBox->SelectedIndex)->first, userId, mainPage->dbConnection, friends->find(resultListBox->SelectedIndex)->second);
-				userProfile->ShowDialog();
-			}
+		if (!friends[0][resultListBox->SelectedIndex].second) {
+			if (MessageBox::Show(" ", "Добавить пользователч в друзья?", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes)
+				AcceptFriendReq(true, friends[0][resultListBox->SelectedIndex].first);
+			else AcceptFriendReq(false, friends[0][resultListBox->SelectedIndex].first);
+		}
+		else {
+			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId, mainPage->dbConnection,
+				friends[0][resultListBox->SelectedIndex].second);
+			userProfile->ShowDialog();
+		}
 	}
 }
 

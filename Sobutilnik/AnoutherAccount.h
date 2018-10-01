@@ -8,17 +8,20 @@ namespace Sobutilnik {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	enum UserType {
+		Friend, NotFriend, Request
+	};
 	/// <summary>
 	/// Сводка для AnoutherAccount
 	/// </summary>
 	public ref class AnoutherAccount : public System::Windows::Forms::Form
 	{
 	public:
-		AnoutherAccount(int friendID,int _myID, OleDbConnection^ db, bool _isFriend) :
+		AnoutherAccount(int friendID, int _myID, OleDbConnection^ db, bool _isFriend) :
 			friendID(friendID), dbConnection(db), isFriend(_isFriend), myId(_myID)
 		{
 			InitializeComponent();
+			type = friendOrNo();
 		}
 	protected:
 		/// <summary>
@@ -33,12 +36,14 @@ namespace Sobutilnik {
 		}
 
 	private:
+		
 		int friendID, myId;
 		bool isFriend;
+		UserType type;
 		OleDbConnection^ dbConnection;
 		OleDbDataReader ^reader;
 		OleDbCommand ^command;
-
+		Sobutilnik::UserType friendOrNo();
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  userSex;
 	private: System::Windows::Forms::Label^  userAgeStatic;
