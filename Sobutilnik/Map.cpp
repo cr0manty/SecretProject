@@ -183,6 +183,31 @@ System::String^ Sobutilnik::Map::getLocalIPAddress()
 	return "127.0.0.1";
 }
 
+void Sobutilnik::Map::MessageCallBack(IAsyncResult ^aResult)
+{
+	try
+	{
+		int messageSize = socket->EndReceiveFrom(aResult,remoteEndPoint);
+	
+		if (messageSize) {
+
+			String^ message;
+
+			message = aResult->AsyncState->ToString();
+
+			massegeListBox->Items->Add("Собеседник: "+message);
+		}
+
+		String^ buffer;
+		
+		//socket->BeginReceiveFrom(buffer,0,buffer->Length,SocketFlags::None, &remoteEndPoint,MessageCallBack(aResult),buffer);
+	}
+	catch (const std::exception& ex)
+	{
+		
+	}
+}
+
 void Sobutilnik::Map::deleteForm()
 {
 	if (components)
