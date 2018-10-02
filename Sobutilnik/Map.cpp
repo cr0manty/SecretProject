@@ -4,43 +4,43 @@
 std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 {
 	std::vector<std::pair<int, bool>> friends;
-	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like '%" + userId + "%'", mainPage->dbConnection);
-	mainPage->dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like '%" + userId + "%'", dbConnection);
+	dbConnection->Open();
 	reader = command->ExecuteReader();
 	while (reader->Read())
 		friends.push_back(std::make_pair<int, bool>(reader->GetInt32(1), reader->GetBoolean(2)));
 
-	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like '%" + userId + "%'", mainPage->dbConnection);
+	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like '%" + userId + "%'", dbConnection);
 	reader = command->ExecuteReader();
 	while (reader->Read())
 		if(reader->GetInt32(0) != userId)
 			friends.push_back(std::make_pair<int, bool>(reader->GetInt32(0), reader->GetBoolean(2)));
 
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 	return friends;
 }
 
 bool Sobutilnik::Map::checkRequest(int _friendId)
 {
 	command = gcnew OleDbCommand("SELECT * from Friends where (w_userId = @u_id AND w_friendId = @u_friendId) or\
-			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
 	command->Parameters->AddWithValue("@u_id", userId);
 	command->Parameters->AddWithValue("@u_friendId", _friendId);
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	reader = command->ExecuteReader();
 	reader->Read();
 	if (reader->GetInt32(3) == userId) {
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		return true;
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 	return false;
 }
 
 void Sobutilnik::Map::initLabels()
 {
-	mainPage->dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like '%" + userId + "'", mainPage->dbConnection);
+	dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like '%" + userId + "'", dbConnection);
 	reader = command->ExecuteReader();
 	reader->Read();
 	String^ sex = nullptr;
@@ -73,7 +73,7 @@ void Sobutilnik::Map::initLabels()
 	twitterLink = reader->GetValue(18)->ToString();
 	webPageLink = reader->GetValue(19)->ToString();
 
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 	RatingPersent->Text = System::Convert::ToString(Rating->Value) + "%";
 }
 
@@ -83,8 +83,8 @@ void Sobutilnik::Map::checkSearch()
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 
 	searchResult->clear();
-	mainPage->dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", mainPage->dbConnection);
+	dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", dbConnection);
 	reader = command->ExecuteReader();
 	resultListBox->Items->Clear();
 	if (reader->HasRows) {
@@ -98,7 +98,7 @@ void Sobutilnik::Map::checkSearch()
 		if(!resultListBox->Items->Count)
 			resultListBox->Items->Add("Поиск не дал результатов:(");
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 void Sobutilnik::Map::checkFriends()
@@ -111,56 +111,56 @@ void Sobutilnik::Map::checkFriends()
 
 	if (friends->size())
 		for (auto i : friends[0]) {
-			command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like @u_id", mainPage->dbConnection);
+			command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like @u_id", dbConnection);
 			command->Parameters->AddWithValue("@u_id", i.first);
-			mainPage->dbConnection->Open();
+			dbConnection->Open();
 			reader = command->ExecuteReader();
 			reader->Read();
 			String ^listBoxText = reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString();
 			if (!i.second)
 				listBoxText += "   [Req]";
 			resultListBox->Items->Add(listBoxText);
-			mainPage->dbConnection->Close();
+			dbConnection->Close();
 		}
 	else {
 		resultListBox->Items->Add("В вашем списке друзей пусто:(");
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 	}
 }
 
 void Sobutilnik::Map::AcceptFriendReq(bool _accept,int _friendId)
 {
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	if (_accept) {
 		command = gcnew OleDbCommand("UPDATE Friends SET w_isFriend = @u_isFriend WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
-			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
 		command->Parameters->AddWithValue("@u_isFriend", true);
 		MessageBox::Show("Заявка принята!");
 	}
 
 	else {
 		command = gcnew OleDbCommand("DELETE FROM Friends WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
-			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
 		MessageBox::Show("Запрос отклонен!");
 	}
 	command->Parameters->AddWithValue("@u_id", userId);
 	command->Parameters->AddWithValue("@u_friendId", _friendId);
 	command->ExecuteReader();
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
 {
-	mainPage->dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", mainPage->dbConnection);
+	dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", dbConnection);
 	reader = command->ExecuteReader();
 	reader->Read();
 
 	if (reader->HasRows) {
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		throw std::logic_error(_error);
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 void Sobutilnik::Map::exitAcc()
@@ -183,30 +183,30 @@ System::String^ Sobutilnik::Map::getLocalIPAddress()
 	return "127.0.0.1";
 }
 
-void Sobutilnik::Map::MessageCallBack(IAsyncResult ^aResult)
-{
-	try
-	{
-		int messageSize = socket->EndReceiveFrom(aResult,remoteEndPoint);
-	
-		if (messageSize) {
-
-			String^ message;
-
-			message = aResult->AsyncState->ToString();
-
-			massegeListBox->Items->Add("Собеседник: "+message);
-		}
-
-		String^ buffer;
-		
-		//socket->BeginReceiveFrom(buffer,0,buffer->Length,SocketFlags::None, &remoteEndPoint,MessageCallBack(aResult),buffer);
-	}
-	catch (const std::exception& ex)
-	{
-		
-	}
-}
+//void Sobutilnik::Map::MessageCallBack(IAsyncResult ^aResult)
+//{
+//	try
+//	{
+//		int messageSize = socket->EndReceiveFrom(aResult,remoteEndPoint);
+//	
+//		if (messageSize) {
+//
+//			String^ message;
+//
+//			message = aResult->AsyncState->ToString();
+//
+//			massegeListBox->Items->Add("Собеседник: "+message);
+//		}
+//
+//		String^ buffer;
+//		
+//		//socket->BeginReceiveFrom(buffer,0,buffer->Length,SocketFlags::None, &remoteEndPoint,MessageCallBack(aResult),buffer);
+//	}
+//	catch (const std::exception& ex)
+//	{
+//		
+//	}
+//}
 
 void Sobutilnik::Map::deleteForm()
 {
@@ -438,15 +438,15 @@ System::Void Sobutilnik::Map::saveChanges_Click(System::Object ^ sender, System:
 		command = gcnew OleDbCommand();
 		command->CommandType = CommandType::Text;
 		command->CommandText = CmdRule;
-		command->Connection = mainPage->dbConnection;
+		command->Connection = dbConnection;
 
 		for (size_t i = 0; i < pathFieldForChanges.size(); i++)
 			command->Parameters->AddWithValue(marshal_as<String^>(pathFieldForChanges[i]), marshal_as<String^>(Changes[i]));
 
 		command->Parameters->AddWithValue("@u_id", userId);
-		mainPage->dbConnection->Open();
+		dbConnection->Open();
 		command->ExecuteNonQuery();
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 
 		MessageBox::Show(marshal_as<String^>(Errors::DataWasSucsessfulyUpdated));
 		initLabels();
@@ -460,14 +460,11 @@ System::Void Sobutilnik::Map::DeleteAcc_Click(System::Object ^ sender, System::E
 	if (MessageBox::Show(marshal_as<String^>(Errors::ConfirmDeletAcc), "Удаление аккаунта", MessageBoxButtons::YesNo,
 		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 
-		mainPage->dbConnection->Open();
-		command = gcnew OleDbCommand();
-		command->CommandType = CommandType::Text;
-		command->CommandText = "DELETE FROM MyDatabase WHERE w_id = @u_id";
-		command->Connection = mainPage->dbConnection;
+		dbConnection->Open();
+		command = gcnew OleDbCommand("DELETE FROM MyDatabase WHERE w_id = @u_id", dbConnection);
 		command->Parameters->AddWithValue("@u_id", userId);
 		command->ExecuteReader();
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		exitAcc();
 	}
 	else return;
@@ -486,7 +483,7 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
 	if (searchResult->size() && searchButton->Visible) {
-		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, mainPage->dbConnection, false);
+		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, dbConnection, false);
 		userProfile->ShowDialog();
 	}
 	else if (friends->size()) {
@@ -498,7 +495,7 @@ System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object 
 			checkFriends();
 		}
 		else {
-			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId, mainPage->dbConnection,
+			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId, dbConnection,
 				friends[0][resultListBox->SelectedIndex].second);
 			userProfile->ShowDialog();
 			checkFriends();

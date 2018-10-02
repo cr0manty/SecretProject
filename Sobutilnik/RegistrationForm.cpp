@@ -2,16 +2,16 @@
 
 void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char * _error, System::Object ^ _obj)
 {
-	mainPage->dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", mainPage->dbConnection);
+	dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", dbConnection);
 	reader = command->ExecuteReader();
 	reader->Read();
 
 	if (reader->HasRows) {
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 		throw std::logic_error(_error);
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 }
 
 System::Void Sobutilnik::RegistrationForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -32,12 +32,12 @@ System::Void Sobutilnik::RegistrationForm::button1_Click(System::Object ^ sender
 
 System::Void Sobutilnik::RegistrationForm::button3_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	mainPage->dbConnection->Open();
+	dbConnection->Open();
 	command = gcnew OleDbCommand();
 	command->CommandType = CommandType::Text;
 	command->CommandText = "INSERT INTO MyDatabase (w_name,w_surname,w_password,w_login,w_email,w_sex,w_birthday,w_geolocation) \
 		VALUES (@u_name,@u_surname,@u_password,@u_login,@u_email, @u_sex,@u_birthday,@u_geolocation)";
-	command->Connection = mainPage->dbConnection;
+	command->Connection = dbConnection;
 	command->Parameters->AddWithValue("@u_name", nameTextBox->Text);
 	command->Parameters->AddWithValue("@u_surname", surnameTextBox->Text);
 	command->Parameters->AddWithValue("@u_password", passwordTextBox->Text);
@@ -53,7 +53,7 @@ System::Void Sobutilnik::RegistrationForm::button3_Click(System::Object ^ sender
 	command->Parameters->AddWithValue("@u_geolocation", locationCheckBox->Checked);
 
 	command->ExecuteNonQuery();
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 
 	MessageBox::Show(marshal_as<String^>(Errors::SucsessfulReg));
 	mainPage->Visible = true;

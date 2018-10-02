@@ -42,17 +42,11 @@ namespace Sobutilnik {
 			 {
 				 this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 				 this->SuspendLayout();
-				 // 
-				 // webBrowser1
-				 // 
 				 this->webBrowser1->Location = System::Drawing::Point(5, 0);
 				 this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
 				 this->webBrowser1->Name = L"webBrowser1";
 				 this->webBrowser1->Size = System::Drawing::Size(972, 602);
 				 this->webBrowser1->TabIndex = 0;
-				 // 
-				 // GeolocationForm
-				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(989, 614);

@@ -38,9 +38,9 @@ namespace Sobutilnik {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  button1;
+
 	private: System::Windows::Forms::Button^  button2;
-	public: OleDb::OleDbConnection ^dbConnection;
+	private: OleDb::OleDbConnection ^dbConnection;
 	protected:
 
 	private:
@@ -57,19 +57,11 @@ namespace Sobutilnik {
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
-			this->button1->Location = System::Drawing::Point(106, 150);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Map";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &FirstPage::button1_Click);
 			this->button2->Location = System::Drawing::Point(106, 93);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 0;
@@ -89,7 +81,6 @@ namespace Sobutilnik {
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
 			this->Name = L"FirstPage";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"FirstPage";
@@ -97,7 +88,6 @@ namespace Sobutilnik {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
 };

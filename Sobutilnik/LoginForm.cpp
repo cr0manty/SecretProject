@@ -5,8 +5,8 @@ int Sobutilnik::LoginForm::findAccount()
 	if (!LoginField->Text->Length || !PassField->Text->Length)
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 	
-	mainPage->dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + LoginField->Text + "%'", mainPage->dbConnection);
+	dbConnection->Open();
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + LoginField->Text + "%'", dbConnection);
 	reader = command->ExecuteReader();
 
 	if (reader->HasRows) {
@@ -14,13 +14,13 @@ int Sobutilnik::LoginForm::findAccount()
 
 		int userId = reader->GetInt32(0);
 		String^ pass = reader->GetValue(3)->ToString();
-		mainPage->dbConnection->Close();
+		dbConnection->Close();
 
 		if (pass != PassField->Text)
 			throw std::logic_error(Errors::AccountNotFound);
 		return userId;
 	}
-	mainPage->dbConnection->Close();
+	dbConnection->Close();
 	throw std::logic_error(Errors::AccountNotFound);
 }
 
@@ -37,7 +37,7 @@ System::Void Sobutilnik::LoginForm::button1_Click(System::Object ^ sender, Syste
 		return;
 	}
 	mainPage->Visible = false;
-	NewForm = gcnew Map(mainPage, userId);
+	NewForm = gcnew Map(mainPage,dbConnection, userId);
 
 	this->Visible = false;
 	NewForm->ShowDialog();
