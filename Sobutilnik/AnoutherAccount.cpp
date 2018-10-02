@@ -3,7 +3,8 @@
 Sobutilnik::UserType Sobutilnik::AnoutherAccount::friendOrNo()
 {
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like @u_id AND w_friendId like @u_friendId", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from Friends where(w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
 	command->Parameters->AddWithValue("@u_id", myId);
 	command->Parameters->AddWithValue("@u_friendId", friendID);
 	reader = command->ExecuteReader();
@@ -60,7 +61,8 @@ System::Void Sobutilnik::AnoutherAccount::AddDeleteFriend_Click(System::Object ^
 		AddDeleteFriend->Text = "Отменить заявку";
 	}
 	else {
-		command = gcnew OleDbCommand("DELETE FROM Friends WHERE w_userId = @u_id AND w_friendId = @u_friendId", dbConnection);
+		command = gcnew OleDbCommand("DELETE FROM Friends WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
 		if (type == Request) {
 			MessageBox::Show("Заявка отменена!");
 			AddDeleteFriend->Text = "Добавить в друзья";

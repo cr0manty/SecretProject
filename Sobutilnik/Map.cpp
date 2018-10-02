@@ -1,7 +1,6 @@
 #include "Map.h"
 #include "AnoutherAccount.h"
 
-
 std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 {
 	std::vector<std::pair<int, bool>> friends;
@@ -10,8 +9,32 @@ std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 	reader = command->ExecuteReader();
 	while (reader->Read())
 		friends.push_back(std::make_pair<int, bool>(reader->GetInt32(1), reader->GetBoolean(2)));
+
+	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like '%" + userId + "%'", mainPage->dbConnection);
+	reader = command->ExecuteReader();
+	while (reader->Read())
+		if(reader->GetInt32(0) != userId)
+			friends.push_back(std::make_pair<int, bool>(reader->GetInt32(0), reader->GetBoolean(2)));
+
 	mainPage->dbConnection->Close();
 	return friends;
+}
+
+bool Sobutilnik::Map::checkRequest(int _friendId)
+{
+	command = gcnew OleDbCommand("SELECT * from Friends where (w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
+	command->Parameters->AddWithValue("@u_id", userId);
+	command->Parameters->AddWithValue("@u_friendId", _friendId);
+	mainPage->dbConnection->Open();
+	reader = command->ExecuteReader();
+	reader->Read();
+	if (reader->GetInt32(3) == userId) {
+		mainPage->dbConnection->Close();
+		return true;
+	}
+	mainPage->dbConnection->Close();
+	return false;
 }
 
 void Sobutilnik::Map::initLabels()
@@ -107,20 +130,18 @@ void Sobutilnik::Map::checkFriends()
 
 void Sobutilnik::Map::AcceptFriendReq(bool _accept,int _friendId)
 {
-	//колонка, кто послал запрос и только !идВЭтойКолонке может принять
 	mainPage->dbConnection->Open();
 	if (_accept) {
-
-		command = gcnew OleDbCommand("UPDATE Friends SET w_isFriend = @u_isFriend WHERE w_userId = @u_id AND w_friendId = @u_friendId", mainPage->dbConnection);
+		command = gcnew OleDbCommand("UPDATE Friends SET w_isFriend = @u_isFriend WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
 		command->Parameters->AddWithValue("@u_isFriend", true);
 		MessageBox::Show("Заявка принята!");
-	//	friends[0][resultListBox->SelectedIndex] =
 	}
 
 	else {
-		command = gcnew OleDbCommand("DELETE FROM Friends WHERE w_userId = @u_id AND w_friendId = @u_friendId", mainPage->dbConnection);
+		command = gcnew OleDbCommand("DELETE FROM Friends WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)", mainPage->dbConnection);
 		MessageBox::Show("Запрос отклонен!");
-	//	friends[0].erase(std::make_pair<int,bool>(resultListBox->SelectedIndex,false));
 	}
 	command->Parameters->AddWithValue("@u_id", userId);
 	command->Parameters->AddWithValue("@u_friendId", _friendId);
@@ -439,23 +460,25 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
-
 	if (searchResult->size() && searchButton->Visible) {
 		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, mainPage->dbConnection, false);
 		userProfile->ShowDialog();
 	}
 	else if (friends->size()) {
-		if (!friends[0][resultListBox->SelectedIndex].second) {
-			if (MessageBox::Show(" ", "Добавить пользователч в друзья?", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes)
+		if (!friends[0][resultListBox->SelectedIndex].second && !checkRequest(friends[0][resultListBox->SelectedIndex].first)) {
+			if (MessageBox::Show(" ", "Добавить пользователч в друзья?", MessageBoxButtons::YesNo) == 
+				System::Windows::Forms::DialogResult::Yes)
 				AcceptFriendReq(true, friends[0][resultListBox->SelectedIndex].first);
 			else AcceptFriendReq(false, friends[0][resultListBox->SelectedIndex].first);
+			checkFriends();
 		}
 		else {
 			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId, mainPage->dbConnection,
 				friends[0][resultListBox->SelectedIndex].second);
 			userProfile->ShowDialog();
+			checkFriends();
 		}
-	}
+	}	
 }
 
 System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::EventArgs ^ e)
