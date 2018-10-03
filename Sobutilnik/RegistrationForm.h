@@ -17,9 +17,10 @@ namespace Sobutilnik {
 	public ref class RegistrationForm : public System::Windows::Forms::Form
 	{
 	public:
-		RegistrationForm(FirstPage ^f, OleDbConnection^ connection) : mainPage(f), dbConnection(connection)
+		RegistrationForm(FirstPage ^f) : mainPage(f)
 		{
 			InitializeComponent();
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 		}
 
 	protected:

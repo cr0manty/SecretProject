@@ -24,12 +24,13 @@ namespace Sobutilnik {
 	public ref class Map : public System::Windows::Forms::Form
 	{
 	public:
-		Map(FirstPage ^f, OleDbConnection ^connection, int _id) : 
-			dbConnection(connection), userId(_id), isExitButton(0), mainPage(f)
+		Map(FirstPage ^f, int _id) : 
+			userId(_id), isExitButton(0), mainPage(f)
 		{
 			InitializeComponent();
 			profileImage = nullptr;
 			initLabels();
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 			searchResult = new std::vector<int>;
 			socket = gcnew Socket(AddressFamily::InterNetwork, SocketType::Dgram, ProtocolType::Udp);
 			socket->SetSocketOption(SocketOptionLevel::Socket, SocketOptionName::ReuseAddress, true);
@@ -42,7 +43,6 @@ namespace Sobutilnik {
 		{
 			deleteForm();
 			delete mainPage;
-
 		}
 	private:
 		OleDbConnection^ dbConnection;

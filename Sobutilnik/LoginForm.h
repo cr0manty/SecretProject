@@ -16,9 +16,10 @@ namespace Sobutilnik {
 	public ref class LoginForm : public System::Windows::Forms::Form
 	{
 	public:
-		LoginForm(FirstPage ^ f,OleDbConnection ^connector) : dbConnection(connector),mainPage(f)
+		LoginForm(FirstPage ^ f) : mainPage(f)
 		{
 			InitializeComponent();
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 		}
 
 	protected:

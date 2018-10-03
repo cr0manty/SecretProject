@@ -37,7 +37,7 @@ System::Void Sobutilnik::LoginForm::button1_Click(System::Object ^ sender, Syste
 		return;
 	}
 	mainPage->Visible = false;
-	NewForm = gcnew Map(mainPage,dbConnection, userId);
+	NewForm = gcnew Map(mainPage, userId);
 
 	this->Visible = false;
 	NewForm->ShowDialog();
