@@ -29,7 +29,8 @@ Sobutilnik::UserType Sobutilnik::AnoutherAccount::friendOrNo()
 System::Void Sobutilnik::AnoutherAccount::AnoutherAccount_Load(System::Object ^ sender, System::EventArgs ^ e)
 {
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like '%" + friendID + "'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like @u_id", dbConnection);
+	command->Parameters->AddWithValue("@u_id", friendID);
 	reader = command->ExecuteReader();
 	reader->Read();
 

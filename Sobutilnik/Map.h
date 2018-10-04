@@ -67,7 +67,7 @@ namespace Sobutilnik {
 	private: System::Windows::Forms::ListBox^  massegeListBox;
 			 String^ profileImage;
 		std::vector<std::pair<int, bool>> findFriends();
-
+		bool checkFriendList(int, std::vector<std::pair<int, bool>>);
 		bool checkRequest(int);
 		void initLabels();
 		void checkSearch();

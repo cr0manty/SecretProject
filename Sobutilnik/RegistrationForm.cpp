@@ -3,7 +3,10 @@
 void Sobutilnik::RegistrationForm::uniqUser(System::Object ^ _type, const char * _error, System::Object ^ _obj)
 {
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", dbConnection);
+
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where @u_type like @u_check", dbConnection);
+	command->Parameters->AddWithValue("@u_login", _type);
+	command->Parameters->AddWithValue("@u_login", _obj);
 	reader = command->ExecuteReader();
 	reader->Read();
 

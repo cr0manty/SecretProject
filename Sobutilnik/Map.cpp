@@ -4,20 +4,30 @@
 std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 {
 	std::vector<std::pair<int, bool>> friends;
-	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like '%" + userId + "%'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from Friends where w_userId like @u_id", dbConnection);
+	command->Parameters->AddWithValue("@u_id", userId);
 	dbConnection->Open();
 	reader = command->ExecuteReader();
 	while (reader->Read())
 		friends.push_back(std::make_pair<int, bool>(reader->GetInt32(1), reader->GetBoolean(2)));
 
-	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like '%" + userId + "%'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like @u_id", dbConnection);
+	command->Parameters->AddWithValue("@u_id", userId);
 	reader = command->ExecuteReader();
 	while (reader->Read())
-		if(reader->GetInt32(0) != userId && (reader->GetInt32(3) == userId || reader->GetInt32(3) == reader->GetInt32(0)))
+		if(reader->GetInt32(0) != userId )
 			friends.push_back(std::make_pair<int, bool>(reader->GetInt32(0), reader->GetBoolean(2)));
 
 	dbConnection->Close();
 	return friends;
+}
+
+bool Sobutilnik::Map::checkFriendList(int _friendId, std::vector<std::pair<int, bool>> friends)
+{
+	for (auto i : friends)
+		if (i.first == _friendId)
+			return true;
+	return false;
 }
 
 bool Sobutilnik::Map::checkRequest(int _friendId)
@@ -40,7 +50,8 @@ bool Sobutilnik::Map::checkRequest(int _friendId)
 void Sobutilnik::Map::initLabels()
 {
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like '%" + userId + "'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_id like @u_id", dbConnection);
+	command->Parameters->AddWithValue("@u_id", userId);
 	reader = command->ExecuteReader();
 	reader->Read();
 	String^ sex = nullptr;
@@ -84,7 +95,8 @@ void Sobutilnik::Map::checkSearch()
 
 	searchResult->clear();
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + searchField->Text + "%'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like @u_login", dbConnection);
+	command->Parameters->AddWithValue("@u_login", searchField->Text);
 	reader = command->ExecuteReader();
 	resultListBox->Items->Clear();
 	if (reader->HasRows) {
@@ -152,7 +164,9 @@ void Sobutilnik::Map::AcceptFriendReq(bool _accept,int _friendId)
 void Sobutilnik::Map::uniqUser(System::Object ^_type, const char* _error, System::Object ^_obj)
 {
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where " + _type + " like '%" + _obj + "%'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where @u_type @u_check", dbConnection);
+	command->Parameters->AddWithValue("@u_type", _type);
+	command->Parameters->AddWithValue("@u_check", _obj);
 	reader = command->ExecuteReader();
 	reader->Read();
 

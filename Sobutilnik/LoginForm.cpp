@@ -6,7 +6,9 @@ int Sobutilnik::LoginForm::findAccount()
 		throw std::logic_error(Errors::AllFieldMustBeFilled);
 	
 	dbConnection->Open();
-	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like '%" + LoginField->Text + "%'", dbConnection);
+	command = gcnew OleDbCommand("SELECT * from MyDatabase where w_login like @u_login", dbConnection);
+	command->Parameters->AddWithValue("@u_login", LoginField->Text);
+
 	reader = command->ExecuteReader();
 
 	if (reader->HasRows) {
