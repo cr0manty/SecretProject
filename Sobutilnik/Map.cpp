@@ -13,7 +13,7 @@ std::vector<std::pair<int, bool>> Sobutilnik::Map::findFriends()
 	command = gcnew OleDbCommand("SELECT * from Friends where w_friendId like '%" + userId + "%'", dbConnection);
 	reader = command->ExecuteReader();
 	while (reader->Read())
-		if(reader->GetInt32(0) != userId)
+		if(reader->GetInt32(0) != userId && (reader->GetInt32(3) == userId || reader->GetInt32(3) == reader->GetInt32(0)))
 			friends.push_back(std::make_pair<int, bool>(reader->GetInt32(0), reader->GetBoolean(2)));
 
 	dbConnection->Close();
@@ -483,19 +483,19 @@ System::Void Sobutilnik::Map::ExitAccount_Click(System::Object ^ sender, System:
 System::Void Sobutilnik::Map::resultListBox_SelectedIndexChanged(System::Object ^ sender, System::EventArgs ^ e)
 {
 	if (searchResult->size() && searchButton->Visible) {
-		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, dbConnection, false);
+		AnoutherAccount^ userProfile = gcnew AnoutherAccount(searchResult[0][resultListBox->SelectedIndex], userId, false);
 		userProfile->ShowDialog();
 	}
 	else if (friends->size()) {
 		if (!friends[0][resultListBox->SelectedIndex].second && !checkRequest(friends[0][resultListBox->SelectedIndex].first)) {
-			if (MessageBox::Show(" ", "Добавить пользователч в друзья?", MessageBoxButtons::YesNo) == 
+			if (MessageBox::Show(" ","Добавить пользователч в друзья?", MessageBoxButtons::YesNo) == 
 				System::Windows::Forms::DialogResult::Yes)
 				AcceptFriendReq(true, friends[0][resultListBox->SelectedIndex].first);
 			else AcceptFriendReq(false, friends[0][resultListBox->SelectedIndex].first);
 			checkFriends();
 		}
 		else {
-			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId, dbConnection,
+			AnoutherAccount^ userProfile = gcnew AnoutherAccount(friends[0][resultListBox->SelectedIndex].first, userId,
 				friends[0][resultListBox->SelectedIndex].second);
 			userProfile->ShowDialog();
 			checkFriends();

@@ -17,9 +17,10 @@ namespace Sobutilnik {
 	public ref class AnoutherAccount : public System::Windows::Forms::Form
 	{
 	public:
-		AnoutherAccount(int friendID, int _myID, OleDbConnection^ db, bool _isFriend) :
-			friendID(friendID), dbConnection(db), isFriend(_isFriend), myId(_myID)
+		AnoutherAccount(int friendID, int _myID, bool _isFriend) :
+			friendID(friendID), isFriend(_isFriend), myId(_myID)
 		{
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 			InitializeComponent();
 			type = friendOrNo();
 		}

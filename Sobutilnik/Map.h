@@ -28,9 +28,9 @@ namespace Sobutilnik {
 			userId(_id), isExitButton(0), mainPage(f)
 		{
 			InitializeComponent();
+			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 			profileImage = nullptr;
 			initLabels();
-			dbConnection = gcnew OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source = MyDatabase.mdb");
 			searchResult = new std::vector<int>;
 			socket = gcnew Socket(AddressFamily::InterNetwork, SocketType::Dgram, ProtocolType::Udp);
 			socket->SetSocketOption(SocketOptionLevel::Socket, SocketOptionName::ReuseAddress, true);

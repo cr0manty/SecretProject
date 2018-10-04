@@ -54,15 +54,25 @@ System::Void Sobutilnik::AnoutherAccount::AnoutherAccount_Load(System::Object ^ 
 System::Void Sobutilnik::AnoutherAccount::AddDeleteFriend_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	dbConnection->Open();
+	command = gcnew OleDbCommand();
+	command->CommandType = CommandType::Text;
+	command->Connection = dbConnection;
+
 	if (type == NotFriend) {
 		
-		command = gcnew OleDbCommand("INSERT INTO Friends (w_userId, w_friendId) VALUES (@u_userId, @u_firendId)", dbConnection);
+		command->CommandText = "INSERT INTO Friends (w_userId, w_friendId, w_frRequest) VALUES (@u_userId, @u_firendId, @u_frRequest)";
+		command->Parameters->AddWithValue("@u_userId", myId);
+		command->Parameters->AddWithValue("@u_firendId", friendID);
+		command->Parameters->AddWithValue("@u_frRequest", myId);
+		command->ExecuteReader();
+		dbConnection->Close();
 		MessageBox::Show("Заявка успешно отправлена!");
 		AddDeleteFriend->Text = "Отменить заявку";
+		return;
 	}
 	else {
-		command = gcnew OleDbCommand("DELETE FROM Friends WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
-			 (w_userId = @u_friendId AND w_friendId = @u_id)", dbConnection);
+		command->CommandText = "DELETE FROM Friends WHERE (w_userId = @u_id AND w_friendId = @u_friendId) or\
+			 (w_userId = @u_friendId AND w_friendId = @u_id)";
 		if (type == Request) {
 			MessageBox::Show("Заявка отменена!");
 			AddDeleteFriend->Text = "Добавить в друзья";
