@@ -44,9 +44,9 @@ void Sobutilnik::Map::checkSearch()
 				resultListBox->Items->Add(reader->GetValue(1)->ToString() + " " + reader->GetValue(2)->ToString() + " " + reader->GetValue(4)->ToString());
 			}
 		}
-		if (!resultListBox->Items->Count)
-			resultListBox->Items->Add("Поиск не дал результатов:(");
 	}
+	if (!resultListBox->Items->Count)
+		resultListBox->Items->Add("Поиск не дал результатов:(");
 	dbConnection->Close();
 }
 
