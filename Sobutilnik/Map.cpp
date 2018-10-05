@@ -402,7 +402,6 @@ System::Void Sobutilnik::Map::Drunk_Click(System::Object ^ sender, System::Event
 
 void Sobutilnik::Map::pnaelPaint()
 {
-	Sleep(50);
 	if (!ReadyOrNotReady) {
 		ReadyOrNot->BackColor = Color::IndianRed;
 		Drunk->Text = "Готов";
@@ -547,7 +546,6 @@ System::Void Sobutilnik::Map::profileButton_Click(System::Object ^ sender, Syste
 	SettingsPanel->Visible = false;
 	MessagesPanel->Visible = false;
 }
-
 
 System::Void Sobutilnik::Map::mapButton_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
