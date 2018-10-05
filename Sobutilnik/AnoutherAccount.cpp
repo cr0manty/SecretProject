@@ -1,5 +1,18 @@
 #include "AnoutherAccount.h"
 
+void Sobutilnik::AnoutherAccount::ReadyOrNot(bool _ready)
+{
+	if (!_ready) {
+		userFirstName->ForeColor = Color::IndianRed;
+		userSurname->ForeColor = Color::IndianRed;
+		Invite->Enabled = false;
+	}
+	else {
+		userFirstName->ForeColor = Color::Green;
+		userSurname->ForeColor = Color::Green;
+	}
+}
+
 Sobutilnik::UserType Sobutilnik::AnoutherAccount::friendOrNo()
 {
 	dbConnection->Open();
@@ -44,6 +57,7 @@ System::Void Sobutilnik::AnoutherAccount::AnoutherAccount_Load(System::Object ^ 
 	userLogin->Text = reader->GetValue(4)->ToString();
 	userSex->Text = "Пол: " + sex;
 	UserBirth->Text = reader->GetValue(7)->ToString();
+	ReadyOrNot(reader->GetBoolean(9));
 	userDescriptionLabel->Text = reader->GetValue(10)->ToString();
 	userHobbiesLabel->Text = reader->GetValue(11)->ToString();
 	usersAlcoholLabel->Text = reader->GetValue(12)->ToString();
@@ -90,4 +104,5 @@ System::Void Sobutilnik::AnoutherAccount::AddDeleteFriend_Click(System::Object ^
 
 	command->ExecuteReader();
 	dbConnection->Close();
+	this->Close();
 }

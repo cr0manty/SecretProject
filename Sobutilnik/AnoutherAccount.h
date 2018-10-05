@@ -41,9 +41,12 @@ namespace Sobutilnik {
 		int friendID, myId;
 		bool isFriend;
 		UserType type;
+		void ReadyOrNot(bool);
 		OleDbConnection^ dbConnection;
 		OleDbDataReader ^reader;
-		OleDbCommand ^command;
+
+	private: System::Windows::Forms::Button^  Invite;
+			 OleDbCommand ^command;
 		Sobutilnik::UserType friendOrNo();
 	private: System::Windows::Forms::Label^  UserBirth;
 	private: System::Windows::Forms::Label^  userSex;
@@ -104,6 +107,7 @@ namespace Sobutilnik {
 			this->RatingPersent = (gcnew System::Windows::Forms::Label());
 			this->userLogin = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->Invite = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -230,18 +234,18 @@ namespace Sobutilnik {
 			// 
 			this->AddDeleteFriend->Location = System::Drawing::Point(33, 269);
 			this->AddDeleteFriend->Name = L"AddDeleteFriend";
-			this->AddDeleteFriend->Size = System::Drawing::Size(126, 23);
-			this->AddDeleteFriend->TabIndex = 66;
+			this->AddDeleteFriend->Size = System::Drawing::Size(126, 25);
+			this->AddDeleteFriend->TabIndex = 1;
 			this->AddDeleteFriend->Text = L"Добавить в друзья";
 			this->AddDeleteFriend->UseVisualStyleBackColor = true;
 			this->AddDeleteFriend->Click += gcnew System::EventHandler(this, &AnoutherAccount::AddDeleteFriend_Click);
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(497, 298);
+			this->button2->Location = System::Drawing::Point(497, 314);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 68;
+			this->button2->TabIndex = 3;
 			this->button2->Text = L"Закрыть";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &AnoutherAccount::button2_Click);
@@ -251,8 +255,8 @@ namespace Sobutilnik {
 			this->button3->Enabled = false;
 			this->button3->Location = System::Drawing::Point(33, 233);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(126, 23);
-			this->button3->TabIndex = 69;
+			this->button3->Size = System::Drawing::Size(126, 25);
+			this->button3->TabIndex = 0;
 			this->button3->Text = L"Начать диалог";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
@@ -300,12 +304,23 @@ namespace Sobutilnik {
 			this->label5->TabIndex = 74;
 			this->label5->Text = L"Логин:";
 			// 
+			// Invite
+			// 
+			this->Invite->Enabled = false;
+			this->Invite->Location = System::Drawing::Point(33, 305);
+			this->Invite->Name = L"Invite";
+			this->Invite->Size = System::Drawing::Size(126, 25);
+			this->Invite->TabIndex = 2;
+			this->Invite->Text = L"Пригласить";
+			this->Invite->UseVisualStyleBackColor = true;
+			// 
 			// AnoutherAccount
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
-			this->ClientSize = System::Drawing::Size(584, 333);
+			this->ClientSize = System::Drawing::Size(584, 349);
+			this->Controls->Add(this->Invite);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->userLogin);
 			this->Controls->Add(this->RatingPersent);
@@ -327,6 +342,7 @@ namespace Sobutilnik {
 			this->Controls->Add(this->userSurname);
 			this->Controls->Add(this->userFirstName);
 			this->Name = L"AnoutherAccount";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"AnoutherAccount";
 			this->Load += gcnew System::EventHandler(this, &AnoutherAccount::AnoutherAccount_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
